@@ -20,7 +20,7 @@ product_stock int comment '现存数量',
 product_quantity int comment '库存(总数)',
 product_sales int comment '已售出量',
 product_price double(10,2),
-product_kind varchar(20),
+product_kind int,
 product_status int,
 create_time datetime,
 update_time datetime,
@@ -28,7 +28,6 @@ shlf_time datetime comment '上架时间',
 takedown_time datetime comment '下架时间',
 primary key(product_id)
 )
-
 
 
 
