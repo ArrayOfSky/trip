@@ -1,5 +1,7 @@
+create database trip;
+use trip;
 create table if not exists users (
- user_id  int auto_increment not null comment ,
+user_id  int auto_increment not null,
 user_name varchar(20),
 user_password varchar(20),
 user_phone_number varchar(11),
@@ -7,7 +9,7 @@ user_consumption  double(10,2) comment '累计消费',
 user_balance double(10,2)comment '余额',
 user_is_vip int comment 'vip等级',
 primary KEY(user_id)
-)
+);
 
 
 
