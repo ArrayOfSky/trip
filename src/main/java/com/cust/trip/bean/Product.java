@@ -19,7 +19,7 @@ public class Product {
     private int quantity;
     private int sales;
     private double price;
-    private String kind;
+    private int kind;
     private int status;
     private Timestamp createTime;
     private Timestamp updateTime;

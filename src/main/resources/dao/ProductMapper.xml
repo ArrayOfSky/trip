@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cust.trip.dao.ProductMapper">
+
+    <resultMap id="ResultMap" type="com.cust.trip.bean.Product">
+        <result property="id" column="product_id"></result>
+        <result property="name" column="product_name"></result>
+        <result property="stock" column="product_stock"></result>
+        <result property="quantity" column="product_quantity"></result>
+        <result property="sales" column="product_sales"></result>
+        <result property="price" column="product_price"></result>
+        <result property="kind" column="product_kind"></result>
+        <result property="status" column="product_status"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="shelfTime" column="shlf_time"></result>
+        <result property="takedownTime" column="ttakedown_time"></result>
+    </resultMap>
+
+
+    <select id="selectAllProduct" resultMap="ResultMap">
+        select *
+        from products
+    </select>
+
+
+</mapper>
