@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cust.trip.dao.UserMapper">
+    <resultMap id="resultMap" type="com.cust.trip.bean.User">
+        <id property="id" column="user_id"/>
+        <result property="name" column="user_name"/>
+        <result property="password" column="user_password"/>
+        <result property="phone" column="user_phone_number"/>
+        <result property="consumption" column="user_consumption"/>
+        <result property="balance" column="user_balance"/>
+        <result property="vip" column="user_is_vip"/>
+    </resultMap>
+
+    <!--    List<User> selectAllUsers();-->
+    <select id="selectAllUsers" resultMap="resultMap">
+        select *
+        from users
+    </select>
+    <!--    List<User> selectUsersByName(String name);-->
+    <select id="selectUsersByName" resultMap="resultMap">
+        select * from users
+        <where>
+            <if test="name != null and name != '' "/>
+            user_name=#{name}
+        </where>
+    </select>
+    <!--    User       selectUserByPhoneNumber(String phoneNumber);-->
+    <select id="selectUserByPhoneNumber" resultMap="resultMap">
+        select * from users
+        <where>
+            <if test="phoneNumber != null and phoneNumber != '' "/>
+            user_phone_number=#{phoneNumber}
+        </where>
+    </select>
+    <!--    int insertUser(User user);-->
+    <insert id="insertUser">
+        insert
+        users(user_name,user_password,user_phone_number,user_consumption,user_balance,user_is_vip)
+        values(
+        #{user.name},
+        #{user.password},
+        #{user.phoneNumber},
+        #{user.consumption},
+        #{user.balance},
+        #{user.vip}
+        )
+    </insert>
+    <!--    int updatePassword(int id,String newPassword);-->
+    <update id="updatePassword">
+        update users
+        set user_password=#{newPassword}
+        where user_id = #{id}
+    </update>
+    <!--    int updateName(int id,String newName);-->
+    <update id="updateName">
+        update users
+        set user_name=#{newName}
+        where user_id = #{id}
+    </update>
+    <!--    int updatePhoneNumber(int id,String phoneNumber);-->
+    <update id="updatePhoneNumber">
+        update users
+        set user_phone_number=#{phoneNumber}
+        where user_id = #{id}
+    </update>
+    <!--    int rechargeBalance(int id,double inBalance);-->
+    <update id="rechargeBalance">
+        update users
+        set user_balance=user_balance+#{inBalance}
+        where user_id = #{id}
+    </update>
+    <!--    int useBalance(int id,double deBalance);-->
+    <update id="useBalance">
+        update users
+        set user_balance=user_balance-#{deBalance}
+        where user_id = #{id}
+    </update>
+    <!--    int consumption(int id,double consumption);-->
+    <update id="consumption">
+        update users
+        set user_consumption=user_consumption+#{concumption}
+        where user_id = #{id}
+    </update>
+    <!--    int deConsumption(int id,double consumption);-->
+    <update id="deConsumption">
+        update users
+        set user_consumption=user_consumption-#{consumption}
+        where user_id = #{id}
+    </update>
+    <!--    int updateVip(int id,int vip);-->
+    <update id="updateVip">
+        update users
+        set user_is_vip=#{vip}
+        where user_id = #{id}
+    </update>
+
+</mapper>

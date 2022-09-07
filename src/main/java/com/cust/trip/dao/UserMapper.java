@@ -15,86 +15,97 @@ public interface UserMapper {
      * 获取所有用户
      * @return 用户列表
      */
-    List<User> getAllUsers();
+    List<User> selectAllUsers();
 
     /**
      * 通过用户名获取用户
      * @param name 用户名
      * @return 用户列表
      */
-    List<User> getUsersByName(String name);
+    List<User> selectUsersByName(String name);
 
     /**
      * 通过电话号码获取用户
      * @param phoneNumber 电话号码
      * @return 用户列表
      */
-    User       getUserByPhoneNumber(String phoneNumber);
+    User       selectUserByPhoneNumber(String phoneNumber);
+
 
     /**
-     * 依据消费区间获取用户
-     * @param consumption1 低消费
-     * @param consumption2 高消费
-     * @return 用户列表
+     * 添加用户
+     * @param user 新添加的用户
+     * @return 影响行数
      */
-    List<User> getUsersByConsumptions(double consumption1,double consumption2);
+    int insertUser(User user);
+
 
     /**
-     * 获取某值以下的消费人群
-     * @param lowConsumption 低值
-     * @return 用户列表
+     * 修改密码
+     * @param id 用户id
+     * @param newPassword 新密码
+     * @return 影响行数
      */
-    List<User> getUsersByLowConsumption(double lowConsumption);
+    int updatePassword(int id,String newPassword);
 
     /**
-     * 获取某值以上的消费人群
-     * @param highConsumption 高值
-     * @return 用户列表
+     * 修改用户名
+     * @param id 用户id
+     * @param newName 新的用户名
+     * @return 影响的行数
      */
-    List<User> getUsersByHighConsumption(double highConsumption);
+    int updateName(int id,String newName);
 
     /**
-     *获取某区间的消费人群
-     * @param balance1 低余额
-     * @param balance2 高余额
-     * @return 用户列表
+     * 修改绑定的手机号
+     * @param id 用户id
+     * @param phoneNumber 新手机号
+     * @return 影响的行数
      */
-    List<User> getUsersByBalances(double balance1,double balance2);
+    int updatePhoneNumber(int id,String phoneNumber);
+
 
     /**
-     * 获取某值以下的消费人群
-     * @param lowBalance 低值
-     * @return 用户列表
+     * 用户充值余额
+     * @param id 用户id
+     * @param inBalance 增加的余额
+     * @return 影响的行数
      */
-    List<User> getUsersByLowBalance(double lowBalance);
+    int rechargeBalance(int id,double inBalance);
 
     /**
-     * 获取某值以上的消费人群
-     * @param highBalance 高值
-     * @return 用户列表
+     * 用户使用余额
+     * @param id 用户id
+     * @param deBalance 用户使用的余额
+     * @return 影响的行数
      */
-    List<User> getUsersByHighBalance(double highBalance);
+    int useBalance(int id,double deBalance);
 
     /**
-     * 获取某区间的消费人群
-     * @param vip1 低等级
-     * @param vip2 高等级
-     * @return 用户列表
+     * 用户进行消费
+     * @param id 用户id
+     * @param consumption 用户消费金额
+     * @return 影响的行数
      */
-    List<User> getUsersByVips(double vip1,double vip2);
+    int consumption(int id,double consumption);
 
     /**
-     * 获取某值以上的消费人群
-     * @param lowVip 低等级
-     * @return 用户列表
+     * 用户取消订单需要减少消费累计
+     * @param id 用户id
+     * @param consumption 回退的消费值
+     * @return 影响的行数
      */
-    List<User> getUsersByLowVip(double lowVip);
+    int deConsumption(int id,double consumption);
 
     /**
-     * 获取某值以上的消费人群
-     * @param highVip 高等级
-     * @return 用户列表
+     * 更新用户vip等级
+     * @param id 用户id
+     * @param vip 新的vip等级
+     * @return 影响的行数
      */
-    List<User> getUsersByHighVip(double highVip);
+    int updateVip(int id,int vip);
+
+
+
 
 }

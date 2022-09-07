@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Order {
     private int id;
-    private int proDuctId;
+    private int productId;
     private int userId;
     private Timestamp createTime;
     private Timestamp updateTime;

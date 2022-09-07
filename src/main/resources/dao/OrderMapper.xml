@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cust.trip.dao.OrderMapper">
+    <resultMap id="resultMap" type="com.cust.trip.bean.Order">
+        <id property="id" column="order_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="status" column="order_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+<!--    List<Order> selectAllOrders();-->
+    <select id="selectAllOrders" resultMap="resultMap">
+        select * from orders
+    </select>
+<!--    List<Order> selectOrderByproductId(int productId);-->
+
+<!--    List<Order> selectOrderByUserId(int userId);-->
+<!--    List<Order> selectOrderByStatus(int status);-->
+<!--    List<Order> selectOrderByDate(Timestamp createTime);-->
+<!--    List<Order> selectOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);-->
+</mapper>
