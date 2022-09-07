@@ -16,12 +16,38 @@
         <result property="shelfTime" column="shlf_time"></result>
         <result property="takedownTime" column="ttakedown_time"></result>
     </resultMap>
+    <insert id="insertProduct">
+        insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, create_time, update_time, shlf_time, takedown_time)
+        values(#{name},#{stock},#{quantity},#{sales},#{price},#{kind},#{status},#{createTime},#{updateTime},#{shlfTime},#{takedownTime});
+    </insert>
+    <update id="updateProduct">
+        update products
+        set product_id=#{id}
+        and product_name = #{name}
+        and product_stock = #{stock}
+        and product_quantity = #{quantity}
+        and product_sales = #{sales}
+        and product_price = #{price}
+        and product_kind = #{kind}
+        and product_status = #{status}
+        and create_time = #{createTime}
+        and update_time = #{updateTime}
+        and shlf_time = #{shlfTime}
+        and takedown_time = #{takedownTime}
+        where product_name = #{name};
+    </update>
+    <delete id="deleteProductByName">
+        delete from products
+        where product_name = #{name};
+    </delete>
 
 
     <select id="selectAllProduct" resultMap="ResultMap">
         select *
-        from products
+        from products;
     </select>
+
+
 
 
 </mapper>

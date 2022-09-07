@@ -29,6 +29,11 @@ takedown_time datetime comment '下架时间',
 primary key(product_id)
 )
 
+create table if not exists kind(
+kind_id int primary key auto_increment ,
+kind_name varchar(20)
+)
+
 
 
 
