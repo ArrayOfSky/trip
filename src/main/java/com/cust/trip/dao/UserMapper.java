@@ -104,8 +104,4 @@ public interface UserMapper {
      * @return 影响的行数
      */
     int updateVip(int id,int vip);
-
-
-
-
 }
