@@ -7,15 +7,34 @@ import org.apache.ibatis.annotations.Param;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * @author GYF
+ * @Data 2022.9.9
+ */
 @Mapper
 public interface ProductMapper {
-
+    /**
+     * 查询所有产品
+     * @return 产品列表
+     */
     List<Product> selectAllProduct();
 
+    /**
+     * 增加产品
+     * @param product 产品
+     */
     void insertProduct(Product product);
 
+    /**
+     * 删除产品根据产品名
+     * @param productName 产品名
+     */
     void deleteProductByName(@Param("name") String productName);
 
+    /**
+     * 更新产品
+     * @param product
+     */
     void updateProduct(Product product);
 
 //    void updateProductStock(String name,Integer stock);

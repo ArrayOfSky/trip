@@ -12,7 +12,7 @@
     <update id="updateKind">
         update kind
         set kind_name = #{name}
-        where kind_name = #{name};
+        where kind_id = #{id};
     </update>
     <delete id="deleteKind">
         delete from kind

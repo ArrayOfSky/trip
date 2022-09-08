@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 /**
- * @author HUAWEI
+ * @author GYF
+ * @Data 2022.9.9
  */
 @Data
 @NoArgsConstructor

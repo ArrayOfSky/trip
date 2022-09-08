@@ -1,7 +1,8 @@
 package com.cust.trip.commom;
 
 /**
- * @author HUAWEI
+ * @author GYF
+ * @Data 2022.9.9
  */
 public class ReturnData {
     private Integer code;
