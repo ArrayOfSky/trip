@@ -1,5 +1,6 @@
 package com.cust.trip.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Data 2022.9.9
  */
 @RestController
+@RequestMapping("/product")
 public class ProductController {
 
 
