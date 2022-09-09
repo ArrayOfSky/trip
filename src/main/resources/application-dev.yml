@@ -7,3 +7,6 @@ spring:
     password: gaoyifeng
     url: jdbc:mysql://localhost:3306/trip?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&useSSL=false
     username: root
+pagehelper:
+  dialect: mysql
+  reasonable: true
