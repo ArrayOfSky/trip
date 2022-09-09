@@ -1,6 +1,8 @@
 package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Kind;
+import com.cust.trip.service.KindService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -8,41 +10,32 @@ import java.util.List;
  * @author GYF
  * @Data 2022.9.9
  */
-public interface KindServiceImpl {
+@Service
+public class KindServiceImpl implements KindService {
 
-    /**
-     * 添加类型
-     * @param kind
-     * @return 0 失败 1 成功 （后续修改）
-     */
-    int addKind(Kind kind);
+    @Override
+    public int addKind(Kind kind) {
+        return 0;
+    }
 
-    /**
-     * 根据姓名删除类型
-     * @param name
-     * @return 0 失败 1 成功 （后续修改）
-     */
-    int deleteKind(String name);
+    @Override
+    public int deleteKind(String name) {
+        return 0;
+    }
 
-    /**
-     * 查询所有类型
-     * @return 类型清单
-     */
-    List<Kind> selectAllKind();
+    @Override
+    public List<Kind> selectAllKind() {
+        return null;
+    }
 
-    /**
-     * 根据姓名查询类型
-     * @param name
-     * @return 类型
-     */
-    Kind selectKindByName(String name);
+    @Override
+    public Kind selectKindByName(String name) {
+        return null;
+    }
 
-    /**
-     *  更新类型
-     * @param name1
-     * @param name2
-     * @return 0 失败 1 成功 （后续修改）
-     */
-    int updateKind(String name1,String name2);
+    @Override
+    public int updateKind(String name1, String name2) {
+        return 0;
+    }
 
 }
