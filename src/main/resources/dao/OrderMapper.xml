@@ -11,7 +11,7 @@
     </resultMap>
 
 <!--    List<Order> selectAllOrders();-->
-    <select id="selectAllOrders" resultMap="resultMap">
+    <select id="getAllOrders" resultMap="resultMap">
         select * from orders
     </select>
 <!--    List<Order> selectOrderByproductId(int productId);-->

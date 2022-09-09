@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = Exception.class,timeout = 3)
-public class OrderServiceImpl  {
+public class OrderServiceImpl  implements OrderService{
     private OrderMapper orderMapper;
 
     @Autowired
@@ -26,5 +26,18 @@ public class OrderServiceImpl  {
         this.orderMapper = orderMapper;
     }
 
+    @Override
+    public List<Order> getAllOrders() {
+        //直接返回所有的订单
+        return orderMapper.getAllOrders();
+    }
 
+    @Override
+    public List<Order> getAllOrdersForPage(int pageNum) {
+        //获取所有的订单
+        List<Order> allOrders = orderMapper.getAllOrders();
+        //分页
+
+        return null;
+    }
 }

@@ -18,6 +18,6 @@ public interface OrderMapper {
      * 获取所有订单信息
      * @return 订单列表
      */
-    List<Order> selectAllOrders();
+    List<Order> getAllOrders();
 
 }
