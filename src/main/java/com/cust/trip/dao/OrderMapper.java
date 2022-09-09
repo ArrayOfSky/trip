@@ -20,4 +20,35 @@ public interface OrderMapper {
      */
     List<Order> getAllOrders();
 
+    /**
+     * 新增订单
+     * @param order 新增的订单
+     * @return row
+     */
+    int saveOrder(Order order);
+
+    /**
+     * 依据状态查询订单数据
+     * @param status 状态
+     * @return orders
+     */
+    List<Order> getOrdersByStatus(int status);
+
+    /**
+     * 依据用户id查询订单
+     * @param userId 用户id
+     * @return orders
+     */
+    List<Order> getOrdersByUserId(int userId);
+
+    /**
+     * 依据产品id查询订单
+     * @param productId 产品订单
+     * @return orders
+     */
+    List<Order> getOrdersByProductId(int productId);
+
+
+
+
 }

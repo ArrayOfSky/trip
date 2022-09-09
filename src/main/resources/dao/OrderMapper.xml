@@ -10,14 +10,37 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-<!--    List<Order> selectAllOrders();-->
+    <!--    List<Order> selectAllOrders();-->
     <select id="getAllOrders" resultMap="resultMap">
-        select * from orders
+        select *
+        from orders
     </select>
-<!--    List<Order> selectOrderByproductId(int productId);-->
+    <!--    int saveOrder(Order order);-->
+    <insert id="saveOrder">
+        insert into orders(order_id, user_id, product_id, order_status, create_time, update_time)
+        values (#{order.id}, #{order.userId}, #{order.productId}, #{order.status}, #{order.createTime},
+                #{order.updateTime})
+    </insert>
+    <!--    List<Order> getOrdersByproductId(int productId);-->
+    <select id="getOrdersByProductId" resultMap="resultMap">
+        select *
+        from orders
+        where product_id = #{productId}
+    </select>
 
-<!--    List<Order> selectOrderByUserId(int userId);-->
-<!--    List<Order> selectOrderByStatus(int status);-->
-<!--    List<Order> selectOrderByDate(Timestamp createTime);-->
-<!--    List<Order> selectOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);-->
+    <!--    List<Order> getOrdersByUserId(int userId);-->
+    <select id="getOrdersByUserId" resultMap="resultMap">
+        select *
+        from orders
+        where user_id = #{userId}
+    </select>
+    <!--    List<Order> getOrdersByStatus(int status);-->
+    <select id="getOrdersByStatus" resultMap="resultMap">
+        select *
+        from orders
+        where order_status = #{status}
+    </select>
+
+    <!--    List<Order> selectOrderByDate(Timestamp createTime);-->
+    <!--    List<Order> selectOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);-->
 </mapper>
