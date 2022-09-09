@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -63,5 +64,12 @@ public class OrderServiceImpl implements OrderService {
     public int saveOrder(Order order) {
         //直接新增用户
         return orderMapper.saveOrder(order);
+    }
+
+    @Override
+    public PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2,int pageNum,int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Order> orders=orderMapper.getOrdersBtDates(time1,time2);
+        return new PageInfo<>(orders);
     }
 }

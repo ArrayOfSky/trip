@@ -49,6 +49,12 @@ public interface OrderMapper {
     List<Order> getOrdersByProductId(int productId);
 
 
-
+    /**
+     * 筛选时间段订单
+     * @param createTimePre 时间1
+     * @param createTimePo 时间2
+     * @return
+     */
+    List<Order> getOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);
 
 }

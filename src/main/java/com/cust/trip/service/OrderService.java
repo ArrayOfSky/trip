@@ -4,6 +4,7 @@ import com.cust.trip.bean.Order;
 import com.cust.trip.bean.User;
 import com.github.pagehelper.PageInfo;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public interface OrderService {
     PageInfo<Order> getOrdersByUser(int pageNum, int pageSize, User user);
 
     /**
-     * 查询不同状态订单
+     * 筛选不同状态订单
      * @param pageNum num
      * @param pageSize size
      * @param status 状态
@@ -46,7 +47,7 @@ public interface OrderService {
     PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, int status);
 
     /**
-     * 查询产品订单
+     * 筛选产品订单
      * @param pageNum num
      * @param pageSize size
      * @param productId 产品id
@@ -54,5 +55,14 @@ public interface OrderService {
      */
     PageInfo<Order> getOrdersByProductId(int pageNum, int pageSize, int productId);
 
+    /**
+     * 筛选时间段订单
+     * @param time1 先
+     * @param time2 后
+     * @param pageNum num
+     * @param pageSize size
+     * @return orders
+     */
+    PageInfo<Order> getOrdersBtDates(Timestamp time1,Timestamp time2,int pageNum,int pageSize);
 
 }

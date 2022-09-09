@@ -1,6 +1,7 @@
 package com.cust.trip.service;
 
 import com.cust.trip.bean.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,25 +14,24 @@ public interface UserService {
      * 获得所有的用户列表
      * @return 用户列表
      */
-    List<User> getAllUsers();
+    PageInfo<User> getAllUsers(int pageNum,int pageSize);
 
-    List<User> getUsersForPage(int pageNum);
 
-    boolean login(User user);
+   /* boolean login(User user);
 
     boolean logout(User user);
 
-    boolean register(User user);
+    boolean register(User user);*/
 
-    boolean updateUser(User user);
 
-    boolean recharge(Double recharge);
 
-    boolean consumption(Double consumption);
+    int recharge(User user,Double recharge);
 
-    boolean deConsumption(Double deConsumption);
+    int consumption(User user,Double consumption);
 
-    boolean useBalance(Double useBalance);
+    int deConsumption(User user,Double deConsumption);
+
+    boolean useBalance(User user,Double useBalance);
 
 
 
