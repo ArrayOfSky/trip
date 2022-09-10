@@ -17,8 +17,8 @@ import java.util.List;
  * 2022/9/8
  */
 @Service
-@Transactional(rollbackFor = Exception.class,timeout = 3)
-public class UserServiceImpl implements UserService{
+@Transactional(rollbackFor = Exception.class, timeout = 3)
+public class UserServiceImpl implements UserService {
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public PageInfo<User> getAllUsers(int pageNum,int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public PageInfo<User> getAllUsers(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<User> users = userMapper.selectAllUsers();
         return new PageInfo<>(users);
     }
@@ -36,17 +36,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int recharge(User user, Double recharge) {
-        return userMapper.rechargeBalance(user.getId(),recharge);
+        return userMapper.rechargeBalance(user.getId(), recharge);
     }
 
     @Override
     public int consumption(User user, Double consumption) {
-       return userMapper.consumption(user.getId(),consumption);
+        return userMapper.consumption(user.getId(), consumption);
     }
 
     @Override
     public int deConsumption(User user, Double deConsumption) {
-        return userMapper.deConsumption(user.getId(),deConsumption);
+        return userMapper.deConsumption(user.getId(), deConsumption);
     }
 
     @Override
@@ -72,15 +72,19 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean useBalance(User user, Double useBalance) {
-        if(user.getBalance()<useBalance){
+        if (user.getBalance() < useBalance) {
             return false;
-        }
-        else{
+        } else {
             //扣除余额
-            userMapper.useBalance(user.getId(),useBalance);
+            userMapper.useBalance(user.getId(), useBalance);
             //统计消费
-            userMapper.consumption(user.getId(),useBalance);
+            userMapper.consumption(user.getId(), useBalance);
             return true;
         }
+    }
+
+    @Override
+    public int updatePhoneNumber(User user, String newPhoneNumber) {
+        return userMapper.updatePhoneNumber(user.getId(),newPhoneNumber);
     }
 }

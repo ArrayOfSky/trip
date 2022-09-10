@@ -34,16 +34,13 @@
     </select>
     <!--    int insertUser(User user);-->
     <insert id="insertUser">
-        insert
-        users(user_name,user_password,user_phone_number,user_consumption,user_balance,user_is_vip)
-        values(
-        #{user.name},
-        #{user.password},
-        #{user.phoneNumber},
-        #{user.consumption},
-        #{user.balance},
-        #{user.vip}
-        )
+        insert users(user_name, user_password, user_phone_number, user_consumption, user_balance, user_is_vip)
+        values (#{user.name},
+                #{user.password},
+                #{user.phoneNumber},
+                #{user.consumption},
+                #{user.balance},
+                #{user.vip})
     </insert>
     <!--    int updatePassword(int id,String newPassword);-->
     <update id="updatePassword">
@@ -66,25 +63,25 @@
     <!--    int rechargeBalance(int id,double inBalance);-->
     <update id="rechargeBalance">
         update users
-        set user_balance=user_balance+#{inBalance}
+        set user_balance=user_balance + #{inBalance}
         where user_id = #{id}
     </update>
     <!--    int useBalance(int id,double deBalance);-->
     <update id="useBalance">
         update users
-        set user_balance=user_balance-#{deBalance}
+        set user_balance=user_balance - #{deBalance}
         where user_id = #{id}
     </update>
     <!--    int consumption(int id,double consumption);-->
     <update id="consumption">
         update users
-        set user_consumption=user_consumption+#{concumption}
+        set user_consumption=user_consumption + #{concumption}
         where user_id = #{id}
     </update>
     <!--    int deConsumption(int id,double consumption);-->
     <update id="deConsumption">
         update users
-        set user_consumption=user_consumption-#{consumption}
+        set user_consumption=user_consumption - #{consumption}
         where user_id = #{id}
     </update>
     <!--    int updateVip(int id,int vip);-->
