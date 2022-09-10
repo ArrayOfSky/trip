@@ -1,5 +1,6 @@
 package com.cust.trip.service;
 
+import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.github.pagehelper.PageInfo;
 
@@ -17,13 +18,11 @@ public interface UserService {
     PageInfo<User> getAllUsers(int pageNum,int pageSize);
 
 
-   /* boolean login(User user);
+    boolean login(User user);
 
     boolean logout(User user);
 
-    boolean register(User user);*/
-
-
+    boolean register(User user);
 
     int recharge(User user,Double recharge);
 
@@ -32,6 +31,9 @@ public interface UserService {
     int deConsumption(User user,Double deConsumption);
 
     boolean useBalance(User user,Double useBalance);
+
+    boolean order(User user, Product product);
+
 
 
 

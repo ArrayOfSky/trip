@@ -1,5 +1,6 @@
 package com.cust.trip.service.impl;
 
+import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.cust.trip.dao.UserMapper;
 import com.cust.trip.service.UserService;
@@ -49,7 +50,37 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean useBalance(User user, Double useBalance) {
+    public boolean login(User user) {
         return false;
+    }
+
+    @Override
+    public boolean logout(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean register(User user) {
+        return false;
+    }
+
+    @Override
+    public boolean order(User user, Product product) {
+        //生成订单，扣款
+        return true;
+    }
+
+    @Override
+    public boolean useBalance(User user, Double useBalance) {
+        if(user.getBalance()<useBalance){
+            return false;
+        }
+        else{
+            //扣除余额
+            userMapper.useBalance(user.getId(),useBalance);
+            //统计消费
+            userMapper.consumption(user.getId(),useBalance);
+            return true;
+        }
     }
 }
