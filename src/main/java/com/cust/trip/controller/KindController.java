@@ -20,7 +20,7 @@ public class KindController {
     KindService kindService;
 
 //    @PathVariable("kindName")
-    @PostMapping("/{kindName}")
+    @PostMapping("/addKind")
     public ReturnData addKind(@RequestBody Kind kind) {
         int code = kindService.addKind(kind);
         if (code == 0) {
@@ -32,9 +32,9 @@ public class KindController {
         }
     }
 
-    @DeleteMapping("/{kindName}")
-    public ReturnData deleteKind(@PathVariable("kindName") String kindName) {
-        int code = kindService.deleteKind(kindName);
+    @DeleteMapping("/deleteKind")
+    public ReturnData deleteKind(@RequestBody Kind kind) {
+        int code = kindService.deleteKind(kind.getKindName());
         if (code == 0) {
             return new ReturnData(400, "种类不存在", null);
         } else if (code == 1) {
@@ -44,9 +44,9 @@ public class KindController {
         }
     }
 
-    @PutMapping("/{name1}/{name2}")
-    public ReturnData updateKind(@PathVariable("name1") String name1, @PathVariable("name2") String name2) {
-        int code = kindService.updateKind(name1, name2);
+    @PutMapping("/updateKind")
+    public ReturnData updateKind(@RequestParam("kindName1") String kindName1, @RequestParam("kindName2") String kindName2) {
+        int code = kindService.updateKind(kindName1, kindName2);
         if (code == 0) {
             return new ReturnData(400, "种类不存在", null);
         } else if (code == 1) {
@@ -56,14 +56,14 @@ public class KindController {
         }
     }
 
-    @GetMapping("/{pageNum}/{pageSize}")
-    public ReturnData selectAllKind(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+    @GetMapping("/selectAllKind")
+    public ReturnData selectAllKind(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum, pageSize);
         return new ReturnData(200, "获取成功", pageInfo.getList());
     }
 
-    @GetMapping("/{kindName}")
-    public ReturnData selectAllKindByName(@PathVariable("kindName") String kindName) {
+    @GetMapping("/selectAllKindByName")
+    public ReturnData selectAllKindByName(@RequestParam("kindName") String kindName) {
         Kind kind = kindService.selectKindByName(kindName);
         if (kind == null) {
             return new ReturnData(404, "种类不存在", null);

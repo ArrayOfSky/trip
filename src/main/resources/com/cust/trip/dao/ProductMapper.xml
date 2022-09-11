@@ -31,8 +31,13 @@
 
 
     <select id="selectAllProduct" resultMap="ResultMap">
-        select *
-        from products;
+        select product_id , product_name , product_stock , product_quantity ,product_sales ,product_price ,kind_name as 'product_kind',description as 'product_status'
+        from products p
+                 join status s
+                      on p.product_status = s.id
+                 join kind k
+                      on p.product_kind = k.kind_id;
+
     </select>
 
 
