@@ -3,8 +3,6 @@ package com.cust.trip.dao;
 import com.cust.trip.bean.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -31,11 +29,7 @@ public interface ProductMapper {
      */
     void deleteProductByName(@Param("productName") String productName);
 
-    /**
-     * 更新产品
-     * @param product
-     * @param name
-     */
+
 //    void updateProduct(@Param("productName") String name,Product product);
 
 //    void updateProductStock(String name,Integer stock);

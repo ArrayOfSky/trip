@@ -20,8 +20,8 @@ public interface KindMapper {
 
     /**
      * 根据名称查找类型
-     * @param kindName
-     * @return
+     * @param kindName 类型名称
+     * @return kind
      */
     Kind selectKindByName(@Param("kindName") String kindName);
     /**
@@ -32,13 +32,13 @@ public interface KindMapper {
 
     /**
      * 根据种类名删除种类
-     * @param name 种类名
+     * @param kindName 种类名
      */
     void deleteKind(@Param("kindName") String kindName);
 
     /**
      *  更新种类数据
-     * @param kind
+     * @param kind 类型
      */
     void updateKind(@Param("kind") Kind kind);
 

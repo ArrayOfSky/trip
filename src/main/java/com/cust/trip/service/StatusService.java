@@ -9,13 +9,34 @@ import com.github.pagehelper.PageInfo;
  */
 public interface StatusService {
 
+    /**
+     * 分页查找所有状态
+     * @param pageNum 第几页
+     * @param pageSize 一页多少
+     * @return 分页状态
+     */
     PageInfo<Status> selectAllStatus(int pageNum,int pageSize);
 
+    /**
+     * 根据状态名查找状态
+     * @param statusDescription 状态名
+     * @return 状态
+     */
     Status selectStatusByDescription(String statusDescription);
 
+    /**
+     * 增加状态
+     * @param status 状态
+     * @return 0 失败 1 成功
+     */
     int insertStatus(Status status);
 
-    int deleteStatus();
+    /**
+     * 根据姓名删除
+     * @param statusDescription 状态名
+     * @return 0失败 1成功
+     */
+    int deleteStatusByDescription(String statusDescription);
 
 
 

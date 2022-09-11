@@ -21,7 +21,7 @@ public class Product {
     private int productSales;
     private double productPrice;
     private String kindName;
-    private String statusName;
+    private String statusDescription;
     private Timestamp productCreateTime;
     private Timestamp productUpdateTime;
     private Timestamp productShlfTime;

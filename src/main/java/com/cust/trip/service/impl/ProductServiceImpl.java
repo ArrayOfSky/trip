@@ -2,6 +2,7 @@ package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Kind;
 import com.cust.trip.bean.Product;
+import com.cust.trip.bean.Status;
 import com.cust.trip.dao.KindMapper;
 import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.dao.StatusMapper;
@@ -36,7 +37,8 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         Kind kind = kindMapper.selectKindByName(product.getKindName());
-        productMapper.insertProduct(product,kind.getKindId());
+        Status status = statusMapper.selectStatusByDescription(product.getStatusDescription());
+        productMapper.insertProduct(product,kind.getKindId(),status.getStatusId());
         return 1;
     }
 
@@ -45,12 +47,6 @@ public class ProductServiceImpl implements ProductService {
         productMapper.deleteProductByName(name);
         return 1;
     }
-
-//    @Override
-//    public int updataProduct(String name, Product product) {
-//        productMapper.updateProduct(name,product);
-//        return 1;
-//    }
 
     @Override
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
