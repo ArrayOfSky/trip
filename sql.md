@@ -49,6 +49,13 @@ order_discount int,
 primary key(order_id)
 )
 
+create table status (
+id  int not null auto_increment,
+kind varchar(20) ,
+description varchar(20) ,
+status_value int ,
+primary key(id)
+)
 
 
  
