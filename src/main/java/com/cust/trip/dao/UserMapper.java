@@ -2,6 +2,7 @@ package com.cust.trip.dao;
 
 import com.cust.trip.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface UserMapper {
      * @param userName 用户名
      * @return 用户列表
      */
-    List<User> selectUsersByName(String userName);
+    List<User> selectUsersByName(@Param("userName")String userName);
 
     /**
      * 通过电话号码获取用户
@@ -32,7 +33,7 @@ public interface UserMapper {
      * @param userPhoneNumber 电话号码
      * @return 用户列表
      */
-    User selectUserByPhoneNumber(String userPhoneNumber);
+    User selectUserByPhoneNumber(@Param("userPhoneNumber")String userPhoneNumber);
 
 
     /**
@@ -41,17 +42,17 @@ public interface UserMapper {
      * @param user 新添加的用户
      * @return 影响行数
      */
-    int insertUser(User user);
+    int insertUser(@Param("user")User  user);
 
 
     /**
      * 修改密码
      *
-     * @param id          用户id
+     * @param userId          用户id
      * @param newUserPassword 新密码
      * @return 影响行数
      */
-    int updatePassword(int id, String newUserPassword);
+    int updatePassword(@Param("userId")int userId, @Param("newUserPassword")String newUserPassword);
 
     /**
      * 修改用户名
@@ -60,7 +61,7 @@ public interface UserMapper {
      * @param newUserName 新的用户名
      * @return 影响的行数
      */
-    int updateName(int userId, String newUserName);
+    int updateName(@Param("userId")int userId,@Param("newUserName") String newUserName);
 
     /**
      * 修改绑定的手机号
@@ -69,7 +70,7 @@ public interface UserMapper {
      * @param newUserPhoneNumber 新手机号
      * @return 影响的行数
      */
-    int updatePhoneNumber(int userId, String newUserPhoneNumber);
+    int updatePhoneNumber(@Param("userId")int userId, @Param("newUserPhoneNumber")String newUserPhoneNumber);
 
 
     /**
@@ -79,7 +80,7 @@ public interface UserMapper {
      * @param inUserBalance 增加的余额
      * @return 影响的行数
      */
-    int rechargeBalance(int userId, double inUserBalance);
+    int rechargeBalance(@Param("userId")int userId,@Param("inUserBalance") double inUserBalance);
 
 
     /**
@@ -89,7 +90,7 @@ public interface UserMapper {
      * @param deUserBalance 用户使用的余额
      * @return 影响的行数
      */
-    int useBalance(int userId, double deUserBalance);
+    int useBalance(@Param("userId")int userId, @Param("deUserBalance")double deUserBalance);
 
     /**
      * 用户进行消费
@@ -98,7 +99,7 @@ public interface UserMapper {
      * @param userConsumption 用户消费金额
      * @return 影响的行数
      */
-    int consumption(int userId, double userConsumption);
+    int consumption(@Param("userId")int userId,@Param("userConsumption") double userConsumption);
 
     /**
      * 用户取消订单需要减少消费累计
@@ -107,7 +108,7 @@ public interface UserMapper {
      * @param userConsumption 回退的消费值
      * @return 影响的行数
      */
-    int deConsumption(int userId, double userConsumption);
+    int deConsumption(@Param("userId")int userId, @Param("userConsumption")double userConsumption);
 
     /**
      * 更新用户vip等级
@@ -116,5 +117,5 @@ public interface UserMapper {
      * @param userVip 新的vip等级
      * @return 影响的行数
      */
-    int updateVip(int userId, int userVip);
+    int updateVip(@Param("userId")int userId, @Param("userVip")int userVip);
 }

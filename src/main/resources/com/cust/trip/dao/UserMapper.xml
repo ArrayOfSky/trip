@@ -17,89 +17,89 @@
         from users
     </select>
 
-    <!--    User selectUsersByName(String name);-->
+    <!--    List<User> selectUsersByName(@Param("userName")String userName);-->
     <select id="selectUsersByName" resultMap="resultMap">
         select * from users
         <where>
-            <if test="name != null and name != '' "/>
-            user_name=#{name}
+            <if test="userName != null and userName != '' "/>
+            user_name=#{userName}
         </where>
     </select>
 
-    <!--    User       selectUserByPhoneNumber(String phoneNumber);-->
+    <!--    User selectUserByPhoneNumber(@Param("userPhoneNumber")String userPhoneNumber);-->
     <select id="selectUserByPhoneNumber" resultMap="resultMap">
         select * from users
         <where>
-            <if test="phoneNumber != null and phoneNumber != '' "/>
-            user_phone_number=#{phoneNumber}
+            <if test="userPhoneNumber != null and userPhoneNumber != '' "/>
+            user_phone_number=#{userPhoneNumber}
         </where>
     </select>
 
-    <!--    int insertUser(User user);-->
+    <!--   int insertUser(@Param("user")User  user);-->
     <insert id="insertUser">
         insert users(user_name, user_password, user_phone_number, user_consumption, user_balance, user_is_vip)
-        values (#{user.name},
-                #{user.password},
-                #{user.phoneNumber},
-                #{user.consumption},
-                #{user.balance},
-                #{user.vip})
+        values (#{user.userName},
+                #{user.userPassword},
+                #{user.userPhoneNumber},
+                #{user.userConsumption},
+                #{user.userBalance},
+                #{user.userVip})
     </insert>
 
-    <!--    int updatePassword(int id,String newPassword);-->
+    <!--    int updatePassword(@Param("userId")int userId, @Param("newUserPassword")String newUserPassword);-->
     <update id="updatePassword">
         update users
-        set user_password=#{newPassword}
-        where user_id = #{id}
+        set user_password=#{newUserPassword}
+        where user_id = #{userId}
     </update>
 
-    <!--    int updateName(int id,String newName);-->
+    <!--    int updateName(@Param("userId")int userId,@Param("newUserName") String newUserName);-->
     <update id="updateName">
         update users
-        set user_name=#{newName}
-        where user_id = #{id}
+        set user_name=#{newUserName}
+        where user_id = #{userId}
     </update>
 
-    <!--    int updatePhoneNumber(int id,String phoneNumber);-->
+    <!--    int updatePhoneNumber(@Param("userId")int userId, @Param("newUserPhoneNumber")String newUserPhoneNumber);-->
     <update id="updatePhoneNumber">
         update users
-        set user_phone_number=#{phoneNumber}
-        where user_id = #{id}
+        set user_phone_number=#{newUserhoneNumber}
+        where user_id = #{userId}
     </update>
 
-    <!--    int rechargeBalance(int id,double inBalance);-->
+    <!--     int rechargeBalance(@Param("userId")int userId,@Param("inUserBalance") double inUserBalance);-->
     <update id="rechargeBalance">
         update users
-        set user_balance=user_balance + #{inBalance}
-        where user_id = #{id}
+        set user_balance=user_balance + #{inUserBalance}
+        where user_id = #{userId}
     </update>
 
-    <!--    int useBalance(int id,double deBalance);-->
+    <!--   int useBalance(@Param("userId")int userId, @Param("deUserBalance")double deUserBalance);-->
     <update id="useBalance">
         update users
-        set user_balance=user_balance - #{deBalance}
-        where user_id = #{id}
+        set user_balance=user_balance - #{deUserBalance}
+        where user_id = #{userId}
     </update>
 
-    <!--    int consumption(int id,double consumption);-->
+    <!--     int consumption(@Param("userId")int userId,@Param("userConsumption") double userConsumption);-->
     <update id="consumption">
         update users
-        set user_consumption=user_consumption + #{concumption}
-        where user_id = #{id}
+        set user_consumption=user_consumption + #{userconcumption}
+        where user_id = #{userId}
     </update>
 
-    <!--    int deConsumption(int id,double consumption);-->
+    <!--     int deConsumption(@Param("userId")int userId, @Param("userConsumption")double userConsumption);-->
     <update id="deConsumption">
         update users
-        set user_consumption=user_consumption - #{consumption}
-        where user_id = #{id}
+        set user_consumption=user_consumption - #{userConsumption}
+        where user_id = #{userId}
     </update>
 
-    <!--    int updateVip(int id,int vip);-->
+    <!--    int updateVip(@Param("userId")int userId, @Param("userVip")int userVip);-->
     <update id="updateVip">
         update users
-        set user_is_vip=#{vip}
-        where user_id = #{id}
+        set user_is_vip=#{userVip}
+        where user_id = #{userId}
     </update>
 
 </mapper>
