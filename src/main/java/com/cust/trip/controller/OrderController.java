@@ -45,13 +45,10 @@ public class OrderController {
         ReturnData returnData = new ReturnData();
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getAllOrdersForPage(pageNum, pageSize);
-
         //封装对象
-        returnData.setData(pageInfo.getList());
-        //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出所有订单数据");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
@@ -72,11 +69,9 @@ public class OrderController {
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersByUser(pageNum, pageSize, user);
         //封装对象
-        returnData.setData(pageInfo.getList());
-        //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出用户"+user.getName()+"相关的订单");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
@@ -97,11 +92,9 @@ public class OrderController {
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, status);
         //封装对象
-        returnData.setData(pageInfo.getList());
-        //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出状态为"+status+"的订单");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
@@ -122,11 +115,9 @@ public class OrderController {
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getId());
         //封装对象
-        returnData.setData(pageInfo.getList());
-        //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出"+product.getName()+"相关的订单");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
@@ -147,9 +138,9 @@ public class OrderController {
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
         //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出"+time1+"至"+time2+"之间的订单数据");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
