@@ -65,9 +65,10 @@ public class KindServiceImpl implements KindService {
             if(a.getName().equals(name1)){
                 a.setName(name2);//因为后续是通过id来定位kind，我可以直接更改name
                 kindMapper.updateKind(a);
+                return 1;
             }
         }
-        return 1;
+        return 0;
     }
 
 }
