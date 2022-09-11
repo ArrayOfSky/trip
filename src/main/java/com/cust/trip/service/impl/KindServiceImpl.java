@@ -1,8 +1,11 @@
 package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Kind;
+import com.cust.trip.bean.User;
 import com.cust.trip.dao.KindMapper;
 import com.cust.trip.service.KindService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +41,10 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
-    public List<Kind> selectAllKind() {
-        ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
-        return array;
+    public PageInfo<Kind> selectAllKind(int pageNum,int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Kind> array = kindMapper.selectAll();
+       return new PageInfo<>(array);
     }
 
     @Override

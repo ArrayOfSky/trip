@@ -34,8 +34,9 @@ public interface ProductMapper {
     /**
      * 更新产品
      * @param product
+     * @param name
      */
-    void updateProduct(Product product);
+    void updateProduct(@Param("name") String name,Product product);
 
 //    void updateProductStock(String name,Integer stock);
 //

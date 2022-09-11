@@ -34,7 +34,7 @@
         and update_time = #{updateTime}
         and shlf_time = #{shlfTime}
         and takedown_time = #{takedownTime}
-        where product_id = #{id};
+        where product_name = #{name};
     </update>
     <delete id="deleteProductByName">
         delete from products

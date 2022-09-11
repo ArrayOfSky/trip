@@ -4,10 +4,10 @@ import com.cust.trip.bean.Kind;
 import com.cust.trip.bean.Product;
 import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.service.ProductService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,50 +41,38 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int updataProduct(String name, Product product) {
-        ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
-        for(Product a : array){
-            if(a.getName().equals(product.getName())){
-                if(product.getName()==null){
-                    product.setName(a.getName());
-                }
-                if(product.getCreateTime()==null){
-                    product.setCreateTime(a.getCreateTime());
-                }
-                product.setId(a.getId());
-
-
-
-
-
-
-            }
-        }
-        return 0;
+        productMapper.updateProduct(name,product);
+        return 1;
     }
 
     @Override
-    public List<Product> selectAllProduct() {
-        ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
-        return array;
+    public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Product> array = productMapper.selectAllProduct();
+        return new PageInfo<>(array);
     }
 
     @Override
-    public List<Product> selectAllProductByKind(Kind kind) {
+    public PageInfo selectAllProductByKind(Kind kind,int pageNum,int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         ArrayList<Product> arr = new ArrayList<>();
         for(Product a : array){
-
+            if(a.getKind()==kind.getId()){
+                arr.add(a);
+            }
         }
-        return null;
-    }
-
-    @Override
-    public List<Product> selectAllProductByPrice(double price1, double price2) {
-        return null;
+        return new PageInfo<>(arr);
     }
 
     @Override
     public Product selectProductByName(String name) {
+        ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
+        for(Product a : array){
+            if(a.getName().equals(name)){
+                return a;
+            }
+        }
         return null;
     }
 
