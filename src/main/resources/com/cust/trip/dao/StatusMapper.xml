@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cust.trip.dao.StatusMapper">
+
+<resultMap id="ResultMap" type="com.cust.trip.bean.Status">
+    <result property="statusId" column="id"></result>
+    <result property="statusKind" column="kind"></result>
+    <result property="statusDescription" column="description"></result>
+</resultMap>
+    <insert id="insertStatus">
+    insert into status(kind,description)
+    values(#{status.statusKind},#{status.statusDescription});
+    </insert>
+    <delete id="deleteStatus">
+        delete from status
+        where description = #{description};
+    </delete>
+    <select id="selectAllStatus" resultType="com.cust.trip.bean.Status">
+        select *
+        from status;
+    </select>
+    <select id="selectStatusByDescription" resultType="com.cust.trip.bean.Status">
+        select *
+        from status
+        where description = #{description};
+    </select>
+
+
+</mapper>

@@ -5,19 +5,35 @@
         <result property="kindId" column="kind_id"></result>
         <result property="kindName" column="kind_name"></result>
     </resultMap>
+
+
+
+
+
     <insert id="insertKind">
         insert into kind(kind_name)
-        values(#{kindName});
+        values(#{kind.kindName});
     </insert>
+
+
+
+
     <update id="updateKind">
         update kind
-        set kind_name = #{kindName}
-        where kind_id = #{kindId};
+        set kind_name = #{kind.kindName}
+        where kind_id = #{kind.kindId};
     </update>
+
+
+
     <delete id="deleteKind">
         delete from kind
         where kind_name = #{kindName};
     </delete>
+
+
+
+
     <select id="selectAll" resultMap="ResultMap">
         select *
         from kind;

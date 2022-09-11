@@ -2,6 +2,7 @@ package com.cust.trip.dao;
 
 import com.cust.trip.bean.Kind;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,17 +22,17 @@ public interface KindMapper {
      * 增加种类
      * @param kind 种类
      */
-    void insertKind(Kind kind);
+    void insertKind(@Param("kind") Kind kind);
 
     /**
      * 根据种类名删除种类
      * @param name 种类名
      */
-    void deleteKind(String kindName);
+    void deleteKind(@Param("kindName") String kindName);
 
     /**
      *  更新种类数据
      * @param kind
      */
-    void updateKind(Kind kind);
+    void updateKind(@Param("kind") Kind kind);
 }

@@ -9,16 +9,19 @@
         <result property="productQuantity" column="product_quantity"></result>
         <result property="productSales" column="product_sales"></result>
         <result property="productPrice" column="product_price"></result>
-        <result property="productKind" column="product_kind"></result>
-        <result property="productStatus" column="product_status"></result>
+        <result property="kindName" column="product_kind"></result>
+        <result property="statusName" column="product_status"></result>
         <result property="productCreateTime" column="create_time"></result>
         <result property="productUpdateTime" column="update_time"></result>
         <result property="productShlfTime" column="shlf_time"></result>
         <result property="productTakedownTime" column="ttakedown_time"></result>
     </resultMap>
+
+
+
     <insert id="insertProduct">
         insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, create_time, update_time, shlf_time, takedown_time)
-        values(#{productName},#{productStock},#{productQuantity},#{productSales},#{productPrice},#{product_kind},#{productStatus},#{productCreateTime},#{productUpdateTime},#{productShlfTime},#{productTakedownTime});
+        values(#{product.productName},#{product.productStock},#{product.productQuantity},#{product.productSales},#{product.productPrice},#{productKind},#{product.productStatus},#{product.productCreateTime},#{product.productUpdateTime},#{product.productShlfTime},#{product.productTakedownTime});
     </insert>
 
     <delete id="deleteProductByName">
