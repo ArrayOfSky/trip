@@ -60,8 +60,7 @@ public class KindController {
     @GetMapping("/{pageNum}/{pageSize}")
     public ReturnData selectAllKind(@PathVariable("pageNum") int pageNum,@PathVariable("pageSize") int pageSize){
         PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum,pageSize);
-        ReturnData returnData = new ReturnData(200,"获取成功",pageInfo.getList());
-        return returnData;
+        return new ReturnData(200,"获取成功",pageInfo.getList());
     }
 
     @GetMapping("/{kindName}")
@@ -73,7 +72,4 @@ public class KindController {
           return new ReturnData(200,"获取成功",kind);
         }
     }
-
-
-
 }
