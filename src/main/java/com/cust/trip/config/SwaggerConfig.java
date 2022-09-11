@@ -20,8 +20,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableKnife4j
 @Profile({"dev","test"})
 public class SwaggerConfig implements WebMvcConfigurer {
-    //是否开启swagger，正式环境一般是需要关闭的，可根据springboot的多环境配置进行设置
-    //这个是方法2哦，使用的话在new Docket里添加.Enable方法将参数放入即可
     @Value(value = "${swagger.show}")
     private Boolean swaggerEnabled;
 
