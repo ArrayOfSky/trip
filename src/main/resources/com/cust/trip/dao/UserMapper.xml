@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cust.trip.dao.UserMapper">
     <resultMap id="resultMap" type="com.cust.trip.bean.User">
-        <id property="id" column="user_id"/>
-        <result property="name" column="user_name"/>
-        <result property="password" column="user_password"/>
-        <result property="phone" column="user_phone_number"/>
-        <result property="consumption" column="user_consumption"/>
-        <result property="balance" column="user_balance"/>
-        <result property="vip" column="user_is_vip"/>
+        <id property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userPhoneNumber" column="user_phone_number"/>
+        <result property="userConsumption" column="user_consumption"/>
+        <result property="userBalance" column="user_balance"/>
+        <result property="userVip" column="user_is_vip"/>
     </resultMap>
 
     <!--    List<User> selectAllUsers();-->

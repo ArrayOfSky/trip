@@ -29,32 +29,32 @@ public interface OrderMapper {
 
     /**
      * 依据状态查询订单数据
-     * @param status 状态
+     * @param orderStatus 状态
      * @return orders
      */
-    List<Order> getOrdersByStatus(int status);
+    List<Order> getOrdersByStatus(int orderStatus);
 
     /**
      * 依据用户id查询订单
-     * @param userId 用户id
+     * @param orderUserId 用户id
      * @return orders
      */
-    List<Order> getOrdersByUserId(int userId);
+    List<Order> getOrdersByUserId(int orderUserId);
 
     /**
      * 依据产品id查询订单
-     * @param productId 产品订单
+     * @param orderProductId 产品订单
      * @return orders
      */
-    List<Order> getOrdersByProductId(int productId);
+    List<Order> getOrdersByProductId(int orderProductId);
 
 
     /**
      * 筛选时间段订单
-     * @param createTimePre 时间1
-     * @param createTimePo 时间2
+     * @param orderCreateTimePre 时间1
+     * @param orderCreateTimePo 时间2
      * @return orders
      */
-    List<Order> getOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);
+    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);
 
 }

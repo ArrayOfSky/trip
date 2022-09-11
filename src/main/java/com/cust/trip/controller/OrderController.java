@@ -118,7 +118,7 @@ public class OrderController {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getId());
+        PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getProductId());
         //封装对象
         returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
