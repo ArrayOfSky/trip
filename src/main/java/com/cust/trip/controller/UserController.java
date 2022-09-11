@@ -2,6 +2,7 @@ package com.cust.trip.controller;
 
 import com.cust.trip.bean.Order;
 import com.cust.trip.bean.User;
+import com.cust.trip.commom.CodeEnum;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -42,6 +43,10 @@ public class UserController {
         PageInfo<User> pageInfo = userService.getAllUsers(pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo.getList());
+        //封装对象
+        returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出所有用户数据");
         //返回
         return returnData;
     }
