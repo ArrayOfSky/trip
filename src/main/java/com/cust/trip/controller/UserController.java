@@ -42,11 +42,9 @@ public class UserController {
         //获取分页信息
         PageInfo<User> pageInfo = userService.getAllUsers(pageNum, pageSize);
         //封装对象
-        returnData.setData(pageInfo.getList());
-        //封装对象
-        returnData.setData(pageInfo.getList());
+        returnData.setData(pageInfo);
         returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-        returnData.setMsg("取出所有用户数据");
+        returnData.setMsg("获取成功");
         //返回
         return returnData;
     }
