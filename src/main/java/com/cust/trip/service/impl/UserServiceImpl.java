@@ -66,8 +66,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean order(User user, Product product) {
-        //生成订单，扣款
-        return true;
+        return false;
+    }
+
+    @Override
+    public int updatePhoneNumber(User user, String newPhoneNumber) {
+        return 0;
     }
 
     @Override
@@ -83,8 +87,5 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public int updatePhoneNumber(User user, String newPhoneNumber) {
-        return userMapper.updatePhoneNumber(user.getId(),newPhoneNumber);
-    }
+
 }

@@ -28,24 +28,13 @@ public interface UserService {
 
     int consumption(User user, Double consumption);
 
-    /**
-     * 用户消费回退
-     * @param user 用户
-     * @param deConsumption 回退的消费值
-     * @return 影响的行数
-     */
+
     int deConsumption(User user, Double deConsumption);
 
     boolean useBalance(User user, Double useBalance);
 
     boolean order(User user, Product product);
 
-    /**
-     * 更新手机号码
-     * @param user 用户
-     * @param newPhoneNumber 新的手机号码
-     * @return 影响的行数
-     */
     int  updatePhoneNumber(User user,String newPhoneNumber);
 
 
