@@ -5,6 +5,7 @@ import com.cust.trip.bean.User;
 import com.cust.trip.commom.CodeEnum;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.UserService;
+import com.cust.trip.utils.UserForm;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,8 +57,8 @@ public class UserController {
      * @param phoneNumber 手机号码
      * @return data
      */
-    @GetMapping("/{phoneNumber}")
-    public ReturnData getUserByPhoneNumber(String phoneNumber){
+    @GetMapping("phone/{phoneNumber}")
+    public ReturnData getUserByPhoneNumber(@PathVariable("phoneNumber")String phoneNumber){
         //创建返回对象
         ReturnData returnData = new ReturnData();
         final long length=11;
@@ -77,7 +78,12 @@ public class UserController {
 
     }
 
-    @GetMapping("/{name}")
+    /**
+     * 据用户名获取用户信息
+     * @param name 用户名
+     * @return data
+     */
+    @GetMapping("name/{name}")
     public ReturnData getUserByName(@PathVariable("name") String name){
         //查询用户对象
         List<User> users = userService.getUserByName(name);
@@ -97,5 +103,11 @@ public class UserController {
         return returnData;
     }
 
+    @GetMapping("/form/{form}/{pageNum}/{pageSize}")
+    public ReturnData getUsersByForm(@PathVariable("form")UserForm form
+    ,int pageNum,int pageSize){
+        ReturnData returnData = new ReturnData();
 
+        return returnData;
+    }
 }
