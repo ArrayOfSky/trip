@@ -36,5 +36,9 @@ public interface UserService {
 
     int updatePhoneNumber(User user, String newPhoneNumber);
 
+    User getUserByPhoneNumber(String phoneNumber);
+
+    List<User> getUserByName(String name);
+
 
 }

@@ -17,7 +17,7 @@
         from users
     </select>
 
-    <!--    List<User> selectUsersByName(String name);-->
+    <!--    User selectUsersByName(String name);-->
     <select id="selectUsersByName" resultMap="resultMap">
         select * from users
         <where>

@@ -34,10 +34,19 @@ public class UserServiceImpl implements UserService {
         return new PageInfo<>(users);
     }
 
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return userMapper.selectUserByPhoneNumber(phoneNumber);
+    }
 
     @Override
     public int recharge(User user, Double recharge) {
         return 0;
+    }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        return userMapper.selectUsersByName(name);
     }
 
     @Override

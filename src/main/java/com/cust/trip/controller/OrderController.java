@@ -6,12 +6,10 @@ import com.cust.trip.bean.User;
 import com.cust.trip.commom.CodeEnum;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
+import com.cust.trip.service.ProductService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -25,6 +23,13 @@ import java.util.Date;
 public class OrderController {
 
     private OrderService orderService;
+
+    private ProductService productService;
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Autowired
     public void setOrderService(OrderService orderService) {
@@ -144,6 +149,22 @@ public class OrderController {
         //返回
         return returnData;
     }
+
+    /**
+     * 生成订单
+     * @param product 商品
+     * @param user 用户
+     * @return data
+     */
+    @PostMapping("/{product}/{user}")
+    public ReturnData order(@PathVariable("product") Product product,@PathVariable("user") User user){
+        //检查商品状态
+        return null;
+    }
+
+
+
+
 
 
 }
