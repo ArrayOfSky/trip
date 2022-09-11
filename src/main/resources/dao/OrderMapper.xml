@@ -44,7 +44,8 @@
     <!--    List<Order> selectOrderByDate(Timestamp createTime);-->
     <!--    List<Order> getOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);-->
     <select id="getOrdersBtDates" resultMap="resultMap">
-        select * from orders
+        select *
+        from orders
         where create_time between createTimePre and createTimePo
     </select>
 </mapper>

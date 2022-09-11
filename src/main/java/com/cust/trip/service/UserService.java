@@ -28,14 +28,13 @@ public interface UserService {
 
     int consumption(User user, Double consumption);
 
-
     int deConsumption(User user, Double deConsumption);
 
     boolean useBalance(User user, Double useBalance);
 
     boolean order(User user, Product product);
 
-    int  updatePhoneNumber(User user,String newPhoneNumber);
+    int updatePhoneNumber(User user, String newPhoneNumber);
 
 
 }

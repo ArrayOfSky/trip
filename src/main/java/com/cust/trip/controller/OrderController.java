@@ -33,7 +33,8 @@ public class OrderController {
 
     /**
      * 显示全部订单
-     * @param pageNum 页数
+     *
+     * @param pageNum  页数
      * @param pageSize 总页数
      * @return data
      */
@@ -53,10 +54,11 @@ public class OrderController {
 
     /**
      * 筛选某一用户订单
-     * @param user
-     * @param pageNum
-     * @param pageSize
-     * @return
+     *
+     * @param user     用户
+     * @param pageNum  页数
+     * @param pageSize 总页数
+     * @return data
      */
     @GetMapping("/{user}/{pageNum}/{pageSize}")
     public ReturnData getOrdersByUser(@PathVariable("user") User user
@@ -73,50 +75,67 @@ public class OrderController {
 
     /**
      * 筛选某一状态订单
-     * @param status
-     * @param pageNum
-     * @param pageSize
-     * @return
+     *
+     * @param status   状态
+     * @param pageNum  页数
+     * @param pageSize 总页数
+     * @return data
      */
     @GetMapping("/{status}/{pageNum}/{pageSize}")
     public ReturnData getOrdersByStatus(@PathVariable("status") int status
-            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
+            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum,pageSize,status);
+        PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, status);
         //封装对象
         returnData.setData(pageInfo.getList());
         //返回
         return returnData;
     }
 
+    /**
+     * 获取某一商品的订单
+     *
+     * @param product  商品
+     * @param pageNum  页数
+     * @param pageSize 总页数
+     * @return data
+     */
     @GetMapping("/{product}/{pageNum}/{pageSize}")
     public ReturnData getOrdersByProduct(@PathVariable("product") Product product
-            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
+            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum,pageSize,product.getId());
+        PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getId());
         //封装对象
         returnData.setData(pageInfo.getList());
         //返回
         return returnData;
     }
 
+    /**
+     * 获取某一时间段的订单
+     *
+     * @param time1    时间先
+     * @param time2    时间后
+     * @param pageNum  页数
+     * @param pageSize 总页数
+     * @return data
+     */
     @GetMapping("/{time1}/{time2}/{pageNum}/{pageSize}")
-    public ReturnData getOrdersBtDates(@PathVariable("time1")Date time1,@PathVariable("time2")Date time2
-            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
+    public ReturnData getOrdersBtDates(@PathVariable("time1") Date time1, @PathVariable("time2") Date time2
+            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()),new Timestamp(time2.getTime()),pageNum,pageSize);
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo.getList());
         //返回
         return returnData;
     }
-
 
 
 }

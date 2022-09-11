@@ -28,7 +28,8 @@ public class UserController {
 
     /**
      * 获取所有用户列表
-     * @param pageNum 页数
+     *
+     * @param pageNum  页数
      * @param pageSize 总页数
      * @return data
      */
@@ -38,7 +39,7 @@ public class UserController {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<User> pageInfo =userService.getAllUsers(pageNum,pageSize);
+        PageInfo<User> pageInfo = userService.getAllUsers(pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo.getList());
         //返回

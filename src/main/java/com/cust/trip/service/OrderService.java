@@ -15,7 +15,8 @@ public interface OrderService {
 
     /**
      * 取得所有的订单分页
-     * @param pageNum num
+     *
+     * @param pageNum  num
      * @param pageSize size
      * @return orders
      */
@@ -23,6 +24,7 @@ public interface OrderService {
 
     /**
      * 新增订单
+     *
      * @param order new order
      * @return row
      */
@@ -30,26 +32,29 @@ public interface OrderService {
 
     /**
      * 查询用户订单
-     * @param pageNum num
+     *
+     * @param pageNum  num
      * @param pageSize size
-     * @param user user
+     * @param user     user
      * @return orders
      */
     PageInfo<Order> getOrdersByUser(int pageNum, int pageSize, User user);
 
     /**
      * 筛选不同状态订单
-     * @param pageNum num
+     *
+     * @param pageNum  num
      * @param pageSize size
-     * @param status 状态
+     * @param status   状态
      * @return orders
      */
     PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, int status);
 
     /**
      * 筛选产品订单
-     * @param pageNum num
-     * @param pageSize size
+     *
+     * @param pageNum   num
+     * @param pageSize  size
      * @param productId 产品id
      * @return orders
      */
@@ -57,12 +62,13 @@ public interface OrderService {
 
     /**
      * 筛选时间段订单
-     * @param time1 先
-     * @param time2 后
-     * @param pageNum num
+     *
+     * @param time1    先
+     * @param time2    后
+     * @param pageNum  num
      * @param pageSize size
      * @return orders
      */
-    PageInfo<Order> getOrdersBtDates(Timestamp time1,Timestamp time2,int pageNum,int pageSize);
+    PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize);
 
 }

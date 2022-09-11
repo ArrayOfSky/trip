@@ -19,12 +19,13 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class, timeout = 3)
 public class UserServiceImpl implements UserService {
+    private UserMapper userMapper;
+
     @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
-    private UserMapper userMapper;
 
     @Override
     public PageInfo<User> getAllUsers(int pageNum, int pageSize) {
@@ -36,17 +37,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int recharge(User user, Double recharge) {
-        return userMapper.rechargeBalance(user.getId(), recharge);
+        return 0;
     }
 
     @Override
     public int consumption(User user, Double consumption) {
-        return userMapper.consumption(user.getId(), consumption);
+        return 0;
     }
 
     @Override
     public int deConsumption(User user, Double deConsumption) {
-        return userMapper.deConsumption(user.getId(), deConsumption);
+        return 0;
     }
 
     @Override
@@ -76,15 +77,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean useBalance(User user, Double useBalance) {
-        if (user.getBalance() < useBalance) {
-            return false;
-        } else {
-            //扣除余额
-            userMapper.useBalance(user.getId(), useBalance);
-            //统计消费
-            userMapper.consumption(user.getId(), useBalance);
-            return true;
-        }
+        return false;
     }
 
 

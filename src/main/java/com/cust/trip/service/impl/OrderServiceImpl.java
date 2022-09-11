@@ -67,9 +67,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2,int pageNum,int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<Order> orders=orderMapper.getOrdersBtDates(time1,time2);
+    public PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> orders = orderMapper.getOrdersBtDates(time1, time2);
         return new PageInfo<>(orders);
     }
 }
