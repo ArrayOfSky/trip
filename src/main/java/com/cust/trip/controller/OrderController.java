@@ -35,7 +35,7 @@ public class OrderController {
      * 显示全部订单
      *
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{pageNum}/{pageSize}")
@@ -48,6 +48,10 @@ public class OrderController {
 
         //封装对象
         returnData.setData(pageInfo.getList());
+        //封装对象
+        returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出所有订单数据");
         //返回
         return returnData;
     }
@@ -57,7 +61,7 @@ public class OrderController {
      *
      * @param user     用户
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{user}/{pageNum}/{pageSize}")
@@ -69,6 +73,10 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersByUser(pageNum, pageSize, user);
         //封装对象
         returnData.setData(pageInfo.getList());
+        //封装对象
+        returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出用户"+user.getName()+"相关的订单");
         //返回
         return returnData;
     }
@@ -78,7 +86,7 @@ public class OrderController {
      *
      * @param status   状态
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{status}/{pageNum}/{pageSize}")
@@ -90,6 +98,10 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, status);
         //封装对象
         returnData.setData(pageInfo.getList());
+        //封装对象
+        returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出状态为"+status+"的订单");
         //返回
         return returnData;
     }
@@ -99,7 +111,7 @@ public class OrderController {
      *
      * @param product  商品
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{product}/{pageNum}/{pageSize}")
@@ -111,17 +123,20 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getId());
         //封装对象
         returnData.setData(pageInfo.getList());
+        //封装对象
+        returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出"+product.getName()+"相关的订单");
         //返回
         return returnData;
     }
 
     /**
      * 获取某一时间段的订单
-     *
      * @param time1    时间先
      * @param time2    时间后
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{time1}/{time2}/{pageNum}/{pageSize}")
@@ -133,6 +148,8 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo.getList());
+        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
+        returnData.setMsg("取出"+time1+"至"+time2+"之间的订单数据");
         //返回
         return returnData;
     }

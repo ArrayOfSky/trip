@@ -25,7 +25,11 @@ public enum CodeEnum {
     SYSTEM_ERROR(501),
     ;
 
-    private Integer code;
+    private final Integer code;
+
+    public Integer getCode(){
+        return code;
+    }
 
     CodeEnum(Integer code) {
         this.code = code;

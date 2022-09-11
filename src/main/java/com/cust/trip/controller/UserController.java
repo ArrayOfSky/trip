@@ -30,7 +30,7 @@ public class UserController {
      * 获取所有用户列表
      *
      * @param pageNum  页数
-     * @param pageSize 总页数
+     * @param pageSize 页面大小
      * @return data
      */
     @GetMapping("/{pageNum}/{pageSize}")
