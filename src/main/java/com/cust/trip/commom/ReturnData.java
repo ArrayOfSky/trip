@@ -15,4 +15,7 @@ public class ReturnData {
     private Integer code;
     private String msg;
     private Object data;
+
+    public ReturnData(CodeEnum code, String msg, Object data) {
+    }
 }

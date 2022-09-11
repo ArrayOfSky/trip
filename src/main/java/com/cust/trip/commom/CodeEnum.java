@@ -6,22 +6,57 @@ package com.cust.trip.commom;
  */
 public enum CodeEnum {
     /**
-     * 请求成功
+     * 服务器成功返回用户请求的数据
      */
-    REQUEST_SUCCEED(200),
-
+    OK(200),
     /**
-     * 请求失败
+     * 用户新建或修改数据成功
      */
-    REQUEST_FAILED(401),
+    CREATED(201),
     /**
-     * 访问路径不存在
+     * 表示一个请求已经进入后台排队
      */
-    URI_NOT_EXIST(404),
+    ACCEPTED(202),
     /**
-     * 系统错误
+     * 用户删除数据成功
      */
-    SYSTEM_ERROR(500),
+    NO_CONTENT(204),
+    /**
+     * 用户发出请求有错误，服务器并未进行新建，删除数据
+     */
+    INVALID_REQUEST(400),
+    /**
+     * 用户无权限
+     */
+    UNAUTHORIZED(401),
+    /**
+     * 用户有权限，但访问禁止
+     */
+    FORBIDDEN(403),
+    /**
+     * 用户发出的请求是不存在记录
+     */
+    NOT_FOUND(404),
+    /**
+     * 服务器无该方法
+     */
+    METHOD_NOT_ALLOWED(405),
+    /**
+     * 用户请求格式不可得
+     */
+    NOT_ACCEPTABLE(406),
+    /**
+     * 用户请求的资源被永久删除
+     */
+    GONE(410),
+    /**
+     * 发生验证错误
+     */
+    UNPROCESABLE_ENTITY(422),
+    /**
+     * 服务器发生错误
+     */
+    INTERNAL_SERVER_ERROR(500),
     ;
 
     private final Integer code;
