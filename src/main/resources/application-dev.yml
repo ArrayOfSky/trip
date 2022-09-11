@@ -10,3 +10,5 @@ spring:
 pagehelper:
   reasonable: true
   helper-dialect: mysql
+swagger:
+  show: true

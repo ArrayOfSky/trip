@@ -7,6 +7,7 @@ import com.cust.trip.service.KindService;
 import com.cust.trip.service.ProductService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/product")
+@Api
 public class ProductController {
 
     @Autowired
