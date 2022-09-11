@@ -19,6 +19,12 @@ public interface KindMapper {
     List<Kind> selectAll();
 
     /**
+     * 根据名称查找类型
+     * @param kindName
+     * @return
+     */
+    Kind selectKindByName(@Param("kindName") String kindName);
+    /**
      * 增加种类
      * @param kind 种类
      */
@@ -35,4 +41,6 @@ public interface KindMapper {
      * @param kind
      */
     void updateKind(@Param("kind") Kind kind);
+
+
 }

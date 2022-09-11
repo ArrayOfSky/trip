@@ -24,12 +24,15 @@ public class KindServiceImpl implements KindService {
 
     @Override
     public int addKind(Kind kind) {
+        //获取所有kind
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
+        //查询是否重复
         for(Kind a : array){
             if(a.getKindName().equals(kind.getKindName())){
                 return 0;
             }
         }
+        //添加
         kindMapper.insertKind(kind);
         return 1;
     }
@@ -49,7 +52,9 @@ public class KindServiceImpl implements KindService {
 
     @Override
     public Kind selectKindByName(String kindName) {
+        //获取所有
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
+        //循环查询
         for(Kind a : array){
             if(a.getKindName().equals(kindName)){
                 return a;
@@ -60,7 +65,9 @@ public class KindServiceImpl implements KindService {
 
     @Override
     public int updateKind(String kindName1, String kindName2) {
+        //获取所有
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
+        //循环查询
         for (Kind a: array){
             if(a.getKindName().equals(kindName1)){
                 a.setKindName(kindName2);//因为后续是通过id来定位kind，我可以直接更改name

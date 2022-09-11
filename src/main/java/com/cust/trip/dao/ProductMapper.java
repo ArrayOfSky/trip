@@ -23,7 +23,7 @@ public interface ProductMapper {
      * 增加产品
      * @param product 产品
      */
-    void insertProduct(@Param("product") Product product,@Param("productKind") int productKind);
+    void insertProduct(@Param("product") Product product,@Param("kindName") int kindName,@Param("statusDescription") int statusDescription);
 
     /**
      * 删除产品根据产品名

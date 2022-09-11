@@ -38,4 +38,11 @@
         select *
         from kind;
     </select>
+    <select id="selectKindByName" resultType="com.cust.trip.bean.Kind">
+        select *
+        from Kind
+        where name = #{kindName};
+    </select>
+
+
 </mapper>

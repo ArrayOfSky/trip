@@ -2,7 +2,9 @@ package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Kind;
 import com.cust.trip.bean.Product;
+import com.cust.trip.dao.KindMapper;
 import com.cust.trip.dao.ProductMapper;
+import com.cust.trip.dao.StatusMapper;
 import com.cust.trip.service.ProductService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -20,6 +22,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductMapper productMapper;
+    @Autowired
+    KindMapper kindMapper;
+    @Autowired
+    StatusMapper statusMapper;
 
     @Override
     public int addProduct(Product product) {
@@ -29,7 +35,8 @@ public class ProductServiceImpl implements ProductService {
                 return 0;
             }
         }
-        productMapper.insertProduct(product);
+        Kind kind = kindMapper.selectKindByName(product.getKindName());
+        productMapper.insertProduct(product,kind.getKindId());
         return 1;
     }
 
@@ -58,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         ArrayList<Product> arr = new ArrayList<>();
         for(Product a : array){
-            if(a.getProductKind()==kind.getKindId()){
+            if(a.getKindName().equals(kind.getKindName())){
                 arr.add(a);
             }
         }

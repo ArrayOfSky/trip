@@ -1,6 +1,7 @@
 package com.cust.trip.dao;
 
 import com.cust.trip.bean.Status;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
  * @author GYF
  * @Data 2022.9.11
  */
+@Mapper
 public interface StatusMapper {
 
         /**
