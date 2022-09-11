@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cust.trip.dao.OrderMapper">
     <resultMap id="resultMap" type="com.cust.trip.bean.Order">
-        <id property="id" column="order_id"/>
-        <result property="userId" column="user_id"/>
-        <result property="productId" column="product_id"/>
-        <result property="status" column="order_status"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
+        <id property="orderId" column="order_id"/>
+        <result property="orderUserId" column="user_id"/>
+        <result property="orderProductId" column="product_id"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="orderCreateTime" column="create_time"/>
+        <result property="orderUpdateTime" column="update_time"/>
     </resultMap>
 
-    <!--    List<Order> selectAllOrders();-->
+    <!--    List<Order> getAllOrders();-->
     <select id="getAllOrders" resultMap="resultMap">
         select *
         from orders
@@ -18,31 +18,31 @@
     <!--    int saveOrder(Order order);-->
     <insert id="saveOrder">
         insert into orders(order_id, user_id, product_id, order_status, create_time, update_time)
-        values (#{order.id}, #{order.userId}, #{order.productId}, #{order.status}, #{order.createTime},
-                #{order.updateTime})
+        values (#{order.orderId}, #{order.orderUserId}, #{order.orderProductId}, #{order.orderStatus},
+                #{order.orderCreateTime},
+                #{order.orderUpdateTime})
     </insert>
-    <!--    List<Order> getOrdersByproductId(int productId);-->
+    <!--    List<Order> getOrdersByProductId(int orderProductId);-->
     <select id="getOrdersByProductId" resultMap="resultMap">
         select *
         from orders
-        where product_id = #{productId}
+        where product_id = #{orderProductId}
     </select>
 
-    <!--    List<Order> getOrdersByUserId(int userId);-->
+    <!--    List<Order> getOrdersByUserId(int orderUserId);-->
     <select id="getOrdersByUserId" resultMap="resultMap">
         select *
         from orders
-        where user_id = #{userId}
+        where user_id = #{orderUserId}
     </select>
-    <!--    List<Order> getOrdersByStatus(int status);-->
+    <!--    List<Order> getOrdersByStatus(int orderStatus);-->
     <select id="getOrdersByStatus" resultMap="resultMap">
         select *
         from orders
-        where order_status = #{status}
+        where order_status = #{orderStatus}
     </select>
 
-    <!--    List<Order> selectOrderByDate(Timestamp createTime);-->
-    <!--    List<Order> getOrdersBtDates(Timestamp createTimePre,Timestamp createTimePo);-->
+    <!--    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);-->
     <select id="getOrdersBtDates" resultMap="resultMap">
         select *
         from orders

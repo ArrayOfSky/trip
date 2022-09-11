@@ -14,12 +14,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class User {
-        private int id;
-        private String name;
-        private String password;
-        private String phone;
-        private double consumption;
-        private double balance;
-        private int vip;
+        private int userId;
+        private String userName;
+        private String userPassword;
+        private String userPhoneNumber;
+        private double userConsumption;
+        private double userBalance;
+        private int userVip;
 
 }
