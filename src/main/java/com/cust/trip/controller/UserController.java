@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     private UserService userService;
 
     @Autowired
@@ -25,6 +26,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * 获取所有用户列表
+     * @param pageNum 页数
+     * @param pageSize 总页数
+     * @return data
+     */
     @GetMapping("/{pageNum}/{pageSize}")
     public ReturnData getAllOrders(@PathVariable("pageNum") int pageNum
             , @PathVariable("pageSize") int pageSize) {
