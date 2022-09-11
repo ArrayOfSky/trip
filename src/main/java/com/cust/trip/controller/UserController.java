@@ -5,7 +5,6 @@ import com.cust.trip.bean.User;
 import com.cust.trip.commom.CodeEnum;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.UserService;
-import com.cust.trip.utils.UserForm;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,11 +102,5 @@ public class UserController {
         return returnData;
     }
 
-    @GetMapping("/form/{form}/{pageNum}/{pageSize}")
-    public ReturnData getUsersByForm(@PathVariable("form")UserForm form
-    ,int pageNum,int pageSize){
-        ReturnData returnData = new ReturnData();
 
-        return returnData;
-    }
 }
