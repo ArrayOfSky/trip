@@ -24,19 +24,19 @@ public interface ProductService {
 
     /**
      * 根据姓名删除产品
-     * @param name
+     * @param productName
      * @return 0 失败 1 成功 （后续修改）
      */
-    int deleteProductByName(String name);
+    int deleteProductByName(String productName);
 
     /**
      * 根据姓名更新产品
      * 使用动态sql
-     * @param name
+     * @param productName
      * @param product
      * @return 0 失败 1 成功 （后续修改）
      */
-    int updataProduct(String name,Product product);
+//    int updataProduct(String productName,Product product);
 
     /**
      * 分页查询所有产品
@@ -60,9 +60,9 @@ public interface ProductService {
 
     /**
      * 根据姓名查询产品
-     * @param name
+     * @param productName
      * @return 产品
      */
-    Product selectProductByName(String name);
+    Product selectProductByName(String productName);
 
 }

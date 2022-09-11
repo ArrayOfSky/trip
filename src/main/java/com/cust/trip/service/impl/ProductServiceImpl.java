@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     public int addProduct(Product product) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){
-            if(a.getName().equals(product.getName())){
+            if(a.getProductName().equals(product.getProductName())){
                 return 0;
             }
         }
@@ -39,11 +39,11 @@ public class ProductServiceImpl implements ProductService {
         return 1;
     }
 
-    @Override
-    public int updataProduct(String name, Product product) {
-        productMapper.updateProduct(name,product);
-        return 1;
-    }
+//    @Override
+//    public int updataProduct(String name, Product product) {
+//        productMapper.updateProduct(name,product);
+//        return 1;
+//    }
 
     @Override
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         ArrayList<Product> arr = new ArrayList<>();
         for(Product a : array){
-            if(a.getKind()==kind.getId()){
+            if(a.getProductKind()==kind.getKindId()){
                 arr.add(a);
             }
         }
@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
     public Product selectProductByName(String name) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){
-            if(a.getName().equals(name)){
+            if(a.getProductName().equals(name)){
                 return a;
             }
         }

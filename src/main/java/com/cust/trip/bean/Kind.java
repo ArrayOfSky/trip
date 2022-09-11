@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Kind {
-        private int id;
-        private String name;
+        private int kindId;
+        private String kindName;
 }

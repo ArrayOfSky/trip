@@ -21,7 +21,6 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("/product")
-@Api
 public class ProductController {
 
     @Autowired

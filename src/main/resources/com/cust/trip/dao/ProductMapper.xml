@@ -3,42 +3,27 @@
 <mapper namespace="com.cust.trip.dao.ProductMapper">
 
     <resultMap id="ResultMap" type="com.cust.trip.bean.Product">
-        <result property="id" column="product_id"></result>
-        <result property="name" column="product_name"></result>
-        <result property="stock" column="product_stock"></result>
-        <result property="quantity" column="product_quantity"></result>
-        <result property="sales" column="product_sales"></result>
-        <result property="price" column="product_price"></result>
-        <result property="kind" column="product_kind"></result>
-        <result property="status" column="product_status"></result>
-        <result property="createTime" column="create_time"></result>
-        <result property="updateTime" column="update_time"></result>
-        <result property="shelfTime" column="shlf_time"></result>
-        <result property="takedownTime" column="ttakedown_time"></result>
+        <result property="productId" column="product_id"></result>
+        <result property="productName" column="product_name"></result>
+        <result property="productStock" column="product_stock"></result>
+        <result property="productQuantity" column="product_quantity"></result>
+        <result property="productSales" column="product_sales"></result>
+        <result property="productPrice" column="product_price"></result>
+        <result property="productKind" column="product_kind"></result>
+        <result property="productStatus" column="product_status"></result>
+        <result property="productCreateTime" column="create_time"></result>
+        <result property="productUpdateTime" column="update_time"></result>
+        <result property="productShlfTime" column="shlf_time"></result>
+        <result property="productTakedownTime" column="ttakedown_time"></result>
     </resultMap>
     <insert id="insertProduct">
         insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, create_time, update_time, shlf_time, takedown_time)
-        values(#{name},#{stock},#{quantity},#{sales},#{price},#{kind},#{status},#{createTime},#{updateTime},#{shlfTime},#{takedownTime});
+        values(#{productName},#{productStock},#{productQuantity},#{productSales},#{productPrice},#{product_kind},#{productStatus},#{productCreateTime},#{productUpdateTime},#{productShlfTime},#{productTakedownTime});
     </insert>
-    <update id="updateProduct">
-        update products
-        set product_id=#{id}
-        and product_name = #{name}
-        and product_stock = #{stock}
-        and product_quantity = #{quantity}
-        and product_sales = #{sales}
-        and product_price = #{price}
-        and product_kind = #{kind}
-        and product_status = #{status}
-        and create_time = #{createTime}
-        and update_time = #{updateTime}
-        and shlf_time = #{shlfTime}
-        and takedown_time = #{takedownTime}
-        where product_name = #{name};
-    </update>
+
     <delete id="deleteProductByName">
         delete from products
-        where product_name = #{name};
+        where product_name = #{productName};
     </delete>
 
 

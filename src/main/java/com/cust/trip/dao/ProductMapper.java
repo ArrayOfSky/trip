@@ -29,14 +29,14 @@ public interface ProductMapper {
      * 删除产品根据产品名
      * @param productName 产品名
      */
-    void deleteProductByName(@Param("name") String productName);
+    void deleteProductByName(@Param("productName") String productName);
 
     /**
      * 更新产品
      * @param product
      * @param name
      */
-    void updateProduct(@Param("name") String name,Product product);
+//    void updateProduct(@Param("productName") String name,Product product);
 
 //    void updateProductStock(String name,Integer stock);
 //

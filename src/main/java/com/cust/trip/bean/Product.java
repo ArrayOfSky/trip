@@ -14,16 +14,16 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private int id;
-    private String name;
-    private int stock;
-    private int quantity;
-    private int sales;
-    private double price;
-    private int kind;
-    private int status;
-    private Timestamp createTime;
-    private Timestamp updateTime;
-    private Timestamp shlfTime;
-    private Timestamp takedownTime;
+    private int productId;
+    private String productName;
+    private int productStock;
+    private int productQuantity;
+    private int productSales;
+    private double productPrice;
+    private String kindName;
+    private String statusName;
+    private Timestamp productCreateTime;
+    private Timestamp productUpdateTime;
+    private Timestamp productShlfTime;
+    private Timestamp productTakedownTime;
 }

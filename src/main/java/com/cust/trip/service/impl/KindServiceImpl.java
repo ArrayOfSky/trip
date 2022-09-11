@@ -26,7 +26,7 @@ public class KindServiceImpl implements KindService {
     public int addKind(Kind kind) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for(Kind a : array){
-            if(a.getName().equals(kind.getName())){
+            if(a.getKindName().equals(kind.getKindName())){
                 return 0;
             }
         }
@@ -35,8 +35,8 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
-    public int deleteKind(String name) {
-        kindMapper.deleteKind(name);
+    public int deleteKind(String kindName) {
+        kindMapper.deleteKind(kindName);
         return 1;
     }
 
@@ -48,10 +48,10 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
-    public Kind selectKindByName(String name) {
+    public Kind selectKindByName(String kindName) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for(Kind a : array){
-            if(a.getName().equals(name)){
+            if(a.getKindName().equals(kindName)){
                 return a;
             }
         }
@@ -59,11 +59,11 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
-    public int updateKind(String name1, String name2) {
+    public int updateKind(String kindName1, String kindName2) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for (Kind a: array){
-            if(a.getName().equals(name1)){
-                a.setName(name2);//因为后续是通过id来定位kind，我可以直接更改name
+            if(a.getKindName().equals(kindName1)){
+                a.setKindName(kindName2);//因为后续是通过id来定位kind，我可以直接更改name
                 kindMapper.updateKind(a);
                 return 1;
             }

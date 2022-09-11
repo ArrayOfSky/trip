@@ -24,10 +24,10 @@ public interface KindService {
 
     /**
      * 根据姓名删除类型
-     * @param name
+     * @param kindName
      * @return 0 失败 1 成功 （后续修改）
      */
-    int deleteKind(String name);
+    int deleteKind(String kindName);
 
     /**
      * 分页查询所有类型
@@ -39,18 +39,18 @@ public interface KindService {
 
     /**
      * 根据姓名查询类型 建议用来获取id
-     * @param name
+     * @param kindName
      * @return 类型
      */
-    Kind selectKindByName(String name);
+    Kind selectKindByName(String kindName);
 
     /**
      *  更新类型 将kind name为name1 更新 为 name 为 name2
-     * @param name1
-     * @param name2
+     * @param kindName1
+     * @param kindName2
      * @return 0 失败 1 成功 （后续修改）
      */
-    int updateKind(String name1,String name2);
+    int updateKind(String kindName1,String kindName2);
 
 
 }

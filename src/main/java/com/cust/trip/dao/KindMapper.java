@@ -27,7 +27,7 @@ public interface KindMapper {
      * 根据种类名删除种类
      * @param name 种类名
      */
-    void deleteKind(String name);
+    void deleteKind(String kindName);
 
     /**
      *  更新种类数据

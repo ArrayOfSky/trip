@@ -19,10 +19,9 @@ public class KindController {
     @Autowired
     KindService kindService;
 
+//    @PathVariable("kindName")
     @PostMapping("/{kindName}")
-    public ReturnData addKind(@PathVariable("kindName") String kindName) {
-        Kind kind = new Kind();
-        kind.setName(kindName);
+    public ReturnData addKind(@RequestBody Kind kind) {
         int code = kindService.addKind(kind);
         if (code == 0) {
             return new ReturnData(400, "种类已存在", null);

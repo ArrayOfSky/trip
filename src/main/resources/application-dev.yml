@@ -1,5 +1,7 @@
 server:
   port: 8080
+  servlet:
+    context-path: /trip
 spring:
   profiles: dev
   datasource:
@@ -10,5 +12,3 @@ spring:
 pagehelper:
   reasonable: true
   helper-dialect: mysql
-swagger:
-  show: true

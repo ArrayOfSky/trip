@@ -20,14 +20,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableKnife4j
 @Profile({"dev","test"})
 public class SwaggerConfig implements WebMvcConfigurer {
-    @Value(value = "${swagger.show}")
-    private Boolean swaggerEnabled;
 
     @Bean
     public Docket createRestBmbsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("users")
                 .apiInfo(apiInfo())
+                .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.cust.trip.controller"))
                 .paths(PathSelectors.any())
