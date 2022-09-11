@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
-
     @Override
     public PageInfo<User> getAllUsers(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -34,15 +33,6 @@ public class UserServiceImpl implements UserService {
         return new PageInfo<>(users);
     }
 
-    @Override
-    public User getUserByPhoneNumber(String phoneNumber) {
-        return userMapper.selectUserByPhoneNumber(phoneNumber);
-    }
-
-    @Override
-    public int recharge(User user, Double recharge) {
-        return 0;
-    }
 
     @Override
     public List<User> getUserByName(String name) {
@@ -50,44 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int consumption(User user, Double consumption) {
-        return 0;
+    public List<User> getAllUsers() {
+        return userMapper.selectAllUsers();
     }
-
-    @Override
-    public int deConsumption(User user, Double deConsumption) {
-        return 0;
-    }
-
-    @Override
-    public boolean login(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean logout(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean register(User user) {
-        return false;
-    }
-
-    @Override
-    public boolean order(User user, Product product) {
-        return false;
-    }
-
-    @Override
-    public int updatePhoneNumber(User user, String newPhoneNumber) {
-        return 0;
-    }
-
-    @Override
-    public boolean useBalance(User user, Double useBalance) {
-        return false;
-    }
-
-
 }

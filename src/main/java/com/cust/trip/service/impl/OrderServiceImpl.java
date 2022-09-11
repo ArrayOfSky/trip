@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public PageInfo<Order> getOrdersByUser(int pageNum, int pageSize, User user) {
-        int userId = user.getId();
+        int userId = user.getUserId();
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByUserId(userId);
         return new PageInfo<>(orders);

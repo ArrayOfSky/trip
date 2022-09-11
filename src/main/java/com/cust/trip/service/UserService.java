@@ -12,13 +12,20 @@ import java.util.List;
  */
 public interface UserService {
     /**
-     * 获得所有的用户列表
-     *
-     * @return 用户列表
+     * 获取所有的用户并分页
+     * @param pageNum 页数
+     * @param pageSize 页尺寸
+     * @return pageInfo
      */
     PageInfo<User> getAllUsers(int pageNum, int pageSize);
 
-    boolean login(User user);
+    /**
+     * 获取所有用户对象
+     * @return list
+     */
+    List<User> getAllUsers();
+
+   /* boolean login(User user);
 
     boolean logout(User user);
 
@@ -36,8 +43,13 @@ public interface UserService {
 
     int updatePhoneNumber(User user, String newPhoneNumber);
 
-    User getUserByPhoneNumber(String phoneNumber);
+    User getUserByPhoneNumber(String phoneNumber);*/
 
+    /**
+     * 通过用户名获取用户对象
+     * @param name 用户名
+     * @return 用户对象列表（用户名可能重复）
+     */
     List<User> getUserByName(String name);
 
 
