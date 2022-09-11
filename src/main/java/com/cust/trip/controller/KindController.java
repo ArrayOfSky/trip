@@ -3,7 +3,7 @@ package com.cust.trip.controller;
 
 import com.cust.trip.bean.Kind;
 import com.cust.trip.commom.ReturnData;
-import com.cust.trip.service.impl.KindServiceImpl;
+import com.cust.trip.service.KindService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,59 +17,59 @@ import org.springframework.web.bind.annotation.*;
 public class KindController {
 
     @Autowired
-    KindServiceImpl kindService;
+    KindService kindService;
 
     @PostMapping("/{kindName}")
-    public ReturnData addKind(@PathVariable("kindName") String kindName){
+    public ReturnData addKind(@PathVariable("kindName") String kindName) {
         Kind kind = new Kind();
         kind.setName(kindName);
         int code = kindService.addKind(kind);
-        if(code==0){
-            return new ReturnData(400,"种类已存在",null);
-        }else if(code==1){
-            return new ReturnData(200,"创建成功",null);
-        }else{
-            return new ReturnData(500,"服务器错误,请联系管理员",null);
+        if (code == 0) {
+            return new ReturnData(400, "种类已存在", null);
+        } else if (code == 1) {
+            return new ReturnData(200, "创建成功", null);
+        } else {
+            return new ReturnData(500, "服务器错误,请联系管理员", null);
         }
     }
 
     @DeleteMapping("/{kindName}")
-    public ReturnData deleteKind(@PathVariable("kindName") String kindName){
+    public ReturnData deleteKind(@PathVariable("kindName") String kindName) {
         int code = kindService.deleteKind(kindName);
-        if(code==0){
-            return new ReturnData(400,"种类不存在",null);
-        }else if(code==1){
-            return new ReturnData(200,"删除成功",null);
-        }else{
-            return new ReturnData(500,"服务器错误,请联系管理员",null);
+        if (code == 0) {
+            return new ReturnData(400, "种类不存在", null);
+        } else if (code == 1) {
+            return new ReturnData(200, "删除成功", null);
+        } else {
+            return new ReturnData(500, "服务器错误,请联系管理员", null);
         }
     }
 
     @PutMapping("/{name1}/{name2}")
-    public ReturnData updateKind(@PathVariable("name1") String name1,@PathVariable("name2") String name2){
-        int code = kindService.updateKind(name1,name2);
-        if(code==0){
-            return new ReturnData(400,"种类不存在",null);
-        }else if(code==1){
-            return new ReturnData(200,"修改成功",null);
-        }else{
-            return new ReturnData(500,"服务器错误,请联系管理员",null);
+    public ReturnData updateKind(@PathVariable("name1") String name1, @PathVariable("name2") String name2) {
+        int code = kindService.updateKind(name1, name2);
+        if (code == 0) {
+            return new ReturnData(400, "种类不存在", null);
+        } else if (code == 1) {
+            return new ReturnData(200, "修改成功", null);
+        } else {
+            return new ReturnData(500, "服务器错误,请联系管理员", null);
         }
     }
 
     @GetMapping("/{pageNum}/{pageSize}")
-    public ReturnData selectAllKind(@PathVariable("pageNum") int pageNum,@PathVariable("pageSize") int pageSize){
-        PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum,pageSize);
-        return new ReturnData(200,"获取成功",pageInfo.getList());
+    public ReturnData selectAllKind(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
+        PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum, pageSize);
+        return new ReturnData(200, "获取成功", pageInfo.getList());
     }
 
     @GetMapping("/{kindName}")
-    public ReturnData selectAllKindByName(@PathVariable("kindName") String kindName){
+    public ReturnData selectAllKindByName(@PathVariable("kindName") String kindName) {
         Kind kind = kindService.selectKindByName(kindName);
-        if(kind==null){
-          return new ReturnData(400,"种类不存在",null);
-        }else{
-          return new ReturnData(200,"获取成功",kind);
+        if (kind == null) {
+            return new ReturnData(404, "种类不存在", null);
+        } else {
+            return new ReturnData(200, "获取成功", kind);
         }
     }
 }

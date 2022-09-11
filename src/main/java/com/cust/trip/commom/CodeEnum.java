@@ -14,7 +14,6 @@ public enum CodeEnum {
      * 请求失败
      */
     REQUEST_FAILED(401),
-
     /**
      * 访问路径不存在
      */
@@ -22,7 +21,7 @@ public enum CodeEnum {
     /**
      * 系统错误
      */
-    SYSTEM_ERROR(501),
+    SYSTEM_ERROR(500),
     ;
 
     private final Integer code;

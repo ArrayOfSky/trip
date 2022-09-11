@@ -24,6 +24,6 @@ public class Product {
     private int status;
     private Timestamp createTime;
     private Timestamp updateTime;
-    private Timestamp shelfTime;
+    private Timestamp shlfTime;
     private Timestamp takedownTime;
 }
