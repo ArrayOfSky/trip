@@ -19,7 +19,7 @@ import com.cust.trip.commom.CodeEnum;
  */
 @RestController
 @RequestMapping("/kind")
-@Api(value = "kind", tags = "类型相关接口")
+@Api(value = "Kind", tags = "类型模块")
 public class KindController {
 
     @Autowired
