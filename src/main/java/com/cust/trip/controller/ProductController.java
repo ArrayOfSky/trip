@@ -45,7 +45,7 @@ public class ProductController {
 
     @ApiImplicitParam(name = "productName",value = "产品名称",paramType = "query",dataType = "String",required = true)
     @ApiOperation(notes = "删除产品",value = "删除产品")
-    @DeleteMapping("/deleteProductByName")
+    @PostMapping("/deleteProductByName")
     public ReturnData deleteProductByName(@RequestParam("productName") String productName){
         int code = productService.deleteProductByName(productName);
         if(code==0){
@@ -62,7 +62,7 @@ public class ProductController {
             @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",paramType = "query",required = true)
     })
     @ApiOperation(value = "分页查询所有产品",notes = "分页查询所有产品")
-    @GetMapping("/selectAllProduct")
+    @PostMapping("/selectAllProduct")
     public ReturnData selectAllProduct(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         PageInfo<Product> pageInfo = productService.selectAllProduct(pageNum,pageSize);
         return new ReturnData(Code.OK,"获取成功",pageInfo);
@@ -74,7 +74,7 @@ public class ProductController {
             @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",paramType = "query",required = true)
     })
     @ApiOperation(value = "查询指定类型产品",notes = "查询指定类型产品")
-    @GetMapping("/selectAllProductByKind")
+    @PostMapping("/selectAllProductByKind")
     public ReturnData selectAllProductByKind(@RequestParam String productKind,@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         Kind kind = kindService.selectKindByName(productKind);
         PageInfo<Product> pageInfo = productService.selectAllProductByKind(kind,pageNum,pageSize);
@@ -83,7 +83,7 @@ public class ProductController {
 
     @ApiImplicitParam(name = "productName",value = "产品名称",dataType = "String",paramType = "query",required = true)
     @ApiOperation(value = "查询指定名称产品",notes = "查询指定名称产品")
-    @GetMapping("/selectProductByName")
+    @PostMapping("/selectProductByName")
     public ReturnData selectProductByName(@RequestParam("productName") String productName){
         Product product = productService.selectProductByName(productName);
         if(product==null){

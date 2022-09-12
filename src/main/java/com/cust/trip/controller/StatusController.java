@@ -27,7 +27,7 @@ public class StatusController {
     StatusService statusService;
 
     @ApiImplicitParam(name = "status",value = "状态",required = true,paramType = "body",dataType = "Status")
-    @ApiOperation(value = "添加状态",notes = "添加状态")
+    @ApiOperation(value = "添加状态",notes = "用Body json 需要 statusDescription statusKind")
     @PostMapping("/addStatus")
     public ReturnData addStatus(@RequestBody Status status){
         System.out.println(status);
@@ -42,8 +42,8 @@ public class StatusController {
     }
 
     @ApiImplicitParam(name = "statusDescription",value = "状态名",required = true,paramType = "query",dataType = "String")
-    @ApiOperation(value = "根据状态名删除状态",notes = "根据状态名删除状态")
-    @DeleteMapping("/deleteStatusByDescription")
+    @ApiOperation(value = "根据状态名删除状态",notes = "用Param 需要 ")
+    @PostMapping("/deleteStatusByDescription")
     public ReturnData deleteStatusByDescription(@RequestParam String statusDescription){
         int code = statusService.deleteStatusByDescription(statusDescription);
         if (code == 0) {
@@ -60,7 +60,7 @@ public class StatusController {
         @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",required = true,paramType = "query")
     })
     @ApiOperation(value = "分页查询所有状态",notes = "分页查询所有状态")
-    @GetMapping("/selectAllStatus")
+    @PostMapping("/selectAllStatus")
     public ReturnData selectAllStatus(@RequestParam int pageNum,@RequestParam int pageSize){
         PageInfo<Status> pageInfo = statusService.selectAllStatus(pageNum,pageSize);
         return new ReturnData(Code.OK,"获取成功",pageInfo);
@@ -68,7 +68,7 @@ public class StatusController {
 
     @ApiImplicitParam(name = "statusDescription",value = "状态名称",required = true,dataType = "String",paramType = "query")
     @ApiOperation(value = "根据姓名查询状态",notes = "根据姓名查询状态")
-    @GetMapping("selectStatusByDescription")
+    @PostMapping("selectStatusByDescription")
     public ReturnData selectStatusByDescription(@RequestParam String statusDescription){
         Status status = statusService.selectStatusByDescription(statusDescription);
         if(status==null){

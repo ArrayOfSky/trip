@@ -42,7 +42,7 @@ public class KindController {
 
     @ApiImplicitParam(name = "kind",value = "删除的数据类型",dataType = "kind",required = true,paramType = "body")
     @ApiOperation(value = "删除类型",notes = "删除类型")
-    @DeleteMapping("/deleteKind")
+    @PostMapping("/deleteKind")
     public ReturnData deleteKind(@RequestBody Kind kind) {
         int code = kindService.deleteKind(kind.getKindName());
         if (code == 0) {
@@ -59,7 +59,7 @@ public class KindController {
             @ApiImplicitParam(name = "kindName2",value = "修改后的类型名",dataType = "String",required = true,paramType = "query")
     })
     @ApiOperation(value = "修改类型",notes = "修改类型")
-    @PutMapping("/updateKind")
+    @PostMapping("/updateKind")
     public ReturnData updateKind(@RequestParam("kindName1") String kindName1, @RequestParam("kindName2") String kindName2) {
         int code = kindService.updateKind(kindName1, kindName2);
         if (code == 0) {
@@ -76,7 +76,7 @@ public class KindController {
             @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",required = true,paramType = "query")
     })
     @ApiOperation(value = "分页查找所有类型",notes = "分页查找所有类型")
-    @GetMapping("/selectAllKind")
+    @PostMapping("/selectAllKind")
     public ReturnData selectAllKind(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum, pageSize);
         return new ReturnData(Code.OK, "获取成功", pageInfo);
@@ -84,7 +84,7 @@ public class KindController {
 
     @ApiImplicitParam(name = "kindName",value = "查找的类型名称",dataType = "String",required = true,paramType = "query")
     @ApiOperation(value = "查找指定类型名称类型",notes = "查找知道类型名称类型")
-    @GetMapping("/selectAllKindByName")
+    @PostMapping("/selectAllKindByName")
     public ReturnData selectAllKindByName(@RequestParam("kindName") String kindName) {
         Kind kind = kindService.selectKindByName(kindName);
         if (kind == null) {
