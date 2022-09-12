@@ -6,8 +6,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableKnife4j
 @Profile({"dev","test"})
-public class SwaggerConfig extends WebMvcConfigurationSupport {
+public class SwaggerConfig{
 
     @Bean
     public Docket createRestBmbsApi() {
@@ -50,16 +48,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .termsOfServiceUrl("http://localhost:8080/")
                 .version("0.0.1")
                 .build();
-    }
-
-    @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 解决静态资源无法访问
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-        // 解决swagger无法访问
-        registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        // 解决swagger的js文件无法访问
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
 }

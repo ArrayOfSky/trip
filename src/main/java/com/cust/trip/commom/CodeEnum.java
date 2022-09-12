@@ -52,7 +52,7 @@ public enum CodeEnum {
     /**
      * 发生验证错误
      */
-    UNPROCESABLE_ENTITY(422),
+    UNPROCESSABLE_ENTITY(422),
     /**
      * 服务器发生错误
      */
