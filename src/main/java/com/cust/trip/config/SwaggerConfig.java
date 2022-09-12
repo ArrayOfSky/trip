@@ -28,7 +28,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .enable(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.cust.trip.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.cust.trip.*"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -36,6 +36,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("趣旅行 api")
+                .description("api文档")
+                .termsOfServiceUrl("http://localhost:8080/")
                 .version("0.0.1")
                 .build();
     }
