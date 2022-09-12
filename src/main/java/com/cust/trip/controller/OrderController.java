@@ -1,11 +1,10 @@
 package com.cust.trip.controller;
 
 import com.cust.trip.bean.Order;
-import com.cust.trip.bean.Product;
-import com.cust.trip.bean.User;
 import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
+import com.cust.trip.utils.DateUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author gyx
@@ -41,7 +39,7 @@ public class OrderController {
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
     })
     @ApiOperation(value = "分页查询所有订单", notes = "分页查询所有订单")
-    @GetMapping("/getAllOrders")
+    @PostMapping("/getAllOrders")
     public ReturnData getAllOrders(@RequestParam("pageNum") int pageNum
             , @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -67,7 +65,7 @@ public class OrderController {
             }
     )
     @ApiOperation(value = "获取特定状态的订单", notes = "获取特定状态的订单")
-    @GetMapping("/getOrdersByStatus")
+    @PostMapping("/getOrdersByStatus")
     public ReturnData getOrdersByStatus(@RequestParam("statusKind") String statusKind, @RequestParam("statusDescription") String statusDescription
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -89,7 +87,7 @@ public class OrderController {
             @ApiImplicitParam(name = "productName", value = "商品名称", dataType = "String", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定商品订单", notes = "获取特定商品订单")
-    @GetMapping("/getOrdersByProduct")
+    @PostMapping("/getOrdersByProduct")
     public ReturnData getOrdersByProduct(@RequestParam("productName") String productName
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -108,17 +106,17 @@ public class OrderController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "time1", value = "时间1", dataType = "Date", paramType = "query", required = true),
-            @ApiImplicitParam(name = "time2", value = "时间2", dataType = "Date", paramType = "query", required = true)
+            @ApiImplicitParam(name = "time1", value = "时间1", dataType = "String", paramType = "query", required = true),
+            @ApiImplicitParam(name = "time2", value = "时间2", dataType = "String", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定日期订单", notes = "获取特定日期订单")
-    @GetMapping("/getOrdersByDates")
-    public ReturnData getOrdersBtDates(@RequestParam("time1") Date time1, @RequestParam("time2") Date time2
+    @PostMapping("/getOrdersByDates")
+    public ReturnData getOrdersBtDates(@RequestParam("time1") String time1, @RequestParam("time2") String time2
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(DateUtil.stringToDate(time1).getTime()), new Timestamp(DateUtil.stringToDate(time1).getTime()), pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
         returnData.setCode(Code.OK);
