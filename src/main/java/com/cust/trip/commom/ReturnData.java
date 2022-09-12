@@ -22,6 +22,7 @@ public class ReturnData {
     @ApiModelProperty("返回数据")
     private Object data;
 
-    public ReturnData(CodeEnum code, String msg, Object data) {
+    public ReturnData(Code code, String msg, Object data) {
     }
+
 }

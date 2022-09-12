@@ -2,7 +2,7 @@ package com.cust.trip.controller;
 
 import com.cust.trip.bean.Kind;
 import com.cust.trip.bean.Product;
-import com.cust.trip.commom.CodeEnum;
+import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.KindService;
 import com.cust.trip.service.ProductService;
@@ -33,11 +33,11 @@ public class ProductController {
     public ReturnData addProduct(@RequestBody Product product){
         int code = productService.addProduct(product);
         if (code == 0) {
-            return new ReturnData(CodeEnum.INVALID_REQUEST, "产品已存在", null);
+            return new ReturnData(Code.INVALID_REQUEST, "产品已存在", null);
         } else if (code == 1) {
-            return new ReturnData(CodeEnum.CREATED, "创建成功", null);
+            return new ReturnData(Code.CREATED, "创建成功", null);
         } else {
-            return new ReturnData(CodeEnum.INTERNAL_SERVER_ERROR, "服务器错误,请联系管理员", null);
+            return new ReturnData(Code.INTERNAL_SERVER_ERROR, "服务器错误,请联系管理员", null);
         }
     }
 
@@ -47,11 +47,11 @@ public class ProductController {
     public ReturnData deleteProductByName(@RequestParam("productName") String productName){
         int code = productService.deleteProductByName(productName);
         if(code==0){
-            return new ReturnData(CodeEnum.INVALID_REQUEST,"产品不存在",null);
+            return new ReturnData(Code.INVALID_REQUEST,"产品不存在",null);
         }else if(code==1){
-            return new ReturnData(CodeEnum.CREATED,"删除成功",null);
+            return new ReturnData(Code.CREATED,"删除成功",null);
         }else{
-            return new ReturnData(CodeEnum.INTERNAL_SERVER_ERROR,"服务器错误,请联系管理员",null);
+            return new ReturnData(Code.INTERNAL_SERVER_ERROR,"服务器错误,请联系管理员",null);
         }
     }
 
@@ -63,7 +63,7 @@ public class ProductController {
     @GetMapping("/selectAllProduct")
     public ReturnData selectAllProduct(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         PageInfo<Product> pageInfo = productService.selectAllProduct(pageNum,pageSize);
-        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo);
+        return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParams({
@@ -76,7 +76,7 @@ public class ProductController {
     public ReturnData selectAllProductByKind(@RequestParam String productKind,@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         Kind kind = kindService.selectKindByName(productKind);
         PageInfo<Product> pageInfo = productService.selectAllProductByKind(kind,pageNum,pageSize);
-        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo);
+        return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParam(name = "productName",value = "产品名称",dataType = "String",paramType = "query",required = true)
@@ -85,9 +85,9 @@ public class ProductController {
     public ReturnData selectProductByName(@RequestParam("productName") String productName){
         Product product = productService.selectProductByName(productName);
         if(product==null){
-            return new ReturnData(CodeEnum.NOT_FOUND,"产品不存在",null);
+            return new ReturnData(Code.NOT_FOUND,"产品不存在",null);
         }else{
-            return new ReturnData(CodeEnum.OK,"获取成功",product);
+            return new ReturnData(Code.OK,"获取成功",product);
         }
     }
 
