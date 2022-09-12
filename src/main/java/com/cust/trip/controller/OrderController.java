@@ -1,170 +1,133 @@
-//package com.cust.trip.controller;
-//
-//import com.cust.trip.bean.Order;
-//import com.cust.trip.bean.Product;
-//import com.cust.trip.bean.User;
-//import com.cust.trip.commom.CodeEnum;
-//import com.cust.trip.commom.ReturnData;
-//import com.cust.trip.service.OrderService;
-//import com.cust.trip.service.ProductService;
-//import com.github.pagehelper.PageInfo;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.sql.Timestamp;
-//import java.util.Date;
-//
-///**
-// * @author gyx
-// * 2022/9/11
-// */
-//@RestController
-//@RequestMapping("/order")
-//public class OrderController {
-//
-//    private OrderService orderService;
-//
-//    private ProductService productService;
-//
-//    @Autowired
-//    public void setProductService(ProductService productService) {
-//        this.productService = productService;
-//    }
-//
-//    @Autowired
-//    public void setOrderService(OrderService orderService) {
-//        this.orderService = orderService;
-//    }
-//
-//    /**
-//     * 显示全部订单
-//     *
-//     * @param pageNum  页数
-//     * @param pageSize 页面大小
-//     * @return data
-//     */
-//    @GetMapping("/{pageNum}/{pageSize}")
-//    public ReturnData getAllOrders(@PathVariable("pageNum") int pageNum
-//            , @PathVariable("pageSize") int pageSize) {
-//        //创建返回对象
-//        ReturnData returnData = new ReturnData();
-//        //获取分页信息
-//        PageInfo<Order> pageInfo = orderService.getAllOrdersForPage(pageNum, pageSize);
-//        //封装对象
-//        returnData.setData(pageInfo);
-//        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-//        returnData.setMsg("获取成功");
-//        //返回
-//        return returnData;
-//    }
-//
-//    /**
-//     * 筛选某一用户订单
-//     *
-//     * @param user     用户
-//     * @param pageNum  页数
-//     * @param pageSize 页面大小
-//     * @return data
-//     */
-//    @GetMapping("/{user}/{pageNum}/{pageSize}")
-//    public ReturnData getOrdersByUser(@PathVariable("user") User user
-//            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-//        //创建返回对象
-//        ReturnData returnData = new ReturnData();
-//        //获取分页信息
-//        PageInfo<Order> pageInfo = orderService.getOrdersByUser(pageNum, pageSize, user);
-//        //封装对象
-//        returnData.setData(pageInfo);
-//        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-//        returnData.setMsg("获取成功");
-//        //返回
-//        return returnData;
-//    }
-//
-//    /**
-//     * 筛选某一状态订单
-//     *
-//     * @param status   状态
-//     * @param pageNum  页数
-//     * @param pageSize 页面大小
-//     * @return data
-//     */
-//    @GetMapping("/{status}/{pageNum}/{pageSize}")
-//    public ReturnData getOrdersByStatus(@PathVariable("status") int status
-//            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-//        //创建返回对象
-//        ReturnData returnData = new ReturnData();
-//        //获取分页信息
-//        PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, status);
-//        //封装对象
-//        returnData.setData(pageInfo);
-//        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-//        returnData.setMsg("获取成功");
-//        //返回
-//        return returnData;
-//    }
-//
-//    /**
-//     * 获取某一商品的订单
-//     *
-//     * @param product  商品
-//     * @param pageNum  页数
-//     * @param pageSize 页面大小
-//     * @return data
-//     */
-//    @GetMapping("/{product}/{pageNum}/{pageSize}")
-//    public ReturnData getOrdersByProduct(@PathVariable("product") Product product
-//            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-//        //创建返回对象
-//        ReturnData returnData = new ReturnData();
-//        //获取分页信息
-//        PageInfo<Order> pageInfo = orderService.getOrdersByProductId(pageNum, pageSize, product.getProductId());
-//        //封装对象
-//        returnData.setData(pageInfo);
-//        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-//        returnData.setMsg("获取成功");
-//        //返回
-//        return returnData;
-//    }
-//
-//    /**
-//     * 获取某一时间段的订单
-//     * @param time1    时间先
-//     * @param time2    时间后
-//     * @param pageNum  页数
-//     * @param pageSize 页面大小
-//     * @return data
-//     */
-//    @GetMapping("/{time1}/{time2}/{pageNum}/{pageSize}")
-//    public ReturnData getOrdersBtDates(@PathVariable("time1") Date time1, @PathVariable("time2") Date time2
-//            , @PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-//        //创建返回对象
-//        ReturnData returnData = new ReturnData();
-//        //获取分页信息
-//        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
-//        //封装对象
-//        returnData.setData(pageInfo);
-//        returnData.setCode(CodeEnum.REQUEST_SUCCEED.getCode());
-//        returnData.setMsg("获取成功");
-//        //返回
-//        return returnData;
-//    }
-//
-//    /**
-//     * 生成订单
-//     * @param product 商品
-//     * @param user 用户
-//     * @return data
-//     */
-//    @PostMapping("/{product}/{user}")
-//    public ReturnData order(@PathVariable("product") Product product,@PathVariable("user") User user){
-//        //检查商品状态
-//        return null;
-//    }
-//
-//
-//
-//
-//
-//
-//}
+package com.cust.trip.controller;
+
+import com.cust.trip.bean.Order;
+import com.cust.trip.bean.Product;
+import com.cust.trip.bean.User;
+import com.cust.trip.commom.CodeEnum;
+import com.cust.trip.commom.ReturnData;
+import com.cust.trip.service.OrderService;
+import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.Date;
+
+/**
+ * @author gyx
+ * 2022/9/11
+ */
+@RestController
+@RequestMapping("/order")
+@Api(value="Order",tags="订单模块")
+public class OrderController {
+
+    private OrderService orderService;
+
+
+
+    @Autowired
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
+    })
+    @ApiOperation(value="分页查询所有订单",notes="分页查询所有订单")
+    @GetMapping("/getAllOrders")
+    public ReturnData getAllOrders(@RequestParam("pageNum") int pageNum
+            , @RequestParam("pageSize") int pageSize) {
+        //创建返回对象
+        ReturnData returnData = new ReturnData();
+        //获取分页信息
+        PageInfo<Order> pageInfo = orderService.getAllOrdersForPage(pageNum, pageSize);
+        //封装对象
+        returnData.setData(pageInfo);
+        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setMsg("获取成功");
+        //返回
+        return returnData;
+    }
+
+
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
+                    @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+                    @ApiImplicitParam(name = "statusKind",value="订单状态类型",dataType = "String",paramType="query",required=true),
+                    @ApiImplicitParam(name="statusDescription",value="订单状态描述",dataType="String",paramType="query",required=true)
+            }
+    )
+    @ApiOperation(value="获取特定状态的订单",notes="获取特定状态的订单")
+    @GetMapping("/getOrdersByStatus")
+    public ReturnData getOrdersByStatus(@RequestParam("statusKind") String statusKind,@RequestParam("statusDescription") String statusDescription
+            , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        //创建返回对象
+        ReturnData returnData = new ReturnData();
+        //获取分页信息
+        PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, statusKind,statusDescription);
+        //封装对象
+        returnData.setData(pageInfo);
+        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setMsg("获取成功");
+        //返回
+        return returnData;
+    }
+
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name="productName",value="商品名称",dataType="String",paramType="query",required=true)
+    })
+    @ApiOperation(value="获取特定商品订单",notes="获取特定商品订单")
+    @GetMapping("/getOrdersByProduct")
+    public ReturnData getOrdersByProduct(@RequestParam("productName") String productName
+            , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        //创建返回对象
+        ReturnData returnData = new ReturnData();
+        //获取分页信息
+        PageInfo<Order> pageInfo = orderService.getOrdersByProductName(pageNum, pageSize,productName);
+        //封装对象
+        returnData.setData(pageInfo);
+        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setMsg("获取成功");
+        //返回
+        return returnData;
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name="time1",value="时间1",dataType="Date",paramType="query",required=true),
+            @ApiImplicitParam(name="time2",value="时间2",dataType="Date",paramType="query",required=true)
+    })
+    @ApiOperation(value="获取特定日期订单",notes="获取特定日期订单")
+    @GetMapping("/getOrdersByDates")
+    public ReturnData getOrdersBtDates(@RequestParam("time1") Date time1, @RequestParam("time2") Date time2
+            , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        //创建返回对象
+        ReturnData returnData = new ReturnData();
+        //获取分页信息
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
+        //封装对象
+        returnData.setData(pageInfo);
+        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setMsg("获取成功");
+        //返回
+        return returnData;
+    }
+
+
+
+
+
+
+
+}

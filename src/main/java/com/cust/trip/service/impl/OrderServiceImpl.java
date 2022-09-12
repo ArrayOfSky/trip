@@ -1,8 +1,10 @@
 package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Order;
+import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.cust.trip.dao.OrderMapper;
+import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.dao.UserMapper;
 import com.cust.trip.service.OrderService;
 import com.cust.trip.service.UserService;
@@ -24,6 +26,13 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
+    private ProductMapper productMapper;
+
+    @Autowired
+    public void setProductMapper(ProductMapper productMapper) {
+        this.productMapper = productMapper;
+    }
+
     @Autowired
     public void setOrderMapper(OrderMapper orderMapper) {
         this.orderMapper = orderMapper;
@@ -38,8 +47,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<Order> getOrdersByProductId(int pageNum, int pageSize, int productId) {
+    public PageInfo<Order> getOrdersByProductName(int pageNum, int pageSize, String productName) {
         PageHelper.startPage(pageNum, pageSize);
+        //查找对应的商品，并得到商品id
+        int productId=0;
+        for (Product product : productMapper.selectAllProduct()) {
+            if(product.getProductName().equals(productName)){
+                productId=product.getProductId();
+            }
+        }
         List<Order> orders = orderMapper.getOrdersByProductId(productId);
         return new PageInfo<>(orders);
     }
@@ -54,9 +70,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, int status) {
+    public PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind,String statusDescription){
         PageHelper.startPage(pageNum, pageSize);
-        List<Order> orders = orderMapper.getOrdersByStatus(status);
+        List<Order> orders = orderMapper.getOrdersByStatus(statusKind,statusDescription);
         return new PageInfo<>(orders);
     }
 

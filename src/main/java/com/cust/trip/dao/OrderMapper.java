@@ -29,10 +29,11 @@ public interface OrderMapper {
 
     /**
      * 依据状态查询订单数据
-     * @param orderStatus 状态
+     * @param orderStatusKind 类型
+     * @param  orderStatusDescription 描述
      * @return orders
      */
-    List<Order> getOrdersByStatus(int orderStatus);
+    List<Order> getOrdersByStatus(String orderStatusKind,String orderStatusDescription);
 
     /**
      * 依据用户id查询订单

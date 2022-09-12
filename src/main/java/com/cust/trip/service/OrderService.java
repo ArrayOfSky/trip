@@ -45,20 +45,21 @@ public interface OrderService {
      *
      * @param pageNum  num
      * @param pageSize size
-     * @param status   状态
+     * @param statusKind 状态类型
+     * @param statusDescription 状态描述
      * @return orders
      */
-    PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, int status);
+    PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind,String statusDescription);
 
     /**
      * 筛选产品订单
      *
      * @param pageNum   num
      * @param pageSize  size
-     * @param productId 产品id
+     * @param productName 产品名称
      * @return orders
      */
-    PageInfo<Order> getOrdersByProductId(int pageNum, int pageSize, int productId);
+    PageInfo<Order> getOrdersByProductName(int pageNum, int pageSize, String productName);
 
     /**
      * 筛选时间段订单
