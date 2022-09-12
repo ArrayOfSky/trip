@@ -25,29 +25,28 @@ public interface OrderMapper {
      * @param order 新增的订单
      * @return row
      */
-    int saveOrder(Order order);
+    int saveOrder(@Param("order")Order order);
 
     /**
      * 依据状态查询订单数据
-     * @param orderStatusKind 类型
-     * @param  orderStatusDescription 描述
+     * @param statusId 订单状态id
      * @return orders
      */
-    List<Order> getOrdersByStatus(String orderStatusKind,String orderStatusDescription);
+    List<Order> getOrdersByStatus(@Param("statusId")int statusId);
 
     /**
      * 依据用户id查询订单
      * @param orderUserId 用户id
      * @return orders
      */
-    List<Order> getOrdersByUserId(int orderUserId);
+    List<Order> getOrdersByUserId(@Param("orderUserId")int orderUserId);
 
     /**
      * 依据产品id查询订单
      * @param orderProductId 产品订单
      * @return orders
      */
-    List<Order> getOrdersByProductId(int orderProductId);
+    List<Order> getOrdersByProductId(@Param("orderProductId")int orderProductId);
 
 
     /**
@@ -56,6 +55,6 @@ public interface OrderMapper {
      * @param orderCreateTimePo 时间2
      * @return orders
      */
-    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);
+    List<Order> getOrdersBtDates(@Param("orderCreateTimePre")Timestamp orderCreateTimePre,@Param("orderCreateTimePo")Timestamp orderCreateTimePo);
 
 }

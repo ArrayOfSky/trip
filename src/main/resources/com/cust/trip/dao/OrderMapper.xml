@@ -35,11 +35,11 @@
         from orders
         where user_id = #{orderUserId}
     </select>
-    <!--    List<Order> getOrdersByStatus(String orderStatusKind,String orderStatusDescription);-->
+    <!--    List<Order> getOrdersByStatus(int statusId);-->
     <select id="getOrdersByStatus" resultMap="resultMap">
         select *
         from orders
-        where order_status = （select id from status where kind=#{orderStatusKind} and description=#{orderStatusDescription}）
+        where order_status=#{statusId}
     </select>
 
     <!--    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);-->
