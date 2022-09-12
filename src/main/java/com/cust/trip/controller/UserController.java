@@ -6,6 +6,7 @@ import com.cust.trip.commom.CodeEnum;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@Api(value="User",tags="用户模块")
 public class UserController {
 
     private UserService userService;
