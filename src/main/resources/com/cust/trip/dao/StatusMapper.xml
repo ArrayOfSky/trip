@@ -10,20 +10,20 @@
 
     <insert id="insertStatus">
     insert into status(kind,description)
-    values(#{status.statusKind},#{status.statusDescription});
+    values(#{status.statusKind},#{status.statusDescription})
     </insert>
     <delete id="deleteStatus">
         delete from status
-        where description = #{description};
+        where description = #{description}
     </delete>
     <select id="selectAllStatus" resultMap="ResultMap">
         select *
-        from status;
+        from status
     </select>
     <select id="selectStatusByDescription" resultMap="ResultMap">
         select *
         from status
-        where description = #{description};
+        where description = #{description}
     </select>
 
 
