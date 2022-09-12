@@ -15,11 +15,11 @@
         delete from status
         where description = #{description};
     </delete>
-    <select id="selectAllStatus" resultType="com.cust.trip.bean.Status">
+    <select id="selectAllStatus" resultMap="ResultMap">
         select *
         from status;
     </select>
-    <select id="selectStatusByDescription" resultType="com.cust.trip.bean.Status">
+    <select id="selectStatusByDescription" resultMap="ResultMap">
         select *
         from status
         where description = #{description};

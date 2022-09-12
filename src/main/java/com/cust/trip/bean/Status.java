@@ -5,12 +5,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author GYF
  * @Data 2022.9.11
  */
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel("状态")
