@@ -43,7 +43,9 @@ public interface UserService {
 
     int updatePhoneNumber(User user, String newPhoneNumber);
 
-    User getUserByPhoneNumber(String phoneNumber);*/
+    */
+
+    User getUserByPhoneNumber(String phoneNumber);
 
     /**
      * 通过用户名获取用户对象
