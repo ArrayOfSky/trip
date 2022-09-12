@@ -3,11 +3,12 @@
 <mapper namespace="com.cust.trip.dao.OrderMapper">
     <resultMap id="resultMap" type="com.cust.trip.bean.Order">
         <id property="orderId" column="order_id"/>
-        <result property="orderUserId" column="user_id"/>
-        <result property="orderProductId" column="product_id"/>
+        <result property="orderUserId" column="order_user_id"/>
+        <result property="orderProductId" column="order_product_id"/>
         <result property="orderStatus" column="order_status"/>
         <result property="orderCreateTime" column="create_time"/>
         <result property="orderUpdateTime" column="update_time"/>
+        <result property="orderDiscount" column="order_discount"/>
     </resultMap>
 
     <!--    List<Order> getAllOrders();-->
@@ -17,23 +18,23 @@
     </select>
     <!--    int saveOrder(Order order);-->
     <insert id="saveOrder">
-        insert into orders(order_id, user_id, product_id, order_status, create_time, update_time)
+        insert into orders(order_id, order_user_id, order_product_id, order_status, create_time, update_time,order_discount)
         values (#{order.orderId}, #{order.orderUserId}, #{order.orderProductId}, #{order.orderStatus},
                 #{order.orderCreateTime},
-                #{order.orderUpdateTime})
+                #{order.orderUpdateTime},#{order.orderDiscount})
     </insert>
     <!--    List<Order> getOrdersByProductId(int orderProductId);-->
     <select id="getOrdersByProductId" resultMap="resultMap">
         select *
         from orders
-        where product_id = #{orderProductId}
+        where order_product_id = #{orderProductId}
     </select>
 
     <!--    List<Order> getOrdersByUserId(int orderUserId);-->
     <select id="getOrdersByUserId" resultMap="resultMap">
         select *
         from orders
-        where user_id = #{orderUserId}
+        where order_user_id = #{orderUserId}
     </select>
     <!--    List<Order> getOrdersByStatus(int statusId);-->
     <select id="getOrdersByStatus" resultMap="resultMap">

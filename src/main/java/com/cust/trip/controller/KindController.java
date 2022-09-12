@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.cust.trip.commom.CodeEnum;
@@ -20,6 +21,7 @@ import com.cust.trip.commom.CodeEnum;
 @RestController
 @RequestMapping("/kind")
 @Api(value = "Kind", tags = "类型模块")
+@Slf4j
 public class KindController {
 
     @Autowired

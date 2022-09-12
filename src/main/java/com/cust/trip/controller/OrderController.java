@@ -3,7 +3,7 @@ package com.cust.trip.controller;
 import com.cust.trip.bean.Order;
 import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
-import com.cust.trip.commom.CodeEnum;
+import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
 import com.github.pagehelper.PageInfo;
@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/order")
 @Api(value = "Order", tags = "订单模块")
+@Slf4j
 public class OrderController {
 
     private OrderService orderService;
@@ -48,7 +50,7 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getAllOrdersForPage(pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
-        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setCode(Code.OK);
         returnData.setMsg("获取成功");
         //返回
         return returnData;
@@ -74,7 +76,7 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersByStatus(pageNum, pageSize, statusKind, statusDescription);
         //封装对象
         returnData.setData(pageInfo);
-        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setCode(Code.OK);
         returnData.setMsg("获取成功");
         //返回
         return returnData;
@@ -96,7 +98,7 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersByProductName(pageNum, pageSize, productName);
         //封装对象
         returnData.setData(pageInfo);
-        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setCode(Code.OK);
         returnData.setMsg("获取成功");
         //返回
         return returnData;
@@ -118,7 +120,7 @@ public class OrderController {
         PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(time1.getTime()), new Timestamp(time2.getTime()), pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
-        returnData.setCode(CodeEnum.OK.getCode());
+        returnData.setCode(Code.OK);
         returnData.setMsg("获取成功");
         //返回
         return returnData;
