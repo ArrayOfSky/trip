@@ -42,8 +42,14 @@ public class KindServiceImpl implements KindService {
 
     @Override
     public int deleteKind(String kindName) {
-        kindMapper.deleteKind(kindName);
-        return 1;
+        ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
+        for(Kind a : array){
+            if(a.getKindName().equals(kindName)){
+                kindMapper.deleteKind(kindName);
+                return 1;
+            }
+        }
+        return 0;
     }
 
     @Override
