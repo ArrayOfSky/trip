@@ -17,7 +17,7 @@ import java.util.List;
  * 2022/9/8
  */
 @Service
-@Transactional(rollbackFor = Exception.class, timeout = 3)
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
