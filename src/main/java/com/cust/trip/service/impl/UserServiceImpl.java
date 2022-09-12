@@ -6,6 +6,7 @@ import com.cust.trip.dao.UserMapper;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@Slf4j
 public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
