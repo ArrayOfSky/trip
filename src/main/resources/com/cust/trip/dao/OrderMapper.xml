@@ -47,6 +47,7 @@
     <select id="getOrdersBtDates" resultMap="resultMap">
         select *
         from orders
-        where create_time between createTimePre and createTimePo
+        where create_time between #{orderCreateTimePre,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP}
+            and #{orderCreateTimePo,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP}
     </select>
 </mapper>
