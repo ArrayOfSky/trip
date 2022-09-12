@@ -1,4 +1,4 @@
-package com.cust.trip.util;
+package com.cust.trip.utils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Slf4j
 public class DateUtil {
-    private static final SimpleDateFormat sdf =   new SimpleDateFormat( " yyyy-MM-dd HH:mm:ss " );
+    private static final SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
 
     public static Date stringToDate(String dateString){
         Date date=null;
