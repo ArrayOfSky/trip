@@ -1,3 +1,10 @@
+drop table users
+drop table products
+drop table kind
+drop table status
+drop table orders
+
+
 create database trip;
 use trip;
 create table if not exists users (
@@ -22,10 +29,10 @@ product_sales int comment '已售出量',
 product_price double(10,2),
 product_kind int,
 product_status int,
-create_time datetime,
-update_time datetime,
-shlf_time datetime comment '上架时间',
-takedown_time datetime comment '下架时间',
+create_time timestamp,
+update_time timestamp,
+shlf_time timestamp comment '上架时间',
+takedown_time timestamp comment '下架时间',
 primary key(product_id)
 )
 
@@ -42,8 +49,8 @@ create table if not exists orders(
 order_id int auto_increment not null ,
 order_product_id int not null,
 order_user_id int  not null,
-create_time datetime,
-update_time datetime,
+create_time timestamp,
+update_time timestamp,
 order_status int,
 order_discount int,
 primary key(order_id)
