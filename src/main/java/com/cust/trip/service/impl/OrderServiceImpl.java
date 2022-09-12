@@ -63,11 +63,11 @@ public class OrderServiceImpl implements OrderService {
         PageHelper.startPage(pageNum, pageSize);
         //查找对应的商品，并得到商品id
         int productId=0;
-        /*for (Product product : productMapper.selectAllProduct()) {
+        for (Product product : productMapper.selectAllProduct()) {
             if(product.getProductName().equals(productName)){
                 productId=product.getProductId();
             }
-        }*/
+        }
         List<Order> orders = orderMapper.getOrdersByProductId(1);
         return new PageInfo<>(orders);
     }
