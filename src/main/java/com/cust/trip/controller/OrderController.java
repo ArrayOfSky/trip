@@ -41,7 +41,7 @@ public class OrderController {
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
     })
     @ApiOperation(value = "分页查询所有订单", notes = "分页查询所有订单")
-    @GetMapping("/getAllOrders")
+    @PostMapping("/getAllOrders")
     public ReturnData getAllOrders(@RequestParam("pageNum") int pageNum
             , @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -67,7 +67,7 @@ public class OrderController {
             }
     )
     @ApiOperation(value = "获取特定状态的订单", notes = "获取特定状态的订单")
-    @GetMapping("/getOrdersByStatus")
+    @PostMapping("/getOrdersByStatus")
     public ReturnData getOrdersByStatus(@RequestParam("statusKind") String statusKind, @RequestParam("statusDescription") String statusDescription
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -89,7 +89,7 @@ public class OrderController {
             @ApiImplicitParam(name = "productName", value = "商品名称", dataType = "String", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定商品订单", notes = "获取特定商品订单")
-    @GetMapping("/getOrdersByProduct")
+    @PostMapping("/getOrdersByProduct")
     public ReturnData getOrdersByProduct(@RequestParam("productName") String productName
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -111,7 +111,7 @@ public class OrderController {
             @ApiImplicitParam(name = "time2", value = "时间2", dataType = "Date", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定日期订单", notes = "获取特定日期订单")
-    @GetMapping("/getOrdersByDates")
+    @PostMapping("/getOrdersByDates")
     public ReturnData getOrdersBtDates(@RequestParam("time1") Date time1, @RequestParam("time2") Date time2
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
