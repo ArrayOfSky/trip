@@ -78,7 +78,7 @@ public class KindController {
     @GetMapping("/selectAllKind")
     public ReturnData selectAllKind(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         PageInfo<Kind> pageInfo = kindService.selectAllKind(pageNum, pageSize);
-        return new ReturnData(CodeEnum.OK, "获取成功", pageInfo.getList());
+        return new ReturnData(CodeEnum.OK, "获取成功", pageInfo);
     }
 
     @ApiImplicitParam(name = "kindName",value = "查找的类型名称",dataType = "String",required = true,paramType = "query")

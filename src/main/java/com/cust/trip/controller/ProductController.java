@@ -63,7 +63,7 @@ public class ProductController {
     @GetMapping("/selectAllProduct")
     public ReturnData selectAllProduct(@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         PageInfo<Product> pageInfo = productService.selectAllProduct(pageNum,pageSize);
-        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo.getList());
+        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParams({
@@ -76,7 +76,7 @@ public class ProductController {
     public ReturnData selectAllProductByKind(@RequestParam String productKind,@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
         Kind kind = kindService.selectKindByName(productKind);
         PageInfo<Product> pageInfo = productService.selectAllProductByKind(kind,pageNum,pageSize);
-        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo.getList());
+        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParam(name = "productName",value = "产品名称",dataType = "String",paramType = "query",required = true)

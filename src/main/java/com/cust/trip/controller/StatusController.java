@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author GYF
@@ -29,7 +26,7 @@ public class StatusController {
 
     @ApiImplicitParam(name = "status",value = "状态",required = true,paramType = "body",dataType = "Status")
     @ApiOperation(value = "添加状态",notes = "添加状态")
-    @RequestMapping("/addStatus")
+    @PostMapping("/addStatus")
     public ReturnData addStatus(@RequestBody Status status){
         int code = statusService.insertStatus(status);
         if (code == 0) {
@@ -43,7 +40,7 @@ public class StatusController {
 
     @ApiImplicitParam(name = "statusDescription",value = "状态名",required = true,paramType = "query",dataType = "String")
     @ApiOperation(value = "根据状态名删除状态",notes = "根据状态名删除状态")
-    @RequestMapping("/deleteStatusByDescription")
+    @DeleteMapping("/deleteStatusByDescription")
     public ReturnData deleteStatusByDescription(@RequestParam String statusDescription){
         int code = statusService.deleteStatusByDescription(statusDescription);
         if (code == 0) {
@@ -60,15 +57,15 @@ public class StatusController {
         @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",required = true,paramType = "query")
     })
     @ApiOperation(value = "分页查询所有状态",notes = "分页查询所有状态")
-    @RequestMapping("/selectAllStatus")
+    @GetMapping("/selectAllStatus")
     public ReturnData selectAllStatus(@RequestParam int pageNum,@RequestParam int pageSize){
         PageInfo<Status> pageInfo = statusService.selectAllStatus(pageNum,pageSize);
-        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo.getList());
+        return new ReturnData(CodeEnum.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParam(name = "statusDescription",value = "状态名称",required = true,dataType = "String",paramType = "query")
     @ApiOperation(value = "根据姓名查询状态",notes = "根据姓名查询状态")
-    @RequestMapping("selectStatusByDescription")
+    @GetMapping("selectStatusByDescription")
     public ReturnData selectStatusByDescription(@RequestParam String statusDescription){
         Status status = statusService.selectStatusByDescription(statusDescription);
         if(status==null){

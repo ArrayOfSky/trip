@@ -7,6 +7,7 @@
     <result property="statusKind" column="kind"></result>
     <result property="statusDescription" column="description"></result>
 </resultMap>
+
     <insert id="insertStatus">
     insert into status(kind,description)
     values(#{status.statusKind},#{status.statusDescription});
@@ -15,11 +16,11 @@
         delete from status
         where description = #{description};
     </delete>
-    <select id="selectAllStatus" resultType="com.cust.trip.bean.Status">
+    <select id="selectAllStatus" resultMap="ResultMap">
         select *
         from status;
     </select>
-    <select id="selectStatusByDescription" resultType="com.cust.trip.bean.Status">
+    <select id="selectStatusByDescription" resultMap="ResultMap">
         select *
         from status
         where description = #{description};
