@@ -27,15 +27,14 @@ public class SwaggerConfig{
     @Bean
     public Docket createRestBmbsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("users")
+                .groupName("Api")
                 .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 //包下的类，才生成接口文档
 //                .apis(RequestHandlerSelectors.basePackage(basePackage))
                 .apis(Predicates.or(
-                        RequestHandlerSelectors.basePackage("com.cust.trip.controller"),
-                        RequestHandlerSelectors.basePackage("com.cust.trip.bean")
+                        RequestHandlerSelectors.basePackage("com.cust.trip")
                 ))
                 .paths(PathSelectors.any())
                 .build();

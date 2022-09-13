@@ -1,5 +1,7 @@
 package com.cust.trip.commom;
 
+import io.swagger.annotations.ApiModel;
+
 /**
  * @author gyx
  * 2022/9/12

@@ -18,7 +18,7 @@ public class FilterConfig {
         //过滤所有路径
         registrationBean.addUrlPatterns("/*");
         //添加不过滤路径
-//        registrationBean.addInitParameter("noFilter","/one,/two");
+        registrationBean.addInitParameter("noFilter","/trip/swagger2-ui.html");
         registrationBean.setName("BaseFilter");
         return registrationBean;
     }

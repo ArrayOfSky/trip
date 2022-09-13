@@ -30,7 +30,6 @@ public class StatusController {
     @ApiOperation(value = "添加状态",notes = "添加状态")
     @PostMapping("/addStatus")
     public ReturnData addStatus(@RequestBody Status status){
-        System.out.println(status);
         int code = statusService.insertStatus(status);
         if (code == 0) {
             return new ReturnData(Code.INVALID_REQUEST, "状态已存在", null);

@@ -18,10 +18,15 @@ import java.io.IOException;
 @Slf4j
 public class BaseFilter implements Filter {
 
+    private String excludedPage;
+    private String[] excludedPages;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
+        excludedPage = filterConfig.getInitParameter("noFilter");
+        if (excludedPage != null && excludedPage.length() > 0){
+            excludedPages = excludedPage.split(",");
+        }
     }
 
     @Override
@@ -31,7 +36,17 @@ public class BaseFilter implements Filter {
         //设置字符编码
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        filterChain.doFilter(request, response);
+        // 定义表示变量 并验证用户请求URL 是否包含不过滤路径
+        boolean flag = false;
+        for (String page:excludedPages) {
+            if (request.getRequestURI().equals(page)){
+                flag = true;
+            }
+        }
+        if(flag){
+            filterChain.doFilter(request, response);
+        }
+
     }
 
     @Override
