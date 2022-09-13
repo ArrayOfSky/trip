@@ -41,8 +41,11 @@ public class ProductServiceImpl implements ProductService {
                 return 0;
             }
         }
+        System.out.println(product.getKindName());
         Kind kind = kindMapper.selectKindByName(product.getKindName());
         Status status = statusMapper.selectStatusByDescription(product.getStatusDescription());
+        System.out.println(kind);
+        System.out.println(status);
         productMapper.insertProduct(product,kind.getKindId(),status.getStatusId());
         return 1;
     }
