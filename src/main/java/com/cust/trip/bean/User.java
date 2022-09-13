@@ -39,7 +39,6 @@ public class User {
     @ApiModelProperty("用户vip等级")
     private int userVip;
 
-    @JsonFormat(pattern = "yyyy-MM-DD HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty("用户注册时间")
     private Timestamp userCreateTime;
 
