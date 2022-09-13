@@ -38,28 +38,81 @@
     </insert>
     <!--    List<Order> getOrdersByProductId(int orderProductId);-->
     <select id="getOrdersByProductId" resultMap="resultMap">
-        select *
-        from orders
-        where order_product_id = #{orderProductId}
+
+        SELECT
+            order_id,
+            order_create_time,
+            order_update_time,
+            order_discount,
+            product_name AS
+                order_product_id,
+            user_name AS
+                order_user_id,
+            status_name AS
+                order_status
+        FROM
+            orders o JOIN status s ON o.order_status = s.status_id
+                     JOIN products p ON o.order_product_id = p.product_id
+                     JOIN users u ON o.order_user_id = u.user_id
+        where order_product_id=#{orderProductId}
     </select>
 
     <!--    List<Order> getOrdersByUserId(int orderUserId);-->
     <select id="getOrdersByUserId" resultMap="resultMap">
-        select *
-        from orders
+        SELECT
+            order_id,
+            order_create_time,
+            order_update_time,
+            order_discount,
+            product_name AS
+                order_product_id,
+            user_name AS
+                order_user_id,
+            status_name AS
+                order_status
+        FROM
+            orders o JOIN status s ON o.order_status = s.status_id
+                     JOIN products p ON o.order_product_id = p.product_id
+                     JOIN users u ON o.order_user_id = u.user_id
         where order_user_id = #{orderUserId}
     </select>
     <!--    List<Order> getOrdersByStatus(int statusId);-->
     <select id="getOrdersByStatus" resultMap="resultMap">
-        select *
-        from orders
+        SELECT
+            order_id,
+            order_create_time,
+            order_update_time,
+            order_discount,
+            product_name AS
+                order_product_id,
+            user_name AS
+                order_user_id,
+            status_name AS
+                order_status
+        FROM
+            orders o JOIN status s ON o.order_status = s.status_id
+                     JOIN products p ON o.order_product_id = p.product_id
+                     JOIN users u ON o.order_user_id = u.user_id
         where order_status=#{statusId}
     </select>
 
     <!--    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);-->
     <select id="getOrdersBtDates" resultMap="resultMap">
-        select *
-        from orders
+        SELECT
+            order_id,
+            order_create_time,
+            order_update_time,
+            order_discount,
+            product_name AS
+                order_product_id,
+            user_name AS
+                order_user_id,
+            status_name AS
+                order_status
+        FROM
+            orders o JOIN status s ON o.order_status = s.status_id
+                     JOIN products p ON o.order_product_id = p.product_id
+                     JOIN users u ON o.order_user_id = u.user_id
         where order_create_time between #{orderCreateTimePre}
             and #{orderCreateTimePo}
     </select>

@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
         int statusId=-1;
         //找出所有的status进行匹配，并找出对应的id
         for (Status selectAllStatus : statusMapper.selectAllStatus()) {
-            if(selectAllStatus.getStatusKind().equals(statusKind)&&selectAllStatus.getStatusDescription().equals(statusDescription)){
+            if(selectAllStatus.getStatusCategory().equals(statusKind)&&selectAllStatus.getStatusName().equals(statusDescription)){
                 statusId=selectAllStatus.getStatusId();
             }
         }

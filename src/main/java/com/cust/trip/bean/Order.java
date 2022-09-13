@@ -19,10 +19,10 @@ public class Order {
     private int orderId;
 
     @ApiModelProperty("产品名称")
-    private int orderProductName;
+    private String orderProductName;
 
     @ApiModelProperty("用户名")
-    private int orderUserName;
+    private String orderUserName;
 
     @ApiModelProperty("订单创建时间")
     private Timestamp orderCreateTime;
@@ -31,7 +31,7 @@ public class Order {
     private Timestamp orderUpdateTime;
 
     @ApiModelProperty("订单状态名称")
-    private int orderStatusName;
+    private String orderStatusName;
 
     @ApiModelProperty("订单折扣")
     private double orderDiscount;
