@@ -114,20 +114,18 @@ public class OrderController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "time1", value = "时间1", dataType = "String", paramType = "query", required = true),
-            @ApiImplicitParam(name = "time2", value = "时间2", dataType = "String", paramType = "query", required = true)
+            @ApiImplicitParam(name = "time1", value = "时间1", dataType = "Timestamp", paramType = "query", required = true),
+            @ApiImplicitParam(name = "time2", value = "时间2", dataType = "Timestamp", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定日期订单", notes = "获取特定日期订单")
     @PostMapping("/getOrdersByDates")
-    public ReturnData getOrdersBtDates(@RequestParam("time1") String time1, @RequestParam("time2") String time2
+    public ReturnData getOrdersBtDates(@RequestParam("time1") Timestamp time1, @RequestParam("time2") Timestamp time2
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
-        log.info(time1 + "\n" + time2);
+        log.info("\n"+time1 + "\n" + time2);
         //获取分页信息
-        Timestamp date1 = new Timestamp(DateUtil.stringToDate(time1).getTime());
-        Timestamp date2 = new Timestamp(DateUtil.stringToDate(time2).getTime());
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(date1, date2, pageNum, pageSize);
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(time1, time2, pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
         returnData.setCode(Code.OK);
