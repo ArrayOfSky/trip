@@ -20,10 +20,11 @@ public class JwtUtil {
         long currentTime = System.currentTimeMillis() + 60* 60 * 1000;//一小时有效时间
         Date end = new Date(currentTime);
         String token = "";
-
         token = JWT.create().withAudience(manager.getManagerAccount()).withIssuedAt(start).withExpiresAt(end)
                 .sign(Algorithm.HMAC256(manager.getManagerPassword()));
         return token;
     }
 
 }
+
+

@@ -61,3 +61,10 @@ status_category VARCHAR (20),
 status_name VARCHAR (20),
 PRIMARY KEY ( status_id)
 );
+
+
+create table if not exists managers(
+manager_id int PRIMARY KEY auto_increment,
+manager_account varchar(20),
+manager_password varchar(20)
+)
