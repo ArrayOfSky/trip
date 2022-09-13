@@ -28,6 +28,7 @@ public class BaseFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        //设置字符编码
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         filterChain.doFilter(request, response);
