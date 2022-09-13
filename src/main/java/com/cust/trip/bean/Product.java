@@ -32,7 +32,7 @@ public class Product {
     @ApiModelProperty("产品类型名称")
     private String kindName;
     @ApiModelProperty("产品状态名称")
-    private String statusDescription;
+    private String statusName;
     @ApiModelProperty("产品创造时间")
     private Timestamp productCreateTime;
     @ApiModelProperty("产品更新时间")

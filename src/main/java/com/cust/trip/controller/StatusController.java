@@ -41,11 +41,11 @@ public class StatusController {
         }
     }
 
-    @ApiImplicitParam(name = "statusDescription",value = "状态名",required = true,paramType = "query",dataType = "String")
+    @ApiImplicitParam(name = "statusName",value = "状态名",required = true,paramType = "query",dataType = "String")
     @ApiOperation(value = "根据状态名删除状态",notes = "根据状态名删除状态")
-    @PostMapping("/deleteStatusByDescription")
-    public ReturnData deleteStatusByDescription(@RequestParam String statusDescription){
-        int code = statusService.deleteStatusByDescription(statusDescription);
+    @PostMapping("/deleteStatusByName")
+    public ReturnData deleteStatusByName(@RequestParam String statusName){
+        int code = statusService.deleteStatusByName(statusName);
         if (code == 0) {
             return new ReturnData(Code.INVALID_REQUEST, "状态不存在", null);
         } else if (code == 1) {
@@ -66,11 +66,11 @@ public class StatusController {
         return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
-    @ApiImplicitParam(name = "statusDescription",value = "状态名称",required = true,dataType = "String",paramType = "query")
+    @ApiImplicitParam(name = "statusName",value = "状态名称",required = true,dataType = "String",paramType = "query")
     @ApiOperation(value = "根据姓名查询状态",notes = "根据姓名查询状态")
-    @PostMapping("selectStatusByDescription")
-    public ReturnData selectStatusByDescription(@RequestParam String statusDescription){
-        Status status = statusService.selectStatusByDescription(statusDescription);
+    @PostMapping("selectStatusByName")
+    public ReturnData selectStatusByDescription(@RequestParam String statusName){
+        Status status = statusService.selectStatusByName(statusName);
         if(status==null){
             return new ReturnData(Code.NOT_FOUND,"状态不存在",null);
         }else{

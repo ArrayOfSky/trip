@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cust.trip.dao.KindMapper">
     <resultMap id="ResultMap" type="com.cust.trip.bean.Kind">
-        <result property="kindId" column="kind_id"></result>
-        <result property="kindName" column="kind_name"></result>
+        <result property="kindId" column="kind_id"/>
+        <result property="kindName" column="kind_name"/>
     </resultMap>
 
 
@@ -30,15 +30,11 @@
         delete from kind
         where kind_name = #{kindName}
     </delete>
-
-
-
-
     <select id="selectAll" resultMap="ResultMap">
         select *
         from kind
     </select>
-    <select id="selectKindByName" resultType="com.cust.trip.bean.Kind">
+    <select id="selectKindByName" resultMap="ResultMap">
         select *
         from kind
         where kind_name = #{kindName}

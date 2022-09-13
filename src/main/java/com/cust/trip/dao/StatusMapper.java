@@ -15,27 +15,27 @@ public interface StatusMapper {
 
         /**
          * 查找所有状态
-         * @return
+         * @return 状态列表
          */
         List<Status> selectAllStatus();
 
         /**
          * 根据描述查找状态
-         * @param description
-         * @return
+         * @param statusName 状态名
+         * @return 状态
          */
-        Status selectStatusByDescription(@Param("description") String description);
+        Status selectStatusByName(@Param("statusName") String statusName);
 
         /**
          * 增加状态
-         * @param status
+         * @param status 状态
          */
         void insertStatus(@Param("status") Status status);
 
         /**
          * 删除状态
-         * @param description
+         * @param statusName 状态名
          */
-        void deleteStatus(@Param("description") String description);
+        void deleteStatus(@Param("statusName") String statusName);
 
 }

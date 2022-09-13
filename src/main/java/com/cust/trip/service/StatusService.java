@@ -19,10 +19,10 @@ public interface StatusService {
 
     /**
      * 根据状态名查找状态
-     * @param statusDescription 状态名
+     * @param statusName 状态名
      * @return 状态
      */
-    Status selectStatusByDescription(String statusDescription);
+    Status selectStatusByName(String statusName);
 
     /**
      * 增加状态
@@ -33,10 +33,10 @@ public interface StatusService {
 
     /**
      * 根据姓名删除
-     * @param statusDescription 状态名
+     * @param statusName 状态名
      * @return 0失败 1成功
      */
-    int deleteStatusByDescription(String statusDescription);
+    int deleteStatusByName(String statusName);
 
 
 

@@ -18,10 +18,12 @@ public interface ProductMapper {
     List<Product> selectAllProduct();
 
     /**
-     * 增加产品
+     *  添加产品
      * @param product 产品
+     * @param kindName 类型名
+     * @param statusName 状态名
      */
-    void insertProduct(@Param("product") Product product,@Param("kindName") int kindName,@Param("statusDescription") int statusDescription);
+    void insertProduct(@Param("product") Product product,@Param("kindName") int kindName,@Param("statusName") int statusName);
 
     /**
      * 删除产品根据产品名

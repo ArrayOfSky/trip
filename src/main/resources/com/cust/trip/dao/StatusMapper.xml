@@ -3,18 +3,18 @@
 <mapper namespace="com.cust.trip.dao.StatusMapper">
 
 <resultMap id="ResultMap" type="com.cust.trip.bean.Status">
-    <result property="statusId" column="id"></result>
-    <result property="statusKind" column="kind"></result>
-    <result property="statusDescription" column="description"></result>
+    <result property="statusId" column="status_id"></result>
+    <result property="statusCategory" column="status_category"></result>
+    <result property="statusName" column="status_name"></result>
 </resultMap>
 
     <insert id="insertStatus">
-    insert into status(kind,description)
-    values(#{status.statusKind},#{status.statusDescription})
+    insert into status(status_category,status_name)
+    values(#{status.statusCategory},#{status.statusName})
     </insert>
     <delete id="deleteStatus">
         delete from status
-        where description = #{description}
+        where status_name = #{statusName}
     </delete>
     <select id="selectAllStatus" resultMap="ResultMap">
         select *
@@ -23,7 +23,7 @@
     <select id="selectStatusByDescription" resultMap="ResultMap">
         select *
         from status
-        where description = #{description}
+        where status_name = #{statusName}
     </select>
 
 

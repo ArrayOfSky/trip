@@ -3,25 +3,25 @@
 <mapper namespace="com.cust.trip.dao.ProductMapper">
 
     <resultMap id="ResultMap" type="com.cust.trip.bean.Product">
-        <result property="productId" column="product_id"></result>
-        <result property="productName" column="product_name"></result>
-        <result property="productStock" column="product_stock"></result>
-        <result property="productQuantity" column="product_quantity"></result>
-        <result property="productSales" column="product_sales"></result>
-        <result property="productPrice" column="product_price"></result>
-        <result property="kindName" column="product_kind"></result>
-        <result property="statusDescription" column="product_status"></result>
-        <result property="productCreateTime" column="create_time"></result>
-        <result property="productUpdateTime" column="update_time"></result>
-        <result property="productShlfTime" column="shlf_time"></result>
-        <result property="productTakedownTime" column="takedown_time"></result>
+        <result property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="productStock" column="product_stock"/>
+        <result property="productQuantity" column="product_quantity"/>
+        <result property="productSales" column="product_sales"/>
+        <result property="productPrice" column="product_price"/>
+        <result property="kindName" column="product_kind"/>
+        <result property="statusDescription" column="product_status"/>
+        <result property="productCreateTime" column="product_create_time"/>
+        <result property="productUpdateTime" column="product_update_time"/>
+        <result property="productShlfTime" column="product_shlf_time"/>
+        <result property="productTakedownTime" column="product_takedown_time"/>
     </resultMap>
 
 
 
     <insert id="insertProduct">
-        insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, create_time, update_time, shlf_time, takedown_time)
-        values(#{product.productName},#{product.productStock},#{product.productQuantity},#{product.productSales},#{product.productPrice},#{kindName},#{statusDescription},#{product.productCreateTime},#{product.productUpdateTime},#{product.productShlfTime},#{product.productTakedownTime})
+        insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, product_create_time, product_update_time, product_shlf_time, product_takedown_time)
+        values(#{product.productName},#{product.productStock},#{product.productQuantity},#{product.productSales},#{product.productPrice},#{kindName},#{statusName},#{product.productCreateTime},#{product.productUpdateTime},#{product.productShlfTime},#{product.productTakedownTime})
     </insert>
 
     <delete id="deleteProductByName">
@@ -31,10 +31,10 @@
 
 
     <select id="selectAllProduct" resultMap="ResultMap">
-        select product_id , product_name , product_stock , product_quantity ,product_sales ,product_price ,kind_name as 'product_kind',description as 'product_status'
+        select product_id , product_name , product_stock , product_quantity ,product_sales ,product_price ,kind_name as 'product_kind',status_name as 'product_status'
         from products p
                  join status s
-                      on p.product_status = s.id
+                      on p.product_status = s.status_id
                  join kind k
                       on p.product_kind = k.kind_id
 

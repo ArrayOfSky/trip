@@ -32,15 +32,15 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public Status selectStatusByDescription(String statusDescription) {
-        return statusMapper.selectStatusByDescription(statusDescription);
+    public Status selectStatusByName(String statusName) {
+        return statusMapper.selectStatusByName(statusName);
     }
 
     @Override
     public int insertStatus(Status status) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
-            if(a.getStatusDescription().equals(status.getStatusDescription())){
+            if(a.getStatusName().equals(status.getStatusName())){
                 return 0;
             }
         }
@@ -49,14 +49,14 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    public int deleteStatusByDescription(String statusDescription) {
+    public int deleteStatusByName(String statusName) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
-            if(a.getStatusDescription().equals(statusDescription)){
+            if(a.getStatusName().equals(statusName)){
                 return 0;
             }
         }
-        statusMapper.deleteStatus(statusDescription);
+        statusMapper.deleteStatus(statusName);
         return 1;
     }
 

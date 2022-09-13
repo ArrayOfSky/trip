@@ -20,7 +20,7 @@ public class Status {
     @ApiModelProperty("状态ID 数据库生成")
     private int statusId;
     @ApiModelProperty("状态类型")
-    private String statusKind;
+    private String statusCategory;
     @ApiModelProperty("状态名称")
-    private String statusDescription;
+    private String statusName;
 }
