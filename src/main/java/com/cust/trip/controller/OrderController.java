@@ -1,9 +1,11 @@
 package com.cust.trip.controller;
 
 import com.cust.trip.bean.Order;
+import com.cust.trip.bean.User;
 import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
+import com.cust.trip.service.UserService;
 import com.cust.trip.utils.DateUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -29,6 +31,12 @@ public class OrderController {
 
     private OrderService orderService;
 
+    private UserService userService;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setOrderService(OrderService orderService) {
@@ -54,7 +62,6 @@ public class OrderController {
         //返回
         return returnData;
     }
-
 
 
     @ApiImplicitParams(
@@ -116,16 +123,41 @@ public class OrderController {
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
-        log.info(time1+"\n"+time2);
+        log.info(time1 + "\n" + time2);
         //获取分页信息
-        Timestamp date1=new Timestamp(DateUtil.stringToDate(time1).getTime());
-        Timestamp date2=new Timestamp(DateUtil.stringToDate(time2).getTime());
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(date1,date2, pageNum, pageSize);
+        Timestamp date1 = new Timestamp(DateUtil.stringToDate(time1).getTime());
+        Timestamp date2 = new Timestamp(DateUtil.stringToDate(time2).getTime());
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(date1, date2, pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
         returnData.setCode(Code.OK);
         returnData.setMsg("获取成功");
         //返回
+        return returnData;
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "userPhoneNumber", value = "用户手机号", dataType = "String", paramType = "query", required = true)
+    })
+    @ApiOperation(value = "获取特定用户的订单", notes = "获取特定用户的订单")
+    @PostMapping("/getOrdersByUser")
+    public ReturnData getOrdersByUser(@RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        //创建返回对象
+        ReturnData returnData = new ReturnData();
+
+        //进行查询分页
+        //查询用户
+        User user = userService.getUserByPhoneNumber(userPhoneNumber);
+        //查询订单
+        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, user.getUserId());
+
+        //封装对象
+        returnData.setData(ordersByUserId);
+        returnData.setCode(Code.OK);
+        returnData.setMsg("获取成功");
+
         return returnData;
     }
 

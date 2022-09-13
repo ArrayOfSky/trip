@@ -5,7 +5,6 @@ import com.cust.trip.bean.User;
 import com.github.pagehelper.PageInfo;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author gyx
@@ -23,39 +22,31 @@ public interface OrderService {
     PageInfo<Order> getAllOrdersForPage(int pageNum, int pageSize);
 
     /**
-     * 新增订单
-     *
-     * @param order new order
-     * @return row
-     */
-    int saveOrder(Order order);
-
-    /**
      * 查询用户订单
      *
      * @param pageNum  num
      * @param pageSize size
-     * @param user     user
+     * @param userId   用户id
      * @return orders
      */
-    PageInfo<Order> getOrdersByUser(int pageNum, int pageSize, User user);
+    PageInfo<Order> getOrdersByUserId(int pageNum, int pageSize, int userId);
 
     /**
      * 筛选不同状态订单
      *
-     * @param pageNum  num
-     * @param pageSize size
-     * @param statusKind 状态类型
+     * @param pageNum           num
+     * @param pageSize          size
+     * @param statusKind        状态类型
      * @param statusDescription 状态描述
      * @return orders
      */
-    PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind,String statusDescription);
+    PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind, String statusDescription);
 
     /**
      * 筛选产品订单
      *
-     * @param pageNum   num
-     * @param pageSize  size
+     * @param pageNum     num
+     * @param pageSize    size
      * @param productName 产品名称
      * @return orders
      */

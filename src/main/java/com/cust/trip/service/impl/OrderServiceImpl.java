@@ -62,10 +62,10 @@ public class OrderServiceImpl implements OrderService {
     public PageInfo<Order> getOrdersByProductName(int pageNum, int pageSize, String productName) {
         PageHelper.startPage(pageNum, pageSize);
         //查找对应的商品，并得到商品id
-        int productId=0;
+        int productId = 0;
         for (Product product : productMapper.selectAllProduct()) {
-            if(product.getProductName().equals(productName)){
-                productId=product.getProductId();
+            if (product.getProductName().equals(productName)) {
+                productId = product.getProductId();
             }
         }
         List<Order> orders = orderMapper.getOrdersByProductId(1);
@@ -73,8 +73,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<Order> getOrdersByUser(int pageNum, int pageSize, User user) {
-        int userId = user.getUserId();
+    public PageInfo<Order> getOrdersByUserId(int pageNum, int pageSize, int userId) {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByUserId(userId);
         return new PageInfo<>(orders);
@@ -82,12 +81,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind,String statusDescription){
-        int statusId=-1;
+    public PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind, String statusDescription) {
+        int statusId = -1;
         //找出所有的status进行匹配，并找出对应的id
         for (Status selectAllStatus : statusMapper.selectAllStatus()) {
-            if(selectAllStatus.getStatusCategory().equals(statusKind)&&selectAllStatus.getStatusName().equals(statusDescription)){
-                statusId=selectAllStatus.getStatusId();
+            if (selectAllStatus.getStatusCategory().equals(statusKind) && selectAllStatus.getStatusName().equals(statusDescription)) {
+                statusId = selectAllStatus.getStatusId();
             }
         }
         PageHelper.startPage(pageNum, pageSize);
@@ -95,11 +94,6 @@ public class OrderServiceImpl implements OrderService {
         return new PageInfo<>(orders);
     }
 
-    @Override
-    public int saveOrder(Order order) {
-        //直接新增用户
-        return orderMapper.saveOrder(order);
-    }
 
     @Override
     public PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize) {
