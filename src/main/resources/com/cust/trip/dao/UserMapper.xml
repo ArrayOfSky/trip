@@ -9,6 +9,7 @@
         <result property="userConsumption" column="user_consumption"/>
         <result property="userBalance" column="user_balance"/>
         <result property="userVip" column="user_is_vip"/>
+        <result property="userCreateTime" column="user_create_time"/>
     </resultMap>
 
     <!--    List<User> selectAllUsers();-->
