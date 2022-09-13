@@ -2,6 +2,8 @@ package com.cust.trip.bean;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +18,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(value = "订单")
 public class Order {
     @ApiModelProperty("订单id，数据库生成")
     private int orderId;

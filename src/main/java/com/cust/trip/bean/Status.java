@@ -15,12 +15,15 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("状态")
+@ApiModel(value = "状态")
 public class Status {
+
     @ApiModelProperty("状态ID 数据库生成")
     private int statusId;
+
     @ApiModelProperty("状态类型")
     private String statusCategory;
+
     @ApiModelProperty("状态名称")
     private String statusName;
 }

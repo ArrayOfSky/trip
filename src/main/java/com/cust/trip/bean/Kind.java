@@ -14,10 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("类型")
+@ApiModel(value = "类型")
 public class Kind {
+
         @ApiModelProperty("类型ID 数据库生成")
         private int kindId;
+
         @ApiModelProperty("类型名称")
         private String kindName;
 }
