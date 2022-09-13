@@ -10,7 +10,7 @@
         <result property="productSales" column="product_sales"/>
         <result property="productPrice" column="product_price"/>
         <result property="kindName" column="product_kind"/>
-        <result property="statusDescription" column="product_status"/>
+        <result property="statusName" column="product_status"/>
         <result property="productCreateTime" column="product_create_time"/>
         <result property="productUpdateTime" column="product_update_time"/>
         <result property="productShlfTime" column="product_shlf_time"/>

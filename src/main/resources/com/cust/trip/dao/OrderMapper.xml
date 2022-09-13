@@ -3,22 +3,35 @@
 <mapper namespace="com.cust.trip.dao.OrderMapper">
     <resultMap id="resultMap" type="com.cust.trip.bean.Order">
         <id property="orderId" column="order_id"/>
-        <result property="orderUserId" column="order_user_id"/>
-        <result property="orderProductId" column="order_product_id"/>
-        <result property="orderStatus" column="order_status"/>
-        <result property="orderCreateTime" column="create_time"/>
-        <result property="orderUpdateTime" column="update_time"/>
+        <result property="orderUserName" column="order_user_id"/>
+        <result property="orderProductName" column="order_product_id"/>
+        <result property="orderStatusName" column="order_status"/>
+        <result property="orderCreateTime"  column="order_create_time"/>
+        <result property="orderUpdateTime" column="order_update_time"/>
         <result property="orderDiscount" column="order_discount"/>
     </resultMap>
 
     <!--    List<Order> getAllOrders();-->
     <select id="getAllOrders" resultMap="resultMap">
-        select *
-        from orders
+        SELECT
+            order_id,
+            order_create_time,
+            order_update_time,
+            order_discount,
+            product_name AS
+                order_product_id,
+            user_name AS
+                order_user_id,
+            status_name AS
+                order_status
+        FROM
+            orders o JOIN status s ON o.order_status = s.status_id
+                     JOIN products p ON o.order_product_id = p.product_id
+                     JOIN users u ON o.order_user_id = u.user_id
     </select>
     <!--    int saveOrder(Order order);-->
     <insert id="saveOrder">
-        insert into orders(order_id, order_user_id, order_product_id, order_status, create_time, update_time,order_discount)
+        insert into orders(order_id, order_user_id, order_product_id, order_status, order_create_time, order_update_time,order_discount)
         values (#{order.orderId}, #{order.orderUserId}, #{order.orderProductId}, #{order.orderStatus},
                 #{order.orderCreateTime},
                 #{order.orderUpdateTime},#{order.orderDiscount})
@@ -47,7 +60,7 @@
     <select id="getOrdersBtDates" resultMap="resultMap">
         select *
         from orders
-        where create_time between #{orderCreateTimePre,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP}
-            and #{orderCreateTimePo,javaType=java.sql.Timestamp,jdbcType=TIMESTAMP}
+        where order_create_time between #{orderCreateTimePre}
+            and #{orderCreateTimePo}
     </select>
 </mapper>
