@@ -35,8 +35,8 @@
         from products p
                  join status s
                       on p.product_status = s.status_id
-                 join kind k
-                      on p.product_kind = k.kind_id
+                 join kinds k
+                      on p.product_kind = k.kinds_id
 
     </select>
 
