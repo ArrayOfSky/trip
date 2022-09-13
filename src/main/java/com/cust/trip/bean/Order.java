@@ -26,11 +26,9 @@ public class Order {
     @ApiModelProperty("用户名")
     private String orderUserName;
 
-    @JsonFormat(pattern = "yyyy-MM-DD HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty("订单创建时间")
     private Timestamp orderCreateTime;
 
-    @JsonFormat(pattern = "yyyy-MM-DD HH:mm:ss", timezone = "GMT+8")
     @ApiModelProperty("订单更新时间")
     private Timestamp orderUpdateTime;
 

@@ -5,16 +5,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * 设置字符编码
- * URL级别权限访问控制
- * 过滤敏感词汇
- * 压缩响应信息
  * @author GYF
  * @Data 2022.9.12
  */

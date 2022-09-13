@@ -35,7 +35,6 @@ public class Product {
     @ApiModelProperty("产品状态名称")
     private String statusName;
     @ApiModelProperty("产品创造时间")
-    @JsonFormat(pattern = "yyyy-MM-DD HH:mm:ss",timezone = "GMT+8")
     private Timestamp productCreateTime;
     @ApiModelProperty("产品更新时间")
     private Timestamp productUpdateTime;
