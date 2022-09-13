@@ -37,7 +37,7 @@ public class BaseFilter implements Filter {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         // 定义表示变量 并验证用户请求URL 是否包含不过滤路径
-        boolean flag = false;
+        boolean flag = true;
         for (String page:excludedPages) {
             if (request.getRequestURI().equals(page)){
                 flag = true;
