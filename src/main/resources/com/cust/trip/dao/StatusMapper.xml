@@ -20,11 +20,12 @@
         select *
         from status
     </select>
-    <select id="selectStatusByDescription" resultMap="ResultMap">
+    <select id="selectStatusByName" resultMap="ResultMap">
         select *
         from status
         where status_name = #{statusName}
     </select>
+
 
 
 </mapper>

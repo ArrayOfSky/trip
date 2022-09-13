@@ -11,7 +11,7 @@
 
 
     <insert id="insertKind">
-        insert into kind(kind_name)
+        insert into kinds(kind_name)
         values(#{kind.kindName})
     </insert>
 
@@ -19,7 +19,7 @@
 
 
     <update id="updateKind">
-        update kind
+        update kinds
         set kind_name = #{kind.kindName}
         where kind_id = #{kind.kindId}
     </update>
@@ -27,16 +27,16 @@
 
 
     <delete id="deleteKind">
-        delete from kind
+        delete from kinds
         where kind_name = #{kindName}
     </delete>
     <select id="selectAll" resultMap="ResultMap">
         select *
-        from kind
+        from kinds
     </select>
     <select id="selectKindByName" resultMap="ResultMap">
         select *
-        from kind
+        from kinds
         where kind_name = #{kindName}
     </select>
 

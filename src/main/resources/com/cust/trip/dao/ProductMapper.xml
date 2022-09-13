@@ -31,11 +31,11 @@
 
 
     <select id="selectAllProduct" resultMap="ResultMap">
-        select product_id , product_name , product_stock , product_quantity ,product_sales ,product_price ,kind_name as 'product_kind',status_name as 'product_status'
+        select product_id , product_name , product_stock , product_quantity ,product_sales ,product_price ,kind_name as 'product_kind',status_name as 'product_status',product_create_time,product_update_time,product_shlf_time,product_takedown_time
         from products p
                  join status s
                       on p.product_status = s.status_id
-                 join kind k
+                 join kinds k
                       on p.product_kind = k.kind_id
 
     </select>

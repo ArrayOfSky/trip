@@ -57,6 +57,7 @@ public class ProductServiceImpl implements ProductService {
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Product> array = productMapper.selectAllProduct();
+        System.out.println(array.get(0).getProductCreateTime());
         return new PageInfo<>(array);
     }
 

@@ -1,5 +1,6 @@
 package com.cust.trip.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import java.io.IOException;
  * @Data 2022.9.12
  */
 @Order(1)
+@Slf4j
 public class BaseFilter implements Filter {
 
 
