@@ -11,8 +11,8 @@
         <result property="productPrice" column="product_price"></result>
         <result property="kindName" column="product_kind"></result>
         <result property="statusDescription" column="product_status"></result>
-        <result property="productCreateTime" column="create_time"></result>
-        <result property="productUpdateTime" column="update_time"></result>
+        <result property="productCreateTime" column="product_create_time"></result>
+        <result property="productUpdateTime" column="product_update_time"></result>
         <result property="productShlfTime" column="shlf_time"></result>
         <result property="productTakedownTime" column="takedown_time"></result>
     </resultMap>
@@ -20,7 +20,7 @@
 
 
     <insert id="insertProduct">
-        insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, create_time, update_time, shlf_time, takedown_time)
+        insert into products(product_name, product_stock, product_quantity, product_sales, product_price, product_kind, product_status, product_create_time, product_update_time, shlf_time, takedown_time)
         values(#{product.productName},#{product.productStock},#{product.productQuantity},#{product.productSales},#{product.productPrice},#{kindName},#{statusDescription},#{product.productCreateTime},#{product.productUpdateTime},#{product.productShlfTime},#{product.productTakedownTime})
     </insert>
 

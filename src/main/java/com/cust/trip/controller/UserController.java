@@ -38,7 +38,7 @@ public class UserController {
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
     })
     @ApiOperation(value = "分页查询所有用户", notes = "分页查询所有用户")
-    @PostMapping("/getAllUsersForPage")
+    @PostMapping("/getAllUsers")
     public ReturnData getAllOrders(@RequestParam("pageNum") int pageNum
             , @RequestParam("pageSize") int pageSize) {
         //创建返回对象
@@ -60,7 +60,7 @@ public class UserController {
 
     })
     @ApiOperation(value = "根据手机号查询用户", notes = "根据手机号查询用户")
-    @PostMapping("getUserByPhoneNUmber")
+    @PostMapping("getUserByPhoneNumber")
     public ReturnData getUserByPhoneNumber(@RequestParam("phoneNumber") String userPhoneNumber) {
         //创建返回对象
         ReturnData returnData = new ReturnData();

@@ -38,10 +38,10 @@
         select *
         from kind
     </select>
-    <select id="selectKindByName" resultType="com.cust.trip.bean.Kind">
+    <select id="selectKindByName" resultMap="ResultMap">
         select *
-        from Kind
-        where name = #{kindName}
+        from kind
+        where kind_name = #{kindName}
     </select>
 
 

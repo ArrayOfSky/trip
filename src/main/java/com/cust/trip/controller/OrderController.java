@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author gyx
@@ -115,8 +116,11 @@ public class OrderController {
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
+        log.info(time1+"\n"+time2);
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(new Timestamp(DateUtil.stringToDate(time1).getTime()), new Timestamp(DateUtil.stringToDate(time1).getTime()), pageNum, pageSize);
+        Timestamp date1=new Timestamp(DateUtil.stringToDate(time1).getTime());
+        Timestamp date2=new Timestamp(DateUtil.stringToDate(time2).getTime());
+        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(date1,date2, pageNum, pageSize);
         //封装对象
         returnData.setData(pageInfo);
         returnData.setCode(Code.OK);
