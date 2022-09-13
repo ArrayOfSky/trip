@@ -1,6 +1,7 @@
 package com.cust.trip.controller;
 
 
+import com.cust.trip.bean.Order;
 import com.cust.trip.bean.User;
 import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
@@ -34,8 +35,8 @@ public class UserController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true)
     })
     @ApiOperation(value = "分页查询所有用户", notes = "分页查询所有用户")
     @PostMapping("/getAllUsers")
@@ -54,8 +55,8 @@ public class UserController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "userPhoneNumber", value = "用户手机号", dataType = "String", paramType = "query", required = true)
 
     })
@@ -81,8 +82,8 @@ public class UserController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "userName", value = "用户名", dataType = "String", paramType = "query", required = true)
 
     })
@@ -107,4 +108,10 @@ public class UserController {
     }
 
 
+    @ApiImplicitParam(name="user",value="用户",dataType="User",paramType ="body",required=true)
+    @ApiOperation(value="请忽略我",notes="请忽略我")
+    @PostMapping("/ignore")
+    public String testUser(@RequestBody User user){
+        return null;
+    }
 }

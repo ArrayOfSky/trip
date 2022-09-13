@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@ApiModel(value = "用户")
+@ApiModel(value="用户")
 public class User {
     @ApiModelProperty("用户id,数据库生成")
     private int userId;

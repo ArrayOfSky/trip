@@ -58,8 +58,8 @@ public class ProductController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "Integer",paramType = "query",required = true),
-            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",paramType = "query",required = true)
+            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "int",paramType = "query",required = true),
+            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "int",paramType = "query",required = true)
     })
     @ApiOperation(value = "分页查询所有产品",notes = "分页查询所有产品")
     @PostMapping("/selectAllProduct")
@@ -70,8 +70,8 @@ public class ProductController {
 
     @ApiImplicitParams({
             @ApiImplicitParam(name = "productKind",value = "产品类型",dataType = "String",paramType = "query",required = true),
-            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "Integer",paramType = "query",required = true),
-            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",paramType = "query",required = true)
+            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "int",paramType = "query",required = true),
+            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "int",paramType = "query",required = true)
     })
     @ApiOperation(value = "查询指定类型产品",notes = "查询指定类型产品")
     @PostMapping("/selectAllProductByKind")

@@ -56,8 +56,8 @@ public class StatusController {
     }
 
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "Integer",required = true,paramType = "query"),
-        @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",required = true,paramType = "query")
+        @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "int",required = true,paramType = "query"),
+        @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "int",required = true,paramType = "query")
     })
     @ApiOperation(value = "分页查询所有状态",notes = "分页查询所有状态")
     @PostMapping("/selectAllStatus")

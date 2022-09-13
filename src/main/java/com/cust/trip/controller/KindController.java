@@ -72,8 +72,8 @@ public class KindController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "Integer",required = true,paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "Integer",required = true,paramType = "query")
+            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "int",required = true,paramType = "query"),
+            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "int",required = true,paramType = "query")
     })
     @ApiOperation(value = "分页查找所有类型",notes = "分页查找所有类型")
     @PostMapping("/selectAllKind")

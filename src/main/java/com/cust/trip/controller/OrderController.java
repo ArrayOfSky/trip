@@ -44,8 +44,8 @@ public class OrderController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true)
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true)
     })
     @ApiOperation(value = "分页查询所有订单", notes = "分页查询所有订单")
     @PostMapping("/getAllOrders")
@@ -66,8 +66,8 @@ public class OrderController {
 
     @ApiImplicitParams(
             {
-                    @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-                    @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+                    @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+                    @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
                     @ApiImplicitParam(name = "statusKind", value = "订单状态类型", dataType = "String", paramType = "query", required = true),
                     @ApiImplicitParam(name = "statusDescription", value = "订单状态描述", dataType = "String", paramType = "query", required = true)
             }
@@ -90,8 +90,8 @@ public class OrderController {
 
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "productName", value = "商品名称", dataType = "String", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定商品订单", notes = "获取特定商品订单")
@@ -112,8 +112,8 @@ public class OrderController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "time1", value = "时间1", dataType = "Timestamp", paramType = "query", required = true),
             @ApiImplicitParam(name = "time2", value = "时间2", dataType = "Timestamp", paramType = "query", required = true)
     })
@@ -135,8 +135,8 @@ public class OrderController {
     }
 
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "Integer", paramType = "query", required = true),
-            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "Integer", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "userPhoneNumber", value = "用户手机号", dataType = "String", paramType = "query", required = true)
     })
     @ApiOperation(value = "获取特定用户的订单", notes = "获取特定用户的订单")
@@ -157,6 +157,14 @@ public class OrderController {
         returnData.setMsg("获取成功");
 
         return returnData;
+    }
+
+
+    @ApiImplicitParam(name="order",value="订单",dataType="Order",paramType ="body",required=true)
+    @ApiOperation(value="请忽略我",notes="请忽略我")
+    @PostMapping("/ignore")
+    public String testOrder(@RequestBody Order order){
+        return null;
     }
 
 
