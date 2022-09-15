@@ -24,6 +24,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/manager/login");
     }
 
+
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 解决静态资源无法访问
