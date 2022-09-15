@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author GYF
  * @Data 2022.9.13
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "管理员", description = "不要操作")
-public class Manager {
+public class Manager implements Serializable {
 
     @ApiModelProperty("管理员id")
     private int managerId;

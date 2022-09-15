@@ -1,12 +1,12 @@
 package com.cust.trip.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "产品")
-public class Product {
+public class Product  implements Serializable {
     @ApiModelProperty("产品ID 数据库生成")
     private int productId;
 

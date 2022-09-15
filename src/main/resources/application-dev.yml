@@ -23,3 +23,8 @@ redis:
     max-wait: 100000
   timeout: 0
 
+cache:
+  type: redis
+  redis:
+    time-to-live: 60000
+    cache-null-values: false

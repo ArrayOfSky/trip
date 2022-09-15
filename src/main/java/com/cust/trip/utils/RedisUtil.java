@@ -1,23 +1,20 @@
 package com.cust.trip.utils;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author GYF
- * @date 2022.9.13
+ * @date 2022.9.15
  */
 @Slf4j
-@Component
+@Component()
 public class RedisUtil {
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -31,7 +28,7 @@ public class RedisUtil {
     public boolean set(final String key, String value) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             result = true;
         } catch (Exception e) {
@@ -51,9 +48,9 @@ public class RedisUtil {
     public boolean set(final String key, String value, Long expire) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
-            stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,9 +70,9 @@ public class RedisUtil {
     public boolean setByHours(final String key, String value, Long expire) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
-            stringRedisTemplate.expire(key, expire, TimeUnit.HOURS);
+            redisTemplate.expire(key, expire, TimeUnit.HOURS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +90,7 @@ public class RedisUtil {
     public Object get(final String key) {
         Object result = null;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             result = operations.get(key);
         } catch (Exception e) {
             log.info("读取redis缓存失败！错误信息为：" + e.getMessage());
@@ -110,7 +107,7 @@ public class RedisUtil {
     public boolean exist(final String key) {
         boolean result = false;
         try {
-            result = stringRedisTemplate.hasKey(key);
+            result = redisTemplate.hasKey(key);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,7 +124,7 @@ public class RedisUtil {
         boolean result = false;
         try {
             if (exist(key)) {
-                stringRedisTemplate.delete(key);
+                redisTemplate.delete(key);
             }
             result = true;
         } catch (Exception e) {
@@ -147,9 +144,9 @@ public class RedisUtil {
         }
     }
 
-
     /**
-     *  设置对象 秒存活
+     * 写入redis缓存，设置expire存活时间(以秒为单位)
+     *
      * @param key
      * @param value
      * @param expire
@@ -166,7 +163,8 @@ public class RedisUtil {
     }
 
     /**
-     * 设置对象
+     * 写入redis缓存
+     *
      * @param key
      * @param value
      * @return
@@ -181,11 +179,6 @@ public class RedisUtil {
         }
     }
 
-    /**
-     * 获取对象
-     * @param key
-     * @return
-     */
     public Object getObject(String key) {
         try {
             return redisTemplate.opsForValue().get(key);

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 
 /**
  * @author GYF
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "类型")
-public class Kind {
+public class Kind implements Serializable {
 
         @ApiModelProperty("类型ID 数据库生成")
         private int kindId;

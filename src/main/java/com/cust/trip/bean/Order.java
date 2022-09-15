@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -17,7 +18,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value="订单")
-public class Order {
+public class Order implements Serializable {
     @ApiModelProperty("订单id，数据库生成")
     private int orderId;
 
