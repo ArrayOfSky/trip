@@ -13,10 +13,12 @@ import java.util.concurrent.TimeUnit;
  * @date 2022.9.15
  */
 @Slf4j
-@Component()
+@Component
 public class RedisUtil {
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    public  RedisTemplate redisTemplate;
+
 
     /**
      * 写入redis缓存（不设置expire存活时间）
@@ -138,54 +140,12 @@ public class RedisUtil {
      *
      * @param keys
      */
-    public void remove(final String... keys) {
+    public  void remove(final String... keys) {
         for (String key : keys) {
             remove(key);
         }
     }
 
-    /**
-     * 写入redis缓存，设置expire存活时间(以秒为单位)
-     *
-     * @param key
-     * @param value
-     * @param expire
-     * @return
-     */
-    public boolean setObject(String key, Object value, long expire) {
-        try {
-            redisTemplate.opsForValue().set(key, value, expire, TimeUnit.MILLISECONDS);
-            return true;
-        } catch (Exception e) {
-            log.error("----------------->redis 写入object失败" + e.getMessage());
-            return false;
-        }
-    }
 
-    /**
-     * 写入redis缓存
-     *
-     * @param key
-     * @param value
-     * @return
-     */
-    public boolean setObject(String key, Object value) {
-        try {
-            redisTemplate.opsForValue().set(key, value);
-            return true;
-        } catch (Exception e) {
-            log.error("----------------->redis 写入object失败" + e.getMessage());
-            return false;
-        }
-    }
-
-    public Object getObject(String key) {
-        try {
-            return redisTemplate.opsForValue().get(key);
-        } catch (Exception e) {
-            log.error("redis 获取object异常" + e.getMessage());
-            return null;
-        }
-    }
 
 }

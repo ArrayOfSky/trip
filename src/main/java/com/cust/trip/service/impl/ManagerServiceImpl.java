@@ -16,8 +16,11 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public int login(Manager manager) {
+        if(manager.getManagerPassword().isEmpty()||manager.getManagerAccount().isEmpty()){
+            return 0;
+        }
         Manager temp = managerMapper.selectManagerByAccount(manager.getManagerAccount());
-        if(manager.getManagerPassword().equals(temp.getManagerPassword())){
+        if(temp!=null&&manager.getManagerPassword().equals(temp.getManagerPassword())){
             return 1;
         }else{
             return 0;
