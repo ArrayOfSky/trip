@@ -7,14 +7,14 @@ import com.cust.trip.exceptionhandle.exception.BaseException;
  * @author gyx
  * 2022/9/18
  */
-public class NotFoundUserException extends BaseException {
+public class UserNotFoundException extends BaseException {
     private static final long serialVersionUID=1231L;
 
-    public NotFoundUserException(){
-        super("用户不存在", Code.GONE);
+    public UserNotFoundException(){
+        super("用户不存在", Code.INVALID_REQUEST);
     }
 
-    public NotFoundUserException(String message,Integer code) {
+    public UserNotFoundException(String message, Integer code) {
         super(message,code);
     }
 }

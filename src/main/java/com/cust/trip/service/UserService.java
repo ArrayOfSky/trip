@@ -19,12 +19,6 @@ public interface UserService {
      */
     PageInfo<User> getAllUsers(int pageNum, int pageSize);
 
-    /**
-     * 获取所有用户对象
-     * @return list
-     */
-    List<User> getAllUsers();
-
    /* boolean login(User user);
 
     boolean logout(User user);

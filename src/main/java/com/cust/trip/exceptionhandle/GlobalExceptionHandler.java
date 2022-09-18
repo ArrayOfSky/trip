@@ -21,6 +21,11 @@ import java.nio.file.AccessDeniedException;
 public class GlobalExceptionHandler {
 
 
+    /**
+     * 自定义异常处理
+     * @param e 异常
+     * @return 错误信息
+     */
     @ExceptionHandler(BaseException.class)
     public ReturnData handleBaseException(BaseException e){
         return new ReturnData(e.getCode(),e.getMessage(),null);

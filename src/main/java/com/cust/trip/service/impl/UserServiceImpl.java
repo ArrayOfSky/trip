@@ -1,8 +1,8 @@
 package com.cust.trip.service.impl;
 
-import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.cust.trip.dao.UserMapper;
+import com.cust.trip.exceptionhandle.exception.user.UserNotFoundException;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -38,16 +38,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getUserByName(String name) {
-        return userMapper.selectUsersByName(name);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return userMapper.selectAllUsers();
+        //获取数据
+        List<User> users = userMapper.selectUsersByName(name);
+        //判断是否为空
+        if(users==null||users.size()==0){
+            throw new UserNotFoundException();
+        }
+        return users;
     }
 
     @Override
     public User getUserByPhoneNumber(String phoneNumber) {
-        return userMapper.selectUserByPhoneNumber(phoneNumber);
+        //获取数据
+        User user = userMapper.selectUserByPhoneNumber(phoneNumber);
+        //判断是否为空
+        if(user==null){
+            throw new UserNotFoundException();
+        }
+        return user;
     }
 }

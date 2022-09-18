@@ -6,6 +6,9 @@ import com.cust.trip.bean.Status;
 import com.cust.trip.dao.OrderMapper;
 import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.dao.StatusMapper;
+import com.cust.trip.dao.UserMapper;
+import com.cust.trip.exceptionhandle.exception.order.OrderNotFoundException;
+import com.cust.trip.exceptionhandle.exception.status.StatusNotFoundException;
 import com.cust.trip.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -25,6 +28,12 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 @Slf4j
 public class OrderServiceImpl implements OrderService {
+
+    private UserMapper userMapper;
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     private StatusMapper statusMapper;
 
@@ -57,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public PageInfo<Order> getOrdersByProductName(int pageNum, int pageSize, String productName) {
-        PageHelper.startPage(pageNum, pageSize);
         //查找对应的商品，并得到商品id
         int productId = 0;
         for (Product product : productMapper.selectAllProduct()) {
@@ -65,7 +73,12 @@ public class OrderServiceImpl implements OrderService {
                 productId = product.getProductId();
             }
         }
-        List<Order> orders = orderMapper.getOrdersByProductId(1);
+        if(productId==0){
+            //所要查询订单的商品不存在
+            throw new OrderNotFoundException();
+        }
+        PageHelper.startPage(pageNum, pageSize);
+        List<Order> orders = orderMapper.getOrdersByProductId(productId);
         return new PageInfo<>(orders);
     }
 
@@ -74,17 +87,19 @@ public class OrderServiceImpl implements OrderService {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByUserId(userId);
         return new PageInfo<>(orders);
-
     }
 
     @Override
     public PageInfo<Order> getOrdersByStatus(int pageNum, int pageSize, String statusKind, String statusDescription) {
-        int statusId = -1;
+        int statusId = 0;
         //找出所有的status进行匹配，并找出对应的id
         for (Status selectAllStatus : statusMapper.selectAllStatus()) {
             if (selectAllStatus.getStatusCategory().equals(statusKind) && selectAllStatus.getStatusName().equals(statusDescription)) {
                 statusId = selectAllStatus.getStatusId();
             }
+        }
+        if(statusId==0){
+            throw new StatusNotFoundException();
         }
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByStatus(statusId);
