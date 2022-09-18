@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @author GYF
  * @Data 2022.9.11
@@ -16,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "状态")
-public class Status {
+public class Status implements Serializable {
 
     @ApiModelProperty("状态ID 数据库生成")
     private int statusId;

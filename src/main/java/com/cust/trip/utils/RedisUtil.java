@@ -1,25 +1,24 @@
 package com.cust.trip.utils;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author GYF
- * @date 2022.9.13
+ * @date 2022.9.15
  */
 @Slf4j
 @Component
 public class RedisUtil {
 
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    public  RedisTemplate redisTemplate;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     /**
      * 写入redis缓存（不设置expire存活时间）
@@ -31,7 +30,7 @@ public class RedisUtil {
     public boolean set(final String key, String value) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
             result = true;
         } catch (Exception e) {
@@ -51,9 +50,9 @@ public class RedisUtil {
     public boolean set(final String key, String value, Long expire) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
-            stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+            redisTemplate.expire(key, expire, TimeUnit.SECONDS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,9 +72,9 @@ public class RedisUtil {
     public boolean setByHours(final String key, String value, Long expire) {
         boolean result = false;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             operations.set(key, value);
-            stringRedisTemplate.expire(key, expire, TimeUnit.HOURS);
+            redisTemplate.expire(key, expire, TimeUnit.HOURS);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +92,7 @@ public class RedisUtil {
     public Object get(final String key) {
         Object result = null;
         try {
-            ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+            ValueOperations<String, String> operations = redisTemplate.opsForValue();
             result = operations.get(key);
         } catch (Exception e) {
             log.info("读取redis缓存失败！错误信息为：" + e.getMessage());
@@ -110,7 +109,7 @@ public class RedisUtil {
     public boolean exist(final String key) {
         boolean result = false;
         try {
-            result = stringRedisTemplate.hasKey(key);
+            result = redisTemplate.hasKey(key);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,7 +126,7 @@ public class RedisUtil {
         boolean result = false;
         try {
             if (exist(key)) {
-                stringRedisTemplate.delete(key);
+                redisTemplate.delete(key);
             }
             result = true;
         } catch (Exception e) {
@@ -141,58 +140,12 @@ public class RedisUtil {
      *
      * @param keys
      */
-    public void remove(final String... keys) {
+    public  void remove(final String... keys) {
         for (String key : keys) {
             remove(key);
         }
     }
 
 
-    /**
-     *  设置对象 秒存活
-     * @param key
-     * @param value
-     * @param expire
-     * @return
-     */
-    public boolean setObject(String key, Object value, long expire) {
-        try {
-            redisTemplate.opsForValue().set(key, value, expire, TimeUnit.MILLISECONDS);
-            return true;
-        } catch (Exception e) {
-            log.error("----------------->redis 写入object失败" + e.getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * 设置对象
-     * @param key
-     * @param value
-     * @return
-     */
-    public boolean setObject(String key, Object value) {
-        try {
-            redisTemplate.opsForValue().set(key, value);
-            return true;
-        } catch (Exception e) {
-            log.error("----------------->redis 写入object失败" + e.getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * 获取对象
-     * @param key
-     * @return
-     */
-    public Object getObject(String key) {
-        try {
-            return redisTemplate.opsForValue().get(key);
-        } catch (Exception e) {
-            log.error("redis 获取object异常" + e.getMessage());
-            return null;
-        }
-    }
 
 }

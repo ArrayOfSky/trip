@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cust.trip.dao.ManagerMapper">
+
+    <resultMap id="ResultMap" type="com.cust.trip.bean.Manager">
+        <result property="managerId" column="manager_id"/>
+        <result property="managerAccount" column="manager_account"/>
+        <result property="managerPassword" column="manager_password"/>
+    </resultMap>
+
+    <select id="selectManagerByAccount" resultMap="ResultMap">
+        select *
+        from managers
+        where manager_account = #{managerAccount}
+    </select>
+
+
+
+
+</mapper>

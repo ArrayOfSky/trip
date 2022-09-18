@@ -7,6 +7,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,12 +24,14 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor=Exception.class)
 @Slf4j
+@CacheConfig(cacheNames = "kind")
 public class KindServiceImpl implements KindService {
 
     @Autowired
     KindMapper kindMapper;
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int addKind(Kind kind) {
         //获取所有kind
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
@@ -41,6 +47,7 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int deleteKind(String kindName) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for(Kind a : array){
@@ -53,13 +60,16 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
+    @Cacheable(key="'selectAllKind' +#pageNum+  #pageSize")
     public PageInfo<Kind> selectAllKind(int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Kind> array = kindMapper.selectAll();
        return new PageInfo<>(array);
+
     }
 
     @Override
+    @Cacheable(key="'selectKindByName' + #kindName")
     public Kind selectKindByName(String kindName) {
         //获取所有
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
@@ -72,6 +82,7 @@ public class KindServiceImpl implements KindService {
         return null;
     }
 
+    @CachePut(key = "'updateKind'")
     @Override
     public int updateKind(String kindName1, String kindName2) {
         //获取所有

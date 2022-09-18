@@ -6,7 +6,6 @@ import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
 import com.cust.trip.service.UserService;
-import com.cust.trip.utils.DateUtil;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author gyx

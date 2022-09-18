@@ -7,22 +7,18 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author GYF
- * @Data 2022.9.12
+ * @Data 2022.9.16
  */
 @Configuration
 public class FilterConfig {
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean(){
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new BaseFilter());
-        //过滤所有路径
-        registrationBean.addUrlPatterns("/*");
-        //添加不过滤路径
-        registrationBean.addInitParameter("noFilter","/trip/swagger2-ui.html");
-        registrationBean.setName("BaseFilter");
-        return registrationBean;
+        FilterRegistrationBean bean = new FilterRegistrationBean();
+        bean.setFilter(new BaseFilter());
+        bean.addUrlPatterns("/*");
+        return bean;
     }
-
 
 
 }

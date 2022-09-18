@@ -11,6 +11,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor=Exception.class)
 @Slf4j
+@CacheConfig(cacheNames = "product")
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
@@ -34,6 +38,7 @@ public class ProductServiceImpl implements ProductService {
     StatusMapper statusMapper;
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int addProduct(Product product) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){
@@ -48,12 +53,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int deleteProductByName(String name) {
         productMapper.deleteProductByName(name);
         return 1;
     }
 
     @Override
+    @Cacheable(key = "'selectAllProduct'+#pageNum+#pageSize")
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Product> array = productMapper.selectAllProduct();
@@ -61,6 +68,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(key = "'selectAllProductByKind'+#kind.kindName+#pageNum+#pageSize")
     public PageInfo selectAllProductByKind(Kind kind,int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
@@ -74,6 +82,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(key = "'selectProductByName'+#name")
     public Product selectProductByName(String name) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){

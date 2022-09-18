@@ -7,6 +7,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +22,14 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor=Exception.class)
 @Slf4j
+@CacheConfig(cacheNames = "status")
 public class StatusServiceImpl implements StatusService {
 
     @Autowired
     StatusMapper statusMapper;
 
     @Override
+    @Cacheable(key = "'selectAllStatus'+#pageNum+#pageSize")
     public PageInfo<Status> selectAllStatus(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Status> array = statusMapper.selectAllStatus();
@@ -32,11 +37,13 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
+    @Cacheable(key = "'selectStatusByName'+#statusName")
     public Status selectStatusByName(String statusName) {
         return statusMapper.selectStatusByName(statusName);
     }
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int insertStatus(Status status) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
@@ -49,6 +56,7 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
+    @CacheEvict(beforeInvocation = true)
     public int deleteStatusByName(String statusName) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){

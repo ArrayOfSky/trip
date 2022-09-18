@@ -1,6 +1,7 @@
 package com.cust.trip.config;
 
-import com.cust.trip.interceptor.BaseInterceptor;
+import com.cust.trip.Interceptor.ManagerLoginInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -13,15 +14,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    @Autowired
+    private ManagerLoginInterceptor managerLoginInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        // 实现WebMvcConfigurer不会导致静态资源被拦截
-        registry.addInterceptor(new BaseInterceptor())
-                // 拦截所有url
-                .addPathPatterns("/**")
-                // 放行swagger
-                .excludePathPatterns("/swagger-resources/**");
+        // 增加要注册的拦截器类
+        registry.addInterceptor(managerLoginInterceptor)
+                .excludePathPatterns("/manager/login");
     }
+
 
 
     @Override
