@@ -1,0 +1,60 @@
+package com.cust.trip.exceptionhandle;
+
+import com.cust.trip.commom.Code;
+import com.cust.trip.commom.ReturnData;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.MissingRequestValueException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.nio.file.AccessDeniedException;
+
+/**
+ * @author GYF
+ * @Data 2022.9.12
+ */
+@ControllerAdvice
+@ResponseBody
+@Slf4j
+public class GlobalExceptionHandler {
+
+
+    /**
+     *  全局异常处理
+     * @param ex 异常
+     * @return 错误信息
+     */
+    @ExceptionHandler(Exception.class)
+    public ReturnData handleUnexpectedServer(Exception ex) {
+
+
+        return new ReturnData(Code.INTERNAL_SERVER_ERROR,"服务器错误",null);
+    }
+
+
+    /**
+     * 请求参数缺失异常处理
+     * @param e 异常
+     * @return 错误信息
+     */
+    @ExceptionHandler(MissingRequestValueException.class)
+    public ReturnData handleMissingRequestValueException(MissingRequestValueException e){
+        return new ReturnData(Code.INVALID_REQUEST,e.getMessage(),null);
+    }
+
+
+    /**
+     * 权限不足异常处理
+     * @param e 异常
+     * @return 错误信息
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    public ReturnData handleAccessDeniedException(AccessDeniedException e){
+        return new ReturnData(Code.FORBIDDEN,e.getMessage(),null);
+    }
+
+
+
+
+}
