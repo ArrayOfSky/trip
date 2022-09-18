@@ -2,6 +2,7 @@ package com.cust.trip.exceptionhandle;
 
 import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
+import com.cust.trip.exceptionhandle.exception.BaseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MissingRequestValueException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,12 @@ import java.nio.file.AccessDeniedException;
 @ResponseBody
 @Slf4j
 public class GlobalExceptionHandler {
+
+
+    @ExceptionHandler(BaseException.class)
+    public ReturnData handleBaseException(BaseException e){
+        return new ReturnData(e.getCode(),e.getMessage(),null);
+    }
 
 
     /**
