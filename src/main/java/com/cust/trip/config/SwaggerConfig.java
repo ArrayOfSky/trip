@@ -44,7 +44,7 @@ public class SwaggerConfig{
         return new ApiInfoBuilder()
                 .title("趣旅行 api")
                 .description("api文档")
-                .termsOfServiceUrl("http://localhost:8080/")
+                .termsOfServiceUrl("http://localhost:8080/trip/")
                 .version("0.0.1")
                 .build();
     }
