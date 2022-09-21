@@ -3,10 +3,7 @@ server:
   servlet:
     context-path: /trip
 spring:
-  web:
-    resources:
-      static-locations: classpath:/static/
-  profiles: dev
+  profiles: prod
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: gaoyifeng

@@ -62,7 +62,7 @@ public class UserController {
     })
     @ApiOperation(value = "根据手机号查询用户", notes = "根据手机号查询用户")
     @PostMapping("getUserByPhoneNumber")
-    public ReturnData getUserByPhoneNumber(@RequestParam("phoneNumber") String userPhoneNumber) {
+    public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         final long length = 11;

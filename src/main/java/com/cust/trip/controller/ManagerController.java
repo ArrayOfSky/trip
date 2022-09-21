@@ -45,7 +45,7 @@ public class ManagerController {
         if (token1 == null || "".equals(token1.trim()) || managerAccount == null || "".equals(managerAccount.toString())) {
             int code = managerService.login(manager);
             if(code==0){
-                return new ReturnData(Code.INVALID_REQUEST,"登陆失败",null);
+                return new ReturnData(Code.INVALID_REQUEST,"登录失败",null);
             }else if(code==1){
                 //生成token 设置缓存
                 String token = JwtUtil.createToken(manager.getManagerAccount());
