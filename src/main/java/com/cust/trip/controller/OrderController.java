@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * @author gyx
@@ -121,7 +122,7 @@ public class OrderController {
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
-        log.info("\n"+time1 + "\n" + time2);
+        log.info("\n" + time1 + "\n" + time2);
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersBtDates(time1, time2, pageNum, pageSize);
         //封装对象
@@ -142,10 +143,8 @@ public class OrderController {
     public ReturnData getOrdersByUser(@RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
-
-        //进行查询分页
-        //查询用户
-        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, 1);
+        List<User> users = userService.getUserByPhoneNumber(userPhoneNumber);
+        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, users.get(0).getUserId());
         //封装对象
         returnData.setData(ordersByUserId);
         returnData.setCode(Code.OK);
@@ -155,10 +154,10 @@ public class OrderController {
     }
 
 
-    @ApiImplicitParam(name="order",value="订单",dataType="Order",paramType ="body",required=true)
-    @ApiOperation(value="请忽略我",notes="请忽略我")
+    @ApiImplicitParam(name = "order", value = "订单", dataType = "Order", paramType = "body", required = true)
+    @ApiOperation(value = "请忽略我", notes = "请忽略我")
     @PostMapping("/ignore")
-    public String testOrder(@RequestBody Order order){
+    public String testOrder(@RequestBody Order order) {
         return null;
     }
 

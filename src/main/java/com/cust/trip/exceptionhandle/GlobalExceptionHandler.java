@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ReturnData handleUnexpectedServer(Exception ex) {
 
-
+        log.error(ex.getMessage());
         return new ReturnData(Code.INTERNAL_SERVER_ERROR,"服务器错误",null);
     }
 

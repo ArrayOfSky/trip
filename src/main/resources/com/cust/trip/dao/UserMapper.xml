@@ -38,13 +38,13 @@
 
     <!--   int insertUser(@Param("user")User  user);-->
     <insert id="insertUser">
-        insert users(user_name, user_password, user_phone_number, user_consumption, user_balance, user_is_vip)
+        insert users(user_name, user_password, user_phone_number, user_consumption, user_balance, user_is_vip,user_create_time)
         values (#{user.userName},
                 #{user.userPassword},
                 #{user.userPhoneNumber},
                 #{user.userConsumption},
                 #{user.userBalance},
-                #{user.userVip})
+                #{user.userVip},#{user.userCreateTime})
     </insert>
 
     <!--    int updatePassword(@Param("userId")int userId, @Param("newUserPassword")String newUserPassword);-->

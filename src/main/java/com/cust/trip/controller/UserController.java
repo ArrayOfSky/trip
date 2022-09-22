@@ -62,8 +62,8 @@ public class UserController {
     })
     @ApiOperation(value = "根据手机号查询用户", notes = "根据手机号查询用户")
     @PostMapping("getUserByPhoneNumber")
-    public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber,@RequestParam("pageNum") int pageNum
-    ,@RequestParam("pageSize")int pageSize) {
+    public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("pageNum") int pageNum
+            , @RequestParam("pageSize") int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
         //正确则进行查询
@@ -101,6 +101,16 @@ public class UserController {
         return returnData;
     }
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="user",value="用户",dataType="User",paramType="body",required=true)
+    })
+    @ApiOperation(value="用户注册",notes="传用户对象（除id）,json对象里面的时间格式yyyy-MM-dd'T'HH:mm:ss.SSSX,例如2022-09-20T00:00:00")
+    @ApiImplicitParam(value="user" )
+    @PostMapping("/register")
+    public ReturnData registerUser(@RequestBody User user){
+        userService.register(user);
+        return new ReturnData(Code.OK,"注册成功",null);
+    }
 
     @ApiImplicitParam(name = "user", value = "用户", dataType = "User", paramType = "body", required = true)
     @ApiOperation(value = "请忽略我", notes = "请忽略我")

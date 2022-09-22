@@ -2,6 +2,7 @@ package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.User;
 import com.cust.trip.dao.UserMapper;
+import com.cust.trip.exceptionhandle.exception.user.UserExistedException;
 import com.cust.trip.exceptionhandle.exception.user.UserNotFoundException;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -48,10 +49,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageInfo<User> getUserByPhoneNumber(String phoneNumber,int pageNum,int pageSize) {
+    public PageInfo<User> getUserByPhoneNumber(String userPhoneNumber,int pageNum,int pageSize) {
         //获取数据
         PageHelper.startPage(pageNum,pageSize);
-        List<User> user = userMapper.selectUserByPhoneNumber(phoneNumber);
+        List<User> user = userMapper.selectUserByPhoneNumber(userPhoneNumber);
         return  new PageInfo<>(user);
+    }
+
+    @Override
+    public List<User> getUserByPhoneNumber(String userPhoneNumber) {
+        return userMapper.selectUserByPhoneNumber(userPhoneNumber);
+    }
+
+    @Override
+    public boolean register(User user) {
+        List<User> users = userMapper.selectUserByPhoneNumber(user.getUserPhoneNumber());
+        if(users.size()!=0){
+            throw new UserExistedException();
+        }
+        userMapper.insertUser(user);
+        return true;
     }
 }

@@ -13,40 +13,63 @@ import java.util.List;
 public interface UserService {
     /**
      * 获取所有的用户并分页
-     * @param pageNum 页数
+     *
+     * @param pageNum  页数
      * @param pageSize 页尺寸
      * @return pageInfo
      */
     PageInfo<User> getAllUsers(int pageNum, int pageSize);
 
-   /* boolean login(User user);
+    /**
+     * 获取特定手机号的用户
+     *
+     * @param userPhoneNumber -
+     * @param pageNum-
+     * @param pageSize-
+     * @return -
+     */
+    PageInfo<User> getUserByPhoneNumber(String userPhoneNumber, int pageNum, int pageSize);
 
-    boolean logout(User user);
+    /**
+     * 获取特定手机号的用户
+     *
+     * @param userPhoneNumber -
+     * @return -
+     */
+    List<User> getUserByPhoneNumber(String userPhoneNumber);
 
-    boolean register(User user);
-
-    int recharge(User user, Double recharge);
-
-    int consumption(User user, Double consumption);
-
-    int deConsumption(User user, Double deConsumption);
-
-    boolean useBalance(User user, Double useBalance);
-
-    boolean order(User user, Product product);
-
-    int updatePhoneNumber(User user, String newPhoneNumber);
-
-    */
-
-    PageInfo<User> getUserByPhoneNumber(String phoneNumber,int pageNum,int pageSize);
 
     /**
      * 通过用户名获取用户对象
+     *
      * @param name 用户名
      * @return 用户对象列表（用户名可能重复）
      */
     List<User> getUserByName(String name);
+
+    /**
+     * 用户注册
+     * @param user -
+     * @return -
+     */
+    boolean register(User user);
+
+    //    boolean login(User user);
+//
+//    boolean logout(User user);
+//
+//
+//    int recharge(User user, Double recharge);
+//
+//    int consumption(User user, Double consumption);
+//
+//    int deConsumption(User user, Double deConsumption);
+//
+//    boolean useBalance(User user, Double useBalance);
+//
+//    boolean order(User user, Product product);
+//
+//    int updatePhoneNumber(User user, String newPhoneNumber);
 
 
 }
