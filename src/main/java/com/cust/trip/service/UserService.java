@@ -39,7 +39,7 @@ public interface UserService {
 
     */
 
-    User getUserByPhoneNumber(String phoneNumber);
+    PageInfo<User> getUserByPhoneNumber(String phoneNumber,int pageNum,int pageSize);
 
     /**
      * 通过用户名获取用户对象

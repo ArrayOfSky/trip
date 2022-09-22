@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
-@Api(value="User",tags="用户模块")
+@Api(value = "User", tags = "用户模块")
 @Slf4j
 public class UserController {
 
@@ -62,21 +62,15 @@ public class UserController {
     })
     @ApiOperation(value = "根据手机号查询用户", notes = "根据手机号查询用户")
     @PostMapping("getUserByPhoneNumber")
-    public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber) {
+    public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber,@RequestParam("pageNum") int pageNum
+    ,@RequestParam("pageSize")int pageSize) {
         //创建返回对象
         ReturnData returnData = new ReturnData();
-        final long length = 11;
-        //检查手机号格式
-        if (userPhoneNumber.length() != length) {
-            returnData.setMsg("号码格式不正确");
-            returnData.setCode(Code.UNPROCESSABLE_ENTITY);
-        } else {
-            //正确则进行查询
-            User user = userService.getUserByPhoneNumber(userPhoneNumber);
-            returnData.setData(user);
-            returnData.setCode(Code.OK);
-            returnData.setMsg("获取成功");
-        }
+        //正确则进行查询
+        PageInfo<User> userPageInfo = userService.getUserByPhoneNumber(userPhoneNumber, pageNum, pageSize);
+        returnData.setData(userPageInfo);
+        returnData.setCode(Code.OK);
+        returnData.setMsg("获取成功");
         return returnData;
 
     }
@@ -108,10 +102,10 @@ public class UserController {
     }
 
 
-    @ApiImplicitParam(name="user",value="用户",dataType="User",paramType ="body",required=true)
-    @ApiOperation(value="请忽略我",notes="请忽略我")
+    @ApiImplicitParam(name = "user", value = "用户", dataType = "User", paramType = "body", required = true)
+    @ApiOperation(value = "请忽略我", notes = "请忽略我")
     @PostMapping("/ignore")
-    public String testUser(@RequestBody User user){
+    public String testUser(@RequestBody User user) {
         return null;
     }
 }

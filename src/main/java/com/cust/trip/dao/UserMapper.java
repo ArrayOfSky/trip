@@ -33,7 +33,7 @@ public interface UserMapper {
      * @param userPhoneNumber 电话号码
      * @return 用户列表
      */
-    User selectUserByPhoneNumber(@Param("userPhoneNumber")String userPhoneNumber);
+    List<User> selectUserByPhoneNumber(@Param("userPhoneNumber")String userPhoneNumber);
 
 
     /**

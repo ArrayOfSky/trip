@@ -145,10 +145,7 @@ public class OrderController {
 
         //进行查询分页
         //查询用户
-        User user = userService.getUserByPhoneNumber(userPhoneNumber);
-        //查询订单
-        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, user.getUserId());
-
+        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, 1);
         //封装对象
         returnData.setData(ordersByUserId);
         returnData.setCode(Code.OK);

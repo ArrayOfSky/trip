@@ -32,7 +32,7 @@
         select * from users
         <where>
             <if test="userPhoneNumber != null and userPhoneNumber != '' "/>
-            user_phone_number=#{userPhoneNumber}
+            user_phone_number like "%"#{userPhoneNumber}"%"
         </where>
     </select>
 

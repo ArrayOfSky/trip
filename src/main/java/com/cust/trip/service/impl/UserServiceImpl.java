@@ -48,13 +48,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByPhoneNumber(String phoneNumber) {
+    public PageInfo<User> getUserByPhoneNumber(String phoneNumber,int pageNum,int pageSize) {
         //获取数据
-        User user = userMapper.selectUserByPhoneNumber(phoneNumber);
-        //判断是否为空
-        if(user==null){
-            throw new UserNotFoundException();
-        }
-        return user;
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> user = userMapper.selectUserByPhoneNumber(phoneNumber);
+        return  new PageInfo<>(user);
     }
 }
