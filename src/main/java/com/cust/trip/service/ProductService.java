@@ -15,16 +15,14 @@ public interface ProductService {
     /**
      * 添加产品
      * @param product 产品
-     * @return 0 失败 1 成功 （后续修改）
      */
-    int addProduct(Product product);
+    void addProduct(Product product);
 
     /**
      * 根据姓名删除产品
      * @param productName 产品名称
-     * @return 0 失败 1 成功 （后续修改）
      */
-    int deleteProductByName(String productName);
+    void deleteProductByName(String productName);
 
     //    int updataProduct(String productName,Product product);
 

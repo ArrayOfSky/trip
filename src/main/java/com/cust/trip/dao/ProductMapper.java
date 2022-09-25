@@ -28,8 +28,9 @@ public interface ProductMapper {
     /**
      * 删除产品根据产品名
      * @param productName 产品名
+     * @return 影响的行数
      */
-    void deleteProductByName(@Param("productName") String productName);
+    int deleteProductByName(@Param("productName") String productName);
 
 
 //    void updateProduct(@Param("productName") String name,Product product);

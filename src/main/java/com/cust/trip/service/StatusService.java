@@ -27,16 +27,14 @@ public interface StatusService {
     /**
      * 增加状态
      * @param status 状态
-     * @return 0 失败 1 成功
      */
-    int insertStatus(Status status);
+    void insertStatus(Status status);
 
     /**
      * 根据姓名删除
      * @param statusName 状态名
-     * @return 0失败 1成功
      */
-    int deleteStatusByName(String statusName);
+    void deleteStatusByName(String statusName);
 
 
 

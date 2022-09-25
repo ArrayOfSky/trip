@@ -3,12 +3,16 @@ package com.cust.trip.service.impl;
 import com.cust.trip.bean.Order;
 import com.cust.trip.bean.Product;
 import com.cust.trip.bean.Status;
+import com.cust.trip.bean.User;
+import com.cust.trip.commom.Code;
 import com.cust.trip.dao.OrderMapper;
 import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.dao.StatusMapper;
 import com.cust.trip.dao.UserMapper;
 import com.cust.trip.exceptionhandle.exception.order.OrderNotFoundException;
+import com.cust.trip.exceptionhandle.exception.product.ProductNotFoundException;
 import com.cust.trip.exceptionhandle.exception.status.StatusNotFoundException;
+import com.cust.trip.exceptionhandle.exception.user.UserNotFoundException;
 import com.cust.trip.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -75,11 +79,21 @@ public class OrderServiceImpl implements OrderService {
         }
         if(productId==0){
             //所要查询订单的商品不存在
-            throw new OrderNotFoundException();
+            throw new ProductNotFoundException("要查询的商品不存在", Code.INVALID_REQUEST);
         }
+        //若商品存在，则进行查询
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByProductId(productId);
         return new PageInfo<>(orders);
+    }
+
+    @Override
+    public PageInfo<Order> getOrdersByUserPhoneNumber(String userPhoneNumber,int pageNum,int pageSize) {
+        List<User> users=userMapper.selectUserByPhoneNumber(userPhoneNumber);
+        if(users.size()==0){
+            throw new UserNotFoundException();
+        }
+        return this.getOrdersByUserId(pageNum,pageSize,users.get(0).getUserId());
     }
 
     @Override

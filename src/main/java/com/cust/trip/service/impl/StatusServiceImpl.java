@@ -2,6 +2,8 @@ package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Status;
 import com.cust.trip.dao.StatusMapper;
+import com.cust.trip.exceptionhandle.exception.status.StatusAlreadyExistsException;
+import com.cust.trip.exceptionhandle.exception.status.StatusNotFoundException;
 import com.cust.trip.service.StatusService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -44,28 +46,26 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int insertStatus(Status status) {
+    public void insertStatus(Status status) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
             if(a.getStatusName().equals(status.getStatusName())){
-                return 0;
+               throw new StatusAlreadyExistsException();
             }
         }
         statusMapper.insertStatus(status);
-        return 1;
     }
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int deleteStatusByName(String statusName) {
+    public void deleteStatusByName(String statusName) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
             if(a.getStatusName().equals(statusName)){
-                return 0;
+                throw new StatusNotFoundException();
             }
         }
         statusMapper.deleteStatus(statusName);
-        return 1;
     }
 
 

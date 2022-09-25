@@ -43,18 +43,12 @@ public class ManagerController {
         String token1 = request.getHeader("TOKEN");
         Object managerAccount = redisUtil.get("TOKEN" + token1);
         if (token1 == null || "".equals(token1.trim()) || managerAccount == null || "".equals(managerAccount.toString())) {
-            int code = managerService.login(manager);
-            if(code==0){
-                return new ReturnData(Code.INVALID_REQUEST,"登录失败",null);
-            }else if(code==1){
+            managerService.login(manager);
                 //生成token 设置缓存
                 String token = JwtUtil.createToken(manager.getManagerAccount());
                 redisUtil.setByHours("TOKEN"+token,manager.getManagerAccount(),(long)1);
                 //返回token
-                return new ReturnData(Code.OK,"登陆成功",token);
-            }else{
-                return new ReturnData(Code.INTERNAL_SERVER_ERROR,"服务器错误,请联系管理员",null);
-            }
+                return new ReturnData(Code.OK,"登录成功",token);
         }else{
             return new ReturnData(Code.OK,"登录成功",null);
         }

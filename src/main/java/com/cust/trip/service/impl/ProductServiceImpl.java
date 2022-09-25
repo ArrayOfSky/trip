@@ -3,9 +3,14 @@ package com.cust.trip.service.impl;
 import com.cust.trip.bean.Kind;
 import com.cust.trip.bean.Product;
 import com.cust.trip.bean.Status;
+import com.cust.trip.commom.Code;
 import com.cust.trip.dao.KindMapper;
 import com.cust.trip.dao.ProductMapper;
 import com.cust.trip.dao.StatusMapper;
+import com.cust.trip.exceptionhandle.exception.kind.KindNotFoundException;
+import com.cust.trip.exceptionhandle.exception.product.ProductAlreadyExistsException;
+import com.cust.trip.exceptionhandle.exception.product.ProductNotFoundException;
+import com.cust.trip.exceptionhandle.exception.status.StatusNotFoundException;
 import com.cust.trip.service.ProductService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -39,24 +44,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int addProduct(Product product) {
+    public void addProduct(Product product) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){
             if(a.getProductName().equals(product.getProductName())){
-                return 0;
+                throw new ProductAlreadyExistsException();
             }
         }
         Kind kind = kindMapper.selectKindByName(product.getKindName());
+        if(kind==null){
+            throw new KindNotFoundException();
+        }
         Status status = statusMapper.selectStatusByName(product.getStatusName());
+        if(status==null){
+            throw new StatusNotFoundException();
+        }
         productMapper.insertProduct(product,kind.getKindId(),status.getStatusId());
-        return 1;
     }
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int deleteProductByName(String name) {
-        productMapper.deleteProductByName(name);
-        return 1;
+    public void deleteProductByName(String name) {
+        int code=productMapper.deleteProductByName(name);
+        if(code==0){
+            throw new ProductNotFoundException("产品不存在，删除失败", Code.INVALID_REQUEST);
+        }
     }
 
     @Override
@@ -85,8 +97,11 @@ public class ProductServiceImpl implements ProductService {
     @Cacheable(key = "'selectProductByName'+#name")
     public Product selectProductByName(String name) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
-        for(Product a : array){
-            if(a.getProductName().equals(name)){
+        for(Product a : array) {
+            if (a.getProductName().startsWith(name)) {
+                return a;
+            }
+            if (a.getProductName().contains(name)) {
                 return a;
             }
         }

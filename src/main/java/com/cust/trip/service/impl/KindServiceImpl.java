@@ -2,6 +2,8 @@ package com.cust.trip.service.impl;
 
 import com.cust.trip.bean.Kind;
 import com.cust.trip.dao.KindMapper;
+import com.cust.trip.exceptionhandle.exception.kind.KindAlreadyExistsException;
+import com.cust.trip.exceptionhandle.exception.kind.KindNotFoundException;
 import com.cust.trip.service.KindService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -32,31 +34,29 @@ public class KindServiceImpl implements KindService {
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int addKind(Kind kind) {
+    public void addKind(Kind kind) {
         //获取所有kind
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         //查询是否重复
         for(Kind a : array){
             if(a.getKindName().equals(kind.getKindName())){
-                return 0;
+                throw new KindAlreadyExistsException();
             }
         }
         //添加
         kindMapper.insertKind(kind);
-        return 1;
     }
 
     @Override
     @CacheEvict(beforeInvocation = true)
-    public int deleteKind(String kindName) {
+    public void deleteKind(String kindName) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for(Kind a : array){
             if(a.getKindName().equals(kindName)){
                 kindMapper.deleteKind(kindName);
-                return 1;
             }
         }
-        return 0;
+        throw new KindNotFoundException();
     }
 
     @Override
@@ -79,23 +79,23 @@ public class KindServiceImpl implements KindService {
                 return a;
             }
         }
-        return null;
+        throw new KindNotFoundException();
     }
 
     @CachePut(key = "'updateKind'")
     @Override
-    public int updateKind(String kindName1, String kindName2) {
+    public void updateKind(String kindName1, String kindName2) {
         //获取所有
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         //循环查询
         for (Kind a: array){
             if(a.getKindName().equals(kindName1)){
-                a.setKindName(kindName2);//因为后续是通过id来定位kind，我可以直接更改name
+                //因为后续是通过id来定位kind，我可以直接更改name
+                a.setKindName(kindName2);
                 kindMapper.updateKind(a);
-                return 1;
             }
         }
-        return 0;
+        throw new KindNotFoundException();
     }
 
 }

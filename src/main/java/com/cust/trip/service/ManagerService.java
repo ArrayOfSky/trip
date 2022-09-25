@@ -10,9 +10,8 @@ public interface ManagerService {
 
     /**
      * 登陆
-     * @param manager
-     * @return 0失败 1成功
+     * @param manager -
      */
-     int login(Manager manager);
+     void login(Manager manager);
 
 }

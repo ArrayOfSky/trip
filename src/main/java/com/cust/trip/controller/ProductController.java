@@ -33,28 +33,16 @@ public class ProductController {
     @ApiOperation(notes = "添加产品",value = "添加产品")
     @PostMapping("/addProduct")
     public ReturnData addProduct(@RequestBody Product product){
-        int code = productService.addProduct(product);
-        if (code == 0) {
-            return new ReturnData(Code.INVALID_REQUEST, "产品已存在", null);
-        } else if (code == 1) {
-            return new ReturnData(Code.CREATED, "创建成功", null);
-        } else {
-            return new ReturnData(Code.INTERNAL_SERVER_ERROR, "服务器错误,请联系管理员", null);
-        }
+        productService.addProduct(product);
+        return new ReturnData(Code.OK,"创建成功",null);
     }
 
     @ApiImplicitParam(name = "productName",value = "产品名称",paramType = "query",dataType = "String",required = true)
     @ApiOperation(notes = "删除产品",value = "删除产品")
     @PostMapping("/deleteProductByName")
     public ReturnData deleteProductByName(@RequestParam("productName") String productName){
-        int code = productService.deleteProductByName(productName);
-        if(code==0){
-            return new ReturnData(Code.INVALID_REQUEST,"产品不存在",null);
-        }else if(code==1){
-            return new ReturnData(Code.CREATED,"删除成功",null);
-        }else{
-            return new ReturnData(Code.INTERNAL_SERVER_ERROR,"服务器错误,请联系管理员",null);
-        }
+        productService.deleteProductByName(productName);
+        return new ReturnData(Code.OK,"删除成功",null);
     }
 
     @ApiImplicitParams({

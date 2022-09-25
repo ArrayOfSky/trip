@@ -87,7 +87,6 @@ public class OrderController {
         return returnData;
     }
 
-
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum", value = "第几页", dataType = "int", paramType = "query", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页数据量", dataType = "int", paramType = "query", required = true),
@@ -97,17 +96,9 @@ public class OrderController {
     @PostMapping("/getOrdersByProduct")
     public ReturnData getOrdersByProduct(@RequestParam("productName") String productName
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-        //创建返回对象
-        ReturnData returnData = new ReturnData();
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersByProductName(pageNum, pageSize, productName);
-        //封装对象
-        returnData.setData(pageInfo);
-        returnData.setCode(Code.OK);
-        returnData.setMsg("获取成功");
-
-        //返回
-        return returnData;
+        return new ReturnData(Code.OK, "获取成功", pageInfo);
     }
 
     @ApiImplicitParams({
@@ -120,17 +111,9 @@ public class OrderController {
     @PostMapping("/getOrdersByDates")
     public ReturnData getOrdersBtDates(@RequestParam("time1") Timestamp time1, @RequestParam("time2") Timestamp time2
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-        //创建返回对象
-        ReturnData returnData = new ReturnData();
-        log.info("\n" + time1 + "\n" + time2);
         //获取分页信息
         PageInfo<Order> pageInfo = orderService.getOrdersBtDates(time1, time2, pageNum, pageSize);
-        //封装对象
-        returnData.setData(pageInfo);
-        returnData.setCode(Code.OK);
-        returnData.setMsg("获取成功");
-        //返回
-        return returnData;
+        return new ReturnData(Code.OK, "获取成功", pageInfo);
     }
 
     @ApiImplicitParams({
@@ -141,16 +124,8 @@ public class OrderController {
     @ApiOperation(value = "获取特定用户的订单", notes = "获取特定用户的订单")
     @PostMapping("/getOrdersByUser")
     public ReturnData getOrdersByUser(@RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-        //创建返回对象
-        ReturnData returnData = new ReturnData();
-        List<User> users = userService.getUserByPhoneNumber(userPhoneNumber);
-        PageInfo<Order> ordersByUserId = orderService.getOrdersByUserId(pageNum, pageSize, users.get(0).getUserId());
-        //封装对象
-        returnData.setData(ordersByUserId);
-        returnData.setCode(Code.OK);
-        returnData.setMsg("获取成功");
-
-        return returnData;
+        PageInfo<Order> pageInfo = orderService.getOrdersByUserPhoneNumber(userPhoneNumber, pageNum, pageSize);
+        return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
 

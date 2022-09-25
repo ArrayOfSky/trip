@@ -14,16 +14,14 @@ public interface KindService {
     /**
      * 添加类型
      * @param kind 类型
-     * @return 0 失败 1 成功 （后续修改）
      */
-    int addKind(Kind kind);
+    void addKind(Kind kind);
 
     /**
      * 根据姓名删除类型
      * @param kindName 类型名称
-     * @return 0 失败 1 成功 （后续修改）
      */
-    int deleteKind(String kindName);
+    void deleteKind(String kindName);
 
     /**
      * 分页查询所有类型
@@ -44,9 +42,8 @@ public interface KindService {
      *  更新类型 将kind name为name1 更新 为 name 为 name2
      * @param kindName1 修改前
      * @param kindName2 修改后
-     * @return 0 失败 1 成功 （后续修改）
      */
-    int updateKind(String kindName1,String kindName2);
+    void updateKind(String kindName1,String kindName2);
 
 
 }

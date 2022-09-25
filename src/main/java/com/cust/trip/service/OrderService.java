@@ -63,4 +63,13 @@ public interface OrderService {
      */
     PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize);
 
+    /**
+     * 获取指定用户（手机号指定）
+     * @param userPhoneNumber  -
+     * @param pageNum -
+     * @param pageSize -
+     * @return  -
+     */
+    PageInfo<Order> getOrdersByUserPhoneNumber(String userPhoneNumber,int pageNum,int pageSize);
+
 }
