@@ -45,7 +45,7 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "status",allEntries = true)
     public void insertStatus(Status status) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
@@ -57,15 +57,16 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "status",allEntries = true)
     public void deleteStatusByName(String statusName) {
         List<Status> array = statusMapper.selectAllStatus();
         for(Status a : array){
             if(a.getStatusName().equals(statusName)){
-                throw new StatusNotFoundException();
+                statusMapper.deleteStatus(statusName);
+                return;
             }
         }
-        statusMapper.deleteStatus(statusName);
+        throw new StatusNotFoundException();
     }
 
 
