@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     StatusMapper statusMapper;
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "product",allEntries = true)
     public void addProduct(Product product) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array){
@@ -63,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "product",allEntries = true)
     public void deleteProductByName(String name) {
         int code=productMapper.deleteProductByName(name);
         if(code==0){

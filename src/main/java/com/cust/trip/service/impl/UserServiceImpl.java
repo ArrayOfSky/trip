@@ -9,6 +9,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,7 @@ import java.util.List;
 @Service
 @Transactional(rollbackFor = Exception.class)
 @Slf4j
+@CacheConfig(cacheNames = "user")
 public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
@@ -30,6 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(key = "'selectAllUsers'+#pageNum+#pageSize")
     public PageInfo<User> getAllUsers(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<User> users = userMapper.selectAllUsers();
@@ -38,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Cacheable(key = "'getUserByName'+#name")
     public List<User> getUserByName(String name) {
         //获取数据
         List<User> users = userMapper.selectUsersByName(name);
@@ -49,6 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(key = "'getUserByPhoneNumber'+#userPhoneNumber+#pageNum+#pageSize")
     public PageInfo<User> getUserByPhoneNumber(String userPhoneNumber,int pageNum,int pageSize) {
         //获取数据
         PageHelper.startPage(pageNum,pageSize);
@@ -57,11 +64,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(key = "'getUserByPhoneNumber'+#userPhoneNumber")
     public List<User> getUserByPhoneNumber(String userPhoneNumber) {
         return userMapper.selectUserByPhoneNumber(userPhoneNumber);
     }
 
     @Override
+    @CacheEvict(cacheNames = "user",allEntries = true)
     public boolean register(User user) {
         List<User> users = userMapper.selectUserByPhoneNumber(user.getUserPhoneNumber());
         if(users.size()!=0){

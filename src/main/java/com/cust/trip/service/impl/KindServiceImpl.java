@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +32,7 @@ public class KindServiceImpl implements KindService {
     KindMapper kindMapper;
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "kind",allEntries = true)
     public void addKind(Kind kind) {
         //获取所有kind
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
@@ -48,7 +47,7 @@ public class KindServiceImpl implements KindService {
     }
 
     @Override
-    @CacheEvict(beforeInvocation = true)
+    @CacheEvict(cacheNames = "kind",allEntries = true)
     public void deleteKind(String kindName) {
         ArrayList<Kind> array = (ArrayList<Kind>) kindMapper.selectAll();
         for(Kind a : array){
@@ -82,7 +81,7 @@ public class KindServiceImpl implements KindService {
         throw new KindNotFoundException();
     }
 
-    @CachePut(key = "'updateKind'")
+    @CacheEvict(cacheNames = "kind",allEntries = true)
     @Override
     public void updateKind(String kindName1, String kindName2) {
         //获取所有
