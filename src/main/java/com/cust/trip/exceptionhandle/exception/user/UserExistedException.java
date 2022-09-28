@@ -9,7 +9,7 @@ import com.cust.trip.exceptionhandle.exception.BaseException;
  */
 public class UserExistedException extends BaseException {
     public UserExistedException() {
-        super("此用户已经被注册", Code.INVALID_REQUEST);
+        super("此手机号已经被注册", Code.INVALID_REQUEST);
     }
 
     public UserExistedException(String message, Integer code) {

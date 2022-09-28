@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(key = "'selectAllProduct'+#pageNum+#pageSize")
+    //@Cacheable(key = "'selectAllProduct'+#pageNum+#pageSize")
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Product> array = productMapper.selectAllProduct();
@@ -98,12 +98,13 @@ public class ProductServiceImpl implements ProductService {
     public Product selectProductByName(String name) {
         ArrayList<Product> array = (ArrayList<Product>) productMapper.selectAllProduct();
         for(Product a : array) {
-            if (a.getProductName().startsWith(name)) {
+            if(a.getProductName().equals(name)){
                 return a;
             }
             if (a.getProductName().contains(name)) {
                 return a;
             }
+
         }
         return null;
     }
