@@ -1,7 +1,6 @@
 package com.cust.trip.service;
 
 import com.cust.trip.bean.Order;
-import com.cust.trip.bean.User;
 import com.github.pagehelper.PageInfo;
 
 import java.sql.Timestamp;
@@ -61,7 +60,7 @@ public interface OrderService {
      * @param pageSize size
      * @return orders
      */
-    PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize);
+    PageInfo<Order> getOrdersByDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize);
 
     /**
      * 获取指定用户（手机号指定）

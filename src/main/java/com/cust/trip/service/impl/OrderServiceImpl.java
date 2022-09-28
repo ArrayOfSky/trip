@@ -130,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Cacheable(key = "'getOrdersByDates'+#time1+#time2+#pageNum+#pageSize")
-    public PageInfo<Order> getOrdersBtDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize) {
+    public PageInfo<Order> getOrdersByDates(Timestamp time1, Timestamp time2, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersBtDates(time1, time2);
         return new PageInfo<>(orders);

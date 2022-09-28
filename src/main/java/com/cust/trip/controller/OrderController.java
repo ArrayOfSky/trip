@@ -1,7 +1,6 @@
 package com.cust.trip.controller;
 
 import com.cust.trip.bean.Order;
-import com.cust.trip.bean.User;
 import com.cust.trip.commom.Code;
 import com.cust.trip.commom.ReturnData;
 import com.cust.trip.service.OrderService;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author gyx
@@ -112,7 +110,7 @@ public class OrderController {
     public ReturnData getOrdersBtDates(@RequestParam("time1") Timestamp time1, @RequestParam("time2") Timestamp time2
             , @RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
         //获取分页信息
-        PageInfo<Order> pageInfo = orderService.getOrdersBtDates(time1, time2, pageNum, pageSize);
+        PageInfo<Order> pageInfo = orderService.getOrdersByDates(time1, time2, pageNum, pageSize);
         return new ReturnData(Code.OK, "获取成功", pageInfo);
     }
 
