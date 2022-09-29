@@ -36,6 +36,11 @@
         </where>
     </select>
 
+<!--    User getUserById(@Param("userId") int userId);-->
+    <select id="getUserById" resultMap="resultMap">
+        select * from users where user_id= #{userId}
+    </select>
+
     <!--   int insertUser(@Param("user")User  user);-->
     <insert id="insertUser">
         insert users(user_name, user_password, user_phone_number, user_consumption, user_balance, user_is_vip,user_create_time)

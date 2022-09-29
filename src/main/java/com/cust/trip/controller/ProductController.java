@@ -69,16 +69,17 @@ public class ProductController {
         return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
-    @ApiImplicitParam(name = "productName",value = "产品名称",dataType = "String",paramType = "query",required = true)
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productName",value = "产品名称",dataType = "String",paramType = "query",required = true),
+            @ApiImplicitParam(name = "pageNum",value = "第几页",dataType = "int",paramType = "query",required = true),
+            @ApiImplicitParam(name = "pageSize",value = "每页数据量",dataType = "int",paramType = "query",required = true)
+    })
     @ApiOperation(value = "查询指定名称产品",notes = "查询指定名称产品")
     @PostMapping("/selectProductByName")
-    public ReturnData selectProductByName(@RequestParam("productName") String productName){
-        Product product = productService.selectProductByName(productName);
-        if(product==null){
-            return new ReturnData(Code.NOT_FOUND,"产品不存在",null);
-        }else{
-            return new ReturnData(Code.OK,"获取成功",product);
-        }
+    public ReturnData selectProductByName(@RequestParam("productName") String productName,@RequestParam("pageNum") int pageNum,@RequestParam("pageSize") int pageSize){
+        PageInfo<Product> pageInfo = productService.selectProductByName(productName,pageNum,pageSize);
+        return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
 }

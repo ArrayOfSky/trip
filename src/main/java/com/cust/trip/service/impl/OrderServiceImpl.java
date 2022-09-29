@@ -35,8 +35,10 @@ import java.util.List;
 @CacheConfig(cacheNames = "order")
 public class OrderServiceImpl implements OrderService {
 
+
     private UserMapper userMapper;
 
+    @Autowired
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
@@ -89,6 +91,36 @@ public class OrderServiceImpl implements OrderService {
         PageHelper.startPage(pageNum, pageSize);
         List<Order> orders = orderMapper.getOrdersByProductId(productId);
         return new PageInfo<>(orders);
+    }
+
+    @Override
+    public void saveOrder(Order order) {
+        List<Product> products = productMapper.selectAllProduct();
+        int productId=-1,userId=-1,statusId=-1;
+        //查找产品
+        for (Product product : products) {
+            if(product.getProductName().equals(order.getOrderProductName())){
+                productId=product.getProductId();
+            }
+        }
+        if(productId==-1){
+            throw new ProductNotFoundException();
+        }
+        //查找用户
+        List<User> users = userMapper.selectUsersByName(order.getOrderUserName());
+        if(users.size()!=0&&users.get(0)!=null){
+            userId=users.get(0).getUserId();
+        }else{
+            throw new UserNotFoundException();
+        }
+        //查找状态
+        Status status = statusMapper.selectStatusByName(order.getOrderStatusName());
+        if(status==null){
+            throw new StatusNotFoundException("订单状态异常",Code.INVALID_REQUEST);
+        }
+        statusId=status.getStatusId();
+        //新建订单
+        orderMapper.saveOrder(order,statusId,productId,userId);
     }
 
     @Override

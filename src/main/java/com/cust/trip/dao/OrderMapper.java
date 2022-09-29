@@ -20,12 +20,6 @@ public interface OrderMapper {
      */
     List<Order> getAllOrders();
 
-    /**
-     * 新增订单
-     * @param order 新增的订单
-     * @return row
-     */
-    int saveOrder(@Param("order")Order order);
 
     /**
      * 依据状态查询订单数据
@@ -65,5 +59,5 @@ public interface OrderMapper {
      * @param userId 用户id
      * @return -
      */
-    int addOrder(@Param("order") Order order,@Param("statusId") int statusId,@Param("productId") int productId,@Param("userId") int userId);
+    int saveOrder(@Param("order") Order order,@Param("statusId") int statusId,@Param("productId") int productId,@Param("userId") int userId);
 }

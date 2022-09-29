@@ -1,9 +1,12 @@
 package com.cust.trip.service.impl;
 
+import com.cust.trip.bean.Order;
+import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.cust.trip.dao.UserMapper;
 import com.cust.trip.exceptionhandle.exception.user.UserExistedException;
 import com.cust.trip.exceptionhandle.exception.user.UserNotFoundException;
+import com.cust.trip.service.OrderService;
 import com.cust.trip.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -41,6 +44,14 @@ public class UserServiceImpl implements UserService {
         return new PageInfo<>(users);
     }
 
+
+    @Override
+    public Order order(User user, Product product) {
+        Order order = new Order();
+        order.setOrderUserName(user.getUserName());
+        order.setOrderProductName(product.getProductName());
+        return order;
+    }
 
     @Override
     public PageInfo<User> getUserByName(String name, int pageNum, int pageSize) {
@@ -83,12 +94,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @CacheEvict(cacheNames = "user",allEntries = true)
-    public boolean register(User user) {
-        List<User> users = userMapper.selectUserByPhoneNumber(user.getUserPhoneNumber());
-        if(users.size()!=0){
+    public void register(User user) {
+        //排查是否已经注册过了
+        if(userMapper.getUserById(user.getUserId())!=null){
             throw new UserExistedException();
         }
         userMapper.insertUser(user);
-        return true;
     }
 }

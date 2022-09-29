@@ -32,6 +32,13 @@ public interface ProductMapper {
      */
     int deleteProductByName(@Param("productName") String productName);
 
+    /**
+     * 查询相关名字的产品
+     * @param productName 产品名称
+     * @return -
+     */
+    List<Product> selectProductByProductName(@Param("productName") String productName);
+
 
 //    void updateProduct(@Param("productName") String name,Product product);
 

@@ -28,14 +28,6 @@
                  JOIN products p ON o.order_product_id = p.product_id
                  JOIN users u ON o.order_user_id = u.user_id
     </select>
-    <!--    int saveOrder(Order order);-->
-    <insert id="saveOrder">
-        insert into orders(order_id, order_user_id, order_product_id, order_status, order_create_time,
-                           order_update_time, order_discount)
-        values (#{order.orderId}, #{order.orderUserId}, #{order.orderProductId}, #{order.orderStatus},
-                #{order.orderCreateTime},
-                #{order.orderUpdateTime}, #{order.orderDiscount})
-    </insert>
     <!--    List<Order> getOrdersByProductId(int orderProductId);-->
     <select id="getOrdersByProductId" resultMap="resultMap">
 
@@ -113,8 +105,8 @@
                   and #{orderCreateTimePo}
     </select>
 
-    <!--    int addOrder(@Param("order") Order order,@Param("statusId") int statusId);-->
-    <insert id="addOrder">
+    <!--    int saveOrder(@Param("order") Order order,@Param("statusId") int statusId);-->
+    <insert id="saveOrder">
         INSERT INTO orders( `order_product_id`, `order_user_id`, `order_create_time`,
                            `order_update_time`, `order_status`, `order_discount`)
         VALUES (#{productId}, #{userId}, #{order.orderCreateTime}, #{order.orderUpdateTime}, #{statusId}, #{order.orderDiscount});

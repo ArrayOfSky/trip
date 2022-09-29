@@ -118,4 +118,11 @@ public interface UserMapper {
      * @return 影响的行数
      */
     int updateVip(@Param("userId")int userId, @Param("userVip")int userVip);
+
+    /**
+     * 依据id查询用户
+     * @param userId 用户id
+     * @return -
+     */
+    User getUserById(@Param("userId") int userId);
 }

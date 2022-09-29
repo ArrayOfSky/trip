@@ -71,4 +71,11 @@ public interface OrderService {
      */
     PageInfo<Order> getOrdersByUserPhoneNumber(String userPhoneNumber,int pageNum,int pageSize);
 
+    /**
+     * 新增订单
+     * @param order order对象
+     * @return -
+     */
+    void  saveOrder(Order order);
+
 }

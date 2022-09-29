@@ -46,11 +46,14 @@ public interface ProductService {
 
 //    List<Product> selectAllProductByPrice(double price1,double price2,int pageNum,int pageSize);
 
+
     /**
-     * 根据姓名查询产品
-     * @param productName 产品名称
-     * @return 产品
+     * 获取特定名称产品
+     * @param productName=
+     * @param pageNum=
+     * @param pageSize=
+     * @return =
      */
-    Product selectProductByName(String productName);
+    PageInfo<Product> selectProductByName(String productName,int pageNum,int pageSize);
 
 }

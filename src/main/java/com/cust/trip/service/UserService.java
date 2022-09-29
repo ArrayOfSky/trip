@@ -1,5 +1,6 @@
 package com.cust.trip.service;
 
+import com.cust.trip.bean.Order;
 import com.cust.trip.bean.Product;
 import com.cust.trip.bean.User;
 import com.github.pagehelper.PageInfo;
@@ -49,20 +50,28 @@ public interface UserService {
 
     /**
      * 通过用户名获取用户对象并分页
-     * @param name 用户名
-     * @param pgeNum -
+     *
+     * @param name      用户名
+     * @param pageNum -
      * @param pageSize-
      * @return -
      */
-    PageInfo<User> getUserByName(String name,int pageNum,int pageSize);
+    PageInfo<User> getUserByName(String name, int pageNum, int pageSize);
 
     /**
      * 用户注册
+     *
      * @param user -
-     * @return -
      */
-    boolean register(User user);
+    void register(User user);
 
+    /**
+     * 生成订单
+     * @param user 用户
+     * @param product 产品
+     * @return Order
+     */
+    Order order(User user, Product product);
     //    boolean login(User user);
 //
 //    boolean logout(User user);
@@ -76,7 +85,7 @@ public interface UserService {
 //
 //    boolean useBalance(User user, Double useBalance);
 //
-//    boolean order(User user, Product product);
+
 //
 //    int updatePhoneNumber(User user, String newPhoneNumber);
 
