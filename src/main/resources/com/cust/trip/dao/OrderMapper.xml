@@ -6,114 +6,117 @@
         <result property="orderUserName" column="order_user_id"/>
         <result property="orderProductName" column="order_product_id"/>
         <result property="orderStatusName" column="order_status"/>
-        <result property="orderCreateTime"  column="order_create_time"/>
+        <result property="orderCreateTime" column="order_create_time"/>
         <result property="orderUpdateTime" column="order_update_time"/>
         <result property="orderDiscount" column="order_discount"/>
     </resultMap>
 
     <!--    List<Order> getAllOrders();-->
     <select id="getAllOrders" resultMap="resultMap">
-        SELECT
-            order_id,
-            order_create_time,
-            order_update_time,
-            order_discount,
-            product_name AS
-                order_product_id,
-            user_name AS
-                order_user_id,
-            status_name AS
-                order_status
-        FROM
-            orders o JOIN status s ON o.order_status = s.status_id
-                     JOIN products p ON o.order_product_id = p.product_id
-                     JOIN users u ON o.order_user_id = u.user_id
+        SELECT order_id,
+               order_create_time,
+               order_update_time,
+               order_discount,
+               product_name AS
+                   order_product_id,
+               user_name    AS
+                   order_user_id,
+               status_name  AS
+                   order_status
+        FROM orders o
+                 JOIN status s ON o.order_status = s.status_id
+                 JOIN products p ON o.order_product_id = p.product_id
+                 JOIN users u ON o.order_user_id = u.user_id
     </select>
     <!--    int saveOrder(Order order);-->
     <insert id="saveOrder">
-        insert into orders(order_id, order_user_id, order_product_id, order_status, order_create_time, order_update_time,order_discount)
+        insert into orders(order_id, order_user_id, order_product_id, order_status, order_create_time,
+                           order_update_time, order_discount)
         values (#{order.orderId}, #{order.orderUserId}, #{order.orderProductId}, #{order.orderStatus},
                 #{order.orderCreateTime},
-                #{order.orderUpdateTime},#{order.orderDiscount})
+                #{order.orderUpdateTime}, #{order.orderDiscount})
     </insert>
     <!--    List<Order> getOrdersByProductId(int orderProductId);-->
     <select id="getOrdersByProductId" resultMap="resultMap">
 
-        SELECT
-            order_id,
-            order_create_time,
-            order_update_time,
-            order_discount,
-            product_name AS
-                order_product_id,
-            user_name AS
-                order_user_id,
-            status_name AS
-                order_status
-        FROM
-            orders o JOIN status s ON o.order_status = s.status_id
-                     JOIN products p ON o.order_product_id = p.product_id
-                     JOIN users u ON o.order_user_id = u.user_id
-        where order_product_id=#{orderProductId}
+        SELECT order_id,
+               order_create_time,
+               order_update_time,
+               order_discount,
+               product_name AS
+                   order_product_id,
+               user_name    AS
+                   order_user_id,
+               status_name  AS
+                   order_status
+        FROM orders o
+                 JOIN status s ON o.order_status = s.status_id
+                 JOIN products p ON o.order_product_id = p.product_id
+                 JOIN users u ON o.order_user_id = u.user_id
+        where order_product_id = #{orderProductId}
     </select>
 
     <!--    List<Order> getOrdersByUserId(int orderUserId);-->
     <select id="getOrdersByUserId" resultMap="resultMap">
-        SELECT
-            order_id,
-            order_create_time,
-            order_update_time,
-            order_discount,
-            product_name AS
-                order_product_id,
-            user_name AS
-                order_user_id,
-            status_name AS
-                order_status
-        FROM
-            orders o JOIN status s ON o.order_status = s.status_id
-                     JOIN products p ON o.order_product_id = p.product_id
-                     JOIN users u ON o.order_user_id = u.user_id
+        SELECT order_id,
+               order_create_time,
+               order_update_time,
+               order_discount,
+               product_name AS
+                   order_product_id,
+               user_name    AS
+                   order_user_id,
+               status_name  AS
+                   order_status
+        FROM orders o
+                 JOIN status s ON o.order_status = s.status_id
+                 JOIN products p ON o.order_product_id = p.product_id
+                 JOIN users u ON o.order_user_id = u.user_id
         where order_user_id = #{orderUserId}
     </select>
     <!--    List<Order> getOrdersByStatus(int statusId);-->
     <select id="getOrdersByStatus" resultMap="resultMap">
-        SELECT
-            order_id,
-            order_create_time,
-            order_update_time,
-            order_discount,
-            product_name AS
-                order_product_id,
-            user_name AS
-                order_user_id,
-            status_name AS
-                order_status
-        FROM
-            orders o JOIN status s ON o.order_status = s.status_id
-                     JOIN products p ON o.order_product_id = p.product_id
-                     JOIN users u ON o.order_user_id = u.user_id
-        where order_status=#{statusId}
+        SELECT order_id,
+               order_create_time,
+               order_update_time,
+               order_discount,
+               product_name AS
+                   order_product_id,
+               user_name    AS
+                   order_user_id,
+               status_name  AS
+                   order_status
+        FROM orders o
+                 JOIN status s ON o.order_status = s.status_id
+                 JOIN products p ON o.order_product_id = p.product_id
+                 JOIN users u ON o.order_user_id = u.user_id
+        where order_status = #{statusId}
     </select>
 
     <!--    List<Order> getOrdersBtDates(Timestamp orderCreateTimePre,Timestamp orderCreateTimePo);-->
     <select id="getOrdersBtDates" resultMap="resultMap">
-        SELECT
-            order_id,
-            order_create_time,
-            order_update_time,
-            order_discount,
-            product_name AS
-                order_product_id,
-            user_name AS
-                order_user_id,
-            status_name AS
-                order_status
-        FROM
-            orders o JOIN status s ON o.order_status = s.status_id
-                     JOIN products p ON o.order_product_id = p.product_id
-                     JOIN users u ON o.order_user_id = u.user_id
+        SELECT order_id,
+               order_create_time,
+               order_update_time,
+               order_discount,
+               product_name AS
+                   order_product_id,
+               user_name    AS
+                   order_user_id,
+               status_name  AS
+                   order_status
+        FROM orders o
+                 JOIN status s ON o.order_status = s.status_id
+                 JOIN products p ON o.order_product_id = p.product_id
+                 JOIN users u ON o.order_user_id = u.user_id
         where order_create_time between #{orderCreateTimePre}
-            and #{orderCreateTimePo}
+                  and #{orderCreateTimePo}
     </select>
+
+    <!--    int addOrder(@Param("order") Order order,@Param("statusId") int statusId);-->
+    <insert id="addOrder">
+        INSERT INTO orders( `order_product_id`, `order_user_id`, `order_create_time`,
+                           `order_update_time`, `order_status`, `order_discount`)
+        VALUES (#{productId}, #{userId}, #{order.orderCreateTime}, #{order.orderUpdateTime}, #{statusId}, #{order.orderDiscount});
+    </insert>
 </mapper>

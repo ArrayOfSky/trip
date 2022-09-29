@@ -57,5 +57,13 @@ public interface OrderMapper {
      */
     List<Order> getOrdersBtDates(@Param("orderCreateTimePre")Timestamp orderCreateTimePre,@Param("orderCreateTimePo")Timestamp orderCreateTimePo);
 
-
+    /**
+     * 新增订单
+     * @param order 新订单
+     * @param statusId 状态id
+     * @param productId 产品id
+     * @param userId 用户id
+     * @return -
+     */
+    int addOrder(@Param("order") Order order,@Param("statusId") int statusId,@Param("productId") int productId,@Param("userId") int userId);
 }

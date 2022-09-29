@@ -42,16 +42,9 @@ public class UserController {
     @PostMapping("/getAllUsers")
     public ReturnData getAllOrders(@RequestParam("pageNum") int pageNum
             , @RequestParam("pageSize") int pageSize) {
-        //创建返回对象
-        ReturnData returnData = new ReturnData();
         //获取分页信息
         PageInfo<User> pageInfo = userService.getAllUsers(pageNum, pageSize);
-        //封装对象
-        returnData.setData(pageInfo);
-        returnData.setCode(Code.OK);
-        returnData.setMsg("获取成功");
-        //返回
-        return returnData;
+        return new ReturnData(Code.OK,"获取成功",pageInfo);
     }
 
     @ApiImplicitParams({
@@ -64,14 +57,8 @@ public class UserController {
     @PostMapping("getUserByPhoneNumber")
     public ReturnData getUserByPhoneNumber(@RequestParam("userPhoneNumber") String userPhoneNumber, @RequestParam("pageNum") int pageNum
             , @RequestParam("pageSize") int pageSize) {
-        //创建返回对象
-        ReturnData returnData = new ReturnData();
-        //正确则进行查询
         PageInfo<User> userPageInfo = userService.getUserByPhoneNumber(userPhoneNumber, pageNum, pageSize);
-        returnData.setData(userPageInfo);
-        returnData.setCode(Code.OK);
-        returnData.setMsg("获取成功");
-        return returnData;
+        return new ReturnData(Code.OK,"获取成功",userPageInfo);
 
     }
 
@@ -83,22 +70,11 @@ public class UserController {
     })
     @ApiOperation(value = "根据用户名查询用户", notes = "根据用户名查询用户")
     @PostMapping("/getUserByName")
-    public ReturnData getUserByName(@RequestParam("userName") String userName) {
+    public ReturnData getUserByName(@RequestParam("userName") String userName,
+                                    @RequestParam("pageSize") int pageSize,@RequestParam("pageNum") int pageNum) {
         //查询用户对象
-        List<User> users = userService.getUserByName(userName);
-        ReturnData returnData = new ReturnData();
-        //检查是否查到用户
-        if (users.size() == 0) {
-            //没有用户
-            returnData.setMsg("找不到此用户");
-            returnData.setCode(Code.NOT_FOUND);
-        } else {
-            //查找到了用户
-            returnData.setMsg("获取成功");
-            returnData.setCode(Code.OK);
-            returnData.setData(users);
-        }
-        return returnData;
+        PageInfo<User> users = userService.getUserByName(userName, pageNum, pageSize);
+        return new ReturnData(Code.OK,"获取成功",users);
     }
 
     @ApiImplicitParams({

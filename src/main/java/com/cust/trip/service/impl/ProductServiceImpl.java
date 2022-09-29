@@ -72,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    //@Cacheable(key = "'selectAllProduct'+#pageNum+#pageSize")
+    @Cacheable(key = "'selectAllProduct'+#pageNum+#pageSize")
     public PageInfo<Product> selectAllProduct(int pageNum,int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Product> array = productMapper.selectAllProduct();

@@ -48,6 +48,15 @@ public interface UserService {
     List<User> getUserByName(String name);
 
     /**
+     * 通过用户名获取用户对象并分页
+     * @param name 用户名
+     * @param pgeNum -
+     * @param pageSize-
+     * @return -
+     */
+    PageInfo<User> getUserByName(String name,int pageNum,int pageSize);
+
+    /**
      * 用户注册
      * @param user -
      * @return -

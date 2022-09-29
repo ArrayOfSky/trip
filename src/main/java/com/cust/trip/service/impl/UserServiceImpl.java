@@ -43,6 +43,18 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    public PageInfo<User> getUserByName(String name, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        //获取数据
+        List<User> users = userMapper.selectUsersByName(name);
+        //判断是否为空
+        if(users==null||users.size()==0){
+            throw new UserNotFoundException();
+        }
+        return new PageInfo<>(users);
+    }
+
+    @Override
     @Cacheable(key = "'getUserByName'+#name")
     public List<User> getUserByName(String name) {
         //获取数据
